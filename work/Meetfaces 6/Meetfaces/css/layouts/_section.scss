@@ -1,0 +1,8 @@
+section {
+  padding: 40px 0;
+  background-color: #f5f4fb;
+
+  @media (min-width: $LG) {
+    padding: 100px 0;
+  }
+}

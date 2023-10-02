@@ -1,0 +1,60 @@
+.contact-box {
+  background: $SECONDARY;
+  color: #fff;
+  border-radius: 4px;
+  padding: 15px;
+  max-width: 1060px;
+  width: 100%;
+  margin: 25px auto;
+
+  &--light {
+    background-color: #e3dff4;
+    margin-top: 0 !important;
+    max-width: 100%;
+
+    + .contact-box {
+      margin-top: 20px !important;
+    }
+
+    .person {
+      font-size: 18px;
+      color: #4b4044;
+      font-weight: 700;
+    }
+  }
+
+  > div {
+    @media (max-width: $MD) {
+      margin-bottom: 20px;
+    }
+  }
+
+  .btn {
+    width: 100%;
+    margin-left: 0;
+
+    &:first-of-type {
+      margin-bottom: 20px;
+    }
+  }
+
+  @media (min-width: $MD) {
+    display: grid;
+    grid-column-gap: 5px;
+    grid-row-gap: 25px;
+    align-items: center;
+    grid-template-columns: 1fr auto auto;
+    padding: 20px 40px;
+    margin: 50px auto;
+
+    .btn {
+      width: auto;
+      margin-left: 25px;
+      margin-bottom: 0;
+
+      &:first-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

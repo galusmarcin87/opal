@@ -1,0 +1,108 @@
+.company-wrapper {
+  .single-company {
+    padding-bottom: 50px;
+    .popup-video {
+      display: grid;
+    }
+
+    &__contact {
+      margin-bottom: 50px;
+
+      div {
+        margin-bottom: 5px;
+      }
+    }
+
+    &__video {
+      max-width: 500px;
+      position: relative;
+      display: block;
+      margin-bottom: 50px;
+
+      &::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.3);
+        pointer-events: none;
+      }
+
+      &__play {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 100px;
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    &__content {
+      @media (min-width: $TABLET) {
+        padding: 0 50px;
+      }
+
+      @media (min-width: $LG) {
+        padding: 0 70px;
+      }
+    }
+
+    &__image {
+      height: 430px;
+      width: 100%;
+      object-fit: cover;
+
+      + img {
+        max-width: 240px;
+      }
+    }
+
+    h1 {
+      text-align: left;
+      font-weight: bold;
+      margin-bottom: 25px;
+      margin-top: 20px;
+      font-size: 32px;
+    }
+
+    .rating {
+      margin-top: 20px;
+    }
+
+    #MAP {
+      height: 275px;
+      margin-bottom: 50px;
+    }
+  }
+
+  #GALLERY {
+    margin-bottom: 20px;
+
+    @media (min-width: $TABLET) {
+      .owl-prev {
+        margin-left: -50px;
+      }
+
+      .owl-next {
+        margin-right: -50px;
+      }
+    }
+  }
+}
+
+.buttons-wrapper {
+  background: #ece9f8;
+  padding: 15px 30px;
+  padding-bottom: 0;
+  border-radius: 4px;
+  margin: 50px 0;
+  text-align: center;
+
+  @media (min-width: $TABLET) {
+    text-align: left;
+  }
+
+  .btn {
+    min-width: 125px;
+    margin-bottom: 15px;
+  }
+}

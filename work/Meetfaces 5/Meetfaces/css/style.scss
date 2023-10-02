@@ -1,0 +1,209 @@
+@import './variables';
+
+//layout
+@import './layouts/footer';
+@import './layouts/section';
+@import './layouts/benefits';
+@import './layouts/about';
+@import './layouts/testimonials';
+@import './layouts/companies';
+@import './layouts/world-map';
+@import './layouts/numbers';
+@import './layouts/main-slider';
+@import './layouts/search-results';
+@import './layouts/service';
+@import './layouts/company';
+@import './layouts/login';
+@import './layouts/register';
+@import './layouts/regulamin';
+@import './layouts/dashboard';
+
+//components
+@import './components/search';
+@import './components/menu';
+@import './components/buttons';
+@import './components/selects';
+@import './components/social-icons';
+@import './components/list';
+@import './components/person';
+@import './components/badge';
+@import './components/blocks';
+@import './components/menu-vertical';
+@import './components/pagination';
+@import './components/breadcrumb';
+@import './components/rating';
+@import './components/contact-box';
+@import './components/form';
+@import './components/table';
+@import './components/accordion';
+
+html {
+  box-sizing: border-box;
+  color: #4b4044;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ol,
+ul {
+  font-weight: normal;
+  margin: 0;
+  padding: 0;
+}
+
+ol,
+ul {
+  list-style: none;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+.container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 10px;
+
+  @media (min-width: $SM) {
+    padding: 0 15px;
+  }
+}
+
+a {
+  text-decoration: none;
+  color: #4b4044;
+
+  &:hover,
+  &:active {
+    color: $PRIMARY;
+    text-decoration: underline;
+  }
+}
+
+body {
+  font-family: 'Nunito';
+  font-size: 15px;
+  color: #4b4044;
+  background-color: #f5f4fb;
+}
+
+h1 {
+  font-size: 28px;
+  color: #4b4044;
+  font-weight: 700;
+  font-family: 'Nunito';
+  text-align: center;
+  margin-bottom: 40px;
+
+  @media (min-width: $LG) {
+    font-size: 40px;
+    margin-bottom: 100px;
+  }
+}
+
+h2 {
+  font-size: 24px;
+  color: $SECONDARY;
+  font-weight: 600;
+  font-family: 'Nunito';
+  margin-bottom: 25px;
+
+  @media (min-width: $LG) {
+    font-size: 30px;
+    margin-bottom: 50px;
+  }
+}
+
+h3 {
+  font-size: 30px;
+  color: #4b4044;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.flex {
+  display: flex;
+  flex-grow: 1;
+  flex: 1 1 0;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+
+  @media (min-width: $TABLET) {
+    > * {
+      width: 100%;
+    }
+  }
+}
+
+.relative {
+  position: relative;
+}
+
+.hr {
+  margin: 20px 0;
+  border-bottom: 1px solid #d3d0d6;
+  max-width: 210px;
+}
+
+.highlighted {
+  color: $SECONDARY;
+  font-weight: bold;
+}
+
+.label {
+  font-size: 17px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.no-bg {
+  background: transparent;
+}
+
+.no-pd {
+  padding-left: 0;
+  padding-right: 0;
+  padding-bottom: 0 !important;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.normal {
+  font-weight: normal;
+}
+
+.display-block {
+  display: block !important;
+}
+
+.full-width {
+  width: 100%;
+}

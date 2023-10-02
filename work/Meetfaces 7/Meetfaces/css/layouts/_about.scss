@@ -1,0 +1,112 @@
+.about-wrapper {
+  padding-bottom: 0 !important;
+  position: relative;
+
+  &::before {
+    content: '';
+    background-image: url('../img/kolo_2.png');
+    background-repeat: no-repeat;
+    display: block;
+    position: absolute;
+    width: 540px;
+    height: 540px;
+    top: 0px;
+    left: -270px;
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+.about {
+  &__content {
+    display: grid;
+    grid-template-columns: 1fr;
+    position: relative;
+    z-index: 1;
+
+    @media (min-width: $TABLET) {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    > div:first-child {
+      background-color: #fff;
+      padding: 30px;
+      width: 100%;
+      font-size: 15px;
+      color: #4b4044;
+      order: 1;
+
+      @media (min-width: $TABLET) {
+        width: 65vw;
+        order: 0;
+        padding: 50px;
+        padding-right: 190px;
+      }
+
+      @media (min-width: $LG) {
+        width: 55vw;
+      }
+    }
+  }
+
+  &__list {
+    font-weight: 600;
+
+    &__item {
+      position: relative;
+      padding-left: 10px;
+      margin-bottom: 20px;
+
+      &:before {
+        content: '';
+        background-color: $PRIMARY;
+        width: 4px;
+        height: 4px;
+        left: 0;
+        top: 8px;
+        border-radius: 50%;
+        position: absolute;
+      }
+
+      &::after {
+        content: '';
+        width: 50%;
+        height: 1px;
+        background-color: #ecebeb;
+        display: block;
+        margin-top: 15px;
+        margin-left: -10px;
+      }
+    }
+  }
+
+  &__image {
+    width: 65vw;
+    max-width: unset;
+    margin: 0;
+    order: 0;
+
+    > div {
+      position: relative;
+      display: inline-flex;
+    }
+
+    @media (min-width: $TABLET) {
+      order: 1;
+      width: calc(100% + 115px);
+      margin-left: -115px;
+      margin-top: 50px;
+      margin-bottom: 50px;
+    }
+  }
+
+  &__video-icon {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 115px;
+    height: 115px;
+    background-color: $SECONDARY;
+    padding: 25px;
+  }
+}

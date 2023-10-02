@@ -1,0 +1,53 @@
+.accordion {
+  margin-top: 80px;
+
+  &__header {
+    font-size: 24px;
+    font-weight: 700;
+    color: $SECONDARY;
+    margin-bottom: 60px;
+    cursor: pointer;
+    position: relative;
+
+    &::after {
+      content: '\f067';
+      color: $SECONDARY;
+      font-size: 24px;
+      font-family: FontAwesome;
+      display: block;
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
+
+    &--active {
+      color: $PRIMARY;
+      margin-bottom: 0;
+
+      &::after {
+        content: '\f068';
+        color: $PRIMARY;
+      }
+
+      + .accordion__content {
+        display: block;
+        margin-bottom: 30px;
+      }
+    }
+  }
+
+  &__content {
+    display: none;
+    font-size: 17px;
+    line-height: 30px;
+    color: #4b4044;
+    font-weight: 700;
+    padding: 35px;
+    display: none;
+
+    &--active {
+      display: block;
+      margin-bottom: 30px;
+    }
+  }
+}

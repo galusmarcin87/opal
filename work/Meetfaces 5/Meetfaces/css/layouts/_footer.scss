@@ -1,0 +1,70 @@
+.footer-wrapper {
+  background-image: linear-gradient(50deg, #412bb7 0%, #bd65d5 100%);
+  padding-top: 40px;
+  padding-bottom: 30px;
+  color: #fff;
+  font-weight: 600;
+  font-family: 'Nunito';
+  font-size: 17px;
+  line-height: 30px;
+  position: relative;
+
+  &::before {
+    content: '';
+    background-image: url('../svg/mapa_swiata_footer.svg');
+    background-position: center;
+    background-repeat: no-repeat;
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.1;
+    margin: 30px 0;
+  }
+
+  a {
+    color: inherit;
+
+    &:hover {
+      color: inherit;
+      font-weight: 800;
+    }
+  }
+}
+
+.footer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-column-gap: 30px;
+  grid-row-gap: 50px;
+  margin: 30px 0;
+  position: relative;
+  z-index: 1;
+
+  @media (min-width: $MD) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (min-width: $TABLET) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @media (min-width: $LG) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  &__copy {
+    color: #cbc5e9;
+    display: grid;
+
+    @media (min-width: $TABLET) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &__realization {
+    @media (min-width: $TABLET) {
+      text-align: right;
+    }
+  }
+}

@@ -1,0 +1,52 @@
+.pagination {
+  margin-top: 50px;
+
+  &__item {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    border-radius: 4px;
+    background-color: #ffffff;
+    border: 1px solid rgba(190, 102, 214, 0.3);
+    font-size: 15px;
+    font-weight: 500;
+    text-align: center;
+    margin: 0 5px;
+    display: inline-block;
+    vertical-align: middle;
+    text-decoration: none !important;
+
+    @media (min-width: $TABLET) {
+      margin: 0 10px;
+      width: 50px;
+      height: 50px;
+      line-height: 50px;
+    }
+
+    &--active {
+      background: $PRIMARY;
+      position: relative;
+      color: #ffffff !important;
+      filter: drop-shadow(0.766px 0.643px 0.5px rgba(66, 44, 183, 0.3));
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        pointer-events: none;
+        background-color: #ffffff;
+        display: block;
+        height: 1px;
+        background-color: #fff;
+        filter: blur(2px);
+      }
+    }
+
+    &:first-child,
+    &:last-child {
+      color: $PRIMARY;
+    }
+  }
+}

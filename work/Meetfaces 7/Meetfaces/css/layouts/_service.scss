@@ -1,0 +1,104 @@
+.service-wrapper {
+  padding-top: 20px;
+}
+
+.service {
+  background: #fff;
+  padding: 20px;
+  position: relative;
+
+  .flex {
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+
+    @media (max-width: $TABLET) {
+      display: grid;
+    }
+  }
+
+  &__content {
+    @media (min-width: $TABLET) {
+      padding: 25px 50px;
+    }
+  }
+
+  p {
+    margin-bottom: 40px;
+    line-height: 30px;
+  }
+}
+
+.training {
+  display: grid;
+  font-size: 20px;
+  line-height: 30px;
+  font-weight: bold;
+  border-radius: 4px;
+  overflow: hidden;
+
+  .rating {
+    margin-top: 10px;
+
+    @media (min-width: $TABLET) {
+      position: absolute;
+      top: 10px;
+      right: 150px;
+      margin-top: 0;
+    }
+  }
+
+  &__badge {
+    background: $SECONDARY;
+    color: #fff;
+    text-transform: uppercase;
+    border-top-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    font-size: 16px;
+    letter-spacing: 3px;
+    z-index: 1;
+  }
+
+  &__prices {
+    display: flex;
+    flex-grow: 1;
+    grid-row-gap: 20px;
+
+    > div {
+      width: 100%;
+    }
+  }
+
+  @media (min-width: $TABLET) {
+    grid-template-columns: 50% 1fr;
+    grid-column-gap: 40px;
+  }
+
+  a {
+    color: $PRIMARY;
+    text-decoration: underline;
+    font-weight: bold;
+  }
+
+  h1 {
+    text-align: left;
+    font-weight: 500;
+    margin-bottom: 25px;
+    font-size: 36px;
+    margin-top: 20px;
+  }
+
+  hr {
+    max-width: 210px;
+  }
+
+  &__logo {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    width: 24% !important;
+  }
+}

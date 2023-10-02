@@ -1,0 +1,59 @@
+.benefits-container {
+  position: relative;
+
+  &::before {
+    content: '';
+    background-image: url('../img/kolo_2.png');
+    background-repeat: no-repeat;
+    display: block;
+    position: absolute;
+    width: 270px;
+    height: 540px;
+    top: -100px;
+    right: 0;
+    pointer-events: none;
+    z-index: 0;
+  }
+}
+
+.benefits {
+  --items: 1;
+  display: grid;
+  grid-template-columns: repeat(var(--items), 1fr);
+  justify-items: center;
+  align-self: center;
+  grid-column-gap: 50px;
+  grid-row-gap: 50px;
+  position: relative;
+  z-index: 1;
+
+  @media (min-width: $SM) {
+    --items: 2;
+  }
+
+  @media (min-width: $LG) {
+    display: flex;
+    justify-content: space-around;
+    grid-column-gap: 50px;
+    grid-row-gap: 50px;
+    flex-flow: row wrap;
+  }
+
+  &__item {
+    display: grid;
+    font-size: 17px;
+    line-height: 26px;
+    color: #4b4044;
+    font-weight: 700;
+    font-family: 'Nunito';
+    text-align: center;
+    grid-row-gap: 20px;
+    text-align: center;
+    justify-items: center;
+    align-self: center;
+  }
+
+  &__image {
+    max-width: 100px;
+  }
+}

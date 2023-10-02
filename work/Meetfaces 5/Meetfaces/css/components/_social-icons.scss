@@ -1,0 +1,47 @@
+.social-icons {
+  display: flex;
+  grid-column-gap: 20px;
+
+  &--color {
+    @media (min-width: $MD) {
+      grid-column-gap: 30px !important;
+    }
+
+    .social-icons__icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 4px;
+      padding: 15px;
+    }
+  }
+
+  @media (min-width: $LG) {
+    grid-column-gap: 50px;
+    justify-self: end;
+  }
+
+  &__icon {
+    height: 30px;
+    display: inline-flex;
+
+    &--tik-tok {
+      background: #1a1b1d;
+    }
+
+    &--fb {
+      background: #422cb7;
+    }
+
+    &--tw {
+      background: #42c4ea;
+    }
+
+    &--ln {
+      background: #42c4ea;
+    }
+
+    &--in {
+      background: #a1887f;
+    }
+  }
+}

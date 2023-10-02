@@ -1,0 +1,54 @@
+.regulamin {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-column-gap: 15px;
+  grid-row-gap: 15px;
+  margin-top: 50px;
+
+  @media (min-width: $MD) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (min-width: $TABLET) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
+  @media (min-width: $LG) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  &__item {
+    padding: 20px;
+    background: #fff;
+    font-size: 24px;
+    display: grid;
+    grid-row-gap: 10px;
+    font-weight: bold;
+    border-radius: 4px;
+    min-height: 200px;
+
+    > div {
+      align-content: end;
+      align-self: end;
+    }
+
+    small {
+      font-size: 17px;
+    }
+
+    svg {
+      width: 70px;
+      height: 70px;
+      fill: $PRIMARY;
+    }
+
+    &:hover {
+      background-image: linear-gradient(50deg, #412bb7 0%, #bd65d5 100%);
+      color: #fff;
+
+      svg {
+        fill: #b49fe0;
+      }
+    }
+  }
+}

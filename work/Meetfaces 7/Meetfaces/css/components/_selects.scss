@@ -1,0 +1,119 @@
+.language-select {
+  align-items: center;
+  display: inline-grid;
+  cursor: pointer;
+  width: 50px;
+  height: 30px;
+  grid-template-columns: auto auto;
+  align-content: center;
+  grid-column-gap: 5px;
+  position: relative;
+  order: 1;
+  grid-area: none;
+  position: absolute;
+  right: 15px;
+  bottom: 15px;
+  justify-self: flex-end;
+
+  @media (min-width: $SM) {
+    order: 0;
+    grid-area: unset;
+    position: sticky;
+    top: unset;
+    bottom: unset;
+    width: 60px;
+    height: unset;
+  }
+
+  @media (min-width: $LG) {
+    margin-left: 10px;
+  }
+
+  &::after {
+    content: '\f078';
+    color: $PRIMARY;
+    font-size: 12px;
+    line-height: 40px;
+    font-family: FontAwesome;
+  }
+
+  &__selected-lang {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    border-radius: 20px;
+    background-color: #edecec;
+    border: 3px solid rgba(75, 64, 68, 0.1);
+
+    @media (min-width: $SM) {
+      width: 40px;
+      height: 40px;
+    }
+  }
+
+  .dropdown {
+    margin-top: 5px;
+    grid-row-gap: 10px;
+    top: 100%;
+    padding: 10px;
+  }
+}
+
+.dropdown {
+  filter: drop-shadow(15.321px 12.856px 15px rgba(66, 44, 183, 0.05));
+  background-color: #f1f0fa;
+  border-radius: 5px;
+  position: absolute;
+  padding: 15px;
+  display: none;
+  grid-row-gap: 15px;
+  font-size: 14px;
+  color: #4b4044;
+  font-weight: 700;
+  font-family: 'Nunito';
+  z-index: 2;
+
+  @media (min-width: $SM) {
+    padding: 30px;
+    font-size: 16px;
+  }
+
+  &--open {
+    display: grid;
+  }
+}
+
+.arr-down {
+  background-color: #f1f0fa;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+
+  &::after {
+    content: '\f078';
+    color: $PRIMARY;
+    font-size: 12px;
+    line-height: 30px;
+    font-family: FontAwesome;
+  }
+
+  &:hover {
+    .dropdown {
+      display: grid;
+    }
+  }
+
+  .dropdown {
+    margin-top: 15px;
+    white-space: nowrap;
+    text-align: left;
+    z-index: -1;
+
+    @media (min-width: $SM) {
+      width: 255px;
+    }
+  }
+}

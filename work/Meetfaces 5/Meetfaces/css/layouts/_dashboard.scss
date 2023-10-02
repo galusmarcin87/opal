@@ -1,0 +1,140 @@
+.dashboard-wrapper {
+  .contact-box {
+    margin: 0;
+    margin-bottom: 0;
+    margin-top: 20px;
+
+    .person {
+      font-style: normal;
+    }
+  }
+
+  .form-wrapper {
+    margin: 50px 0;
+
+    h2 {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .contact-form {
+      background-color: #e3e0f4;
+      margin: 0;
+      max-width: 100%;
+
+      textarea {
+        min-height: 160px;
+      }
+
+      select {
+        margin-left: 0;
+        color: #4b4044;
+      }
+
+      .select__icon {
+        color: #4b4044;
+      }
+
+      .input {
+        margin-bottom: 25px;
+      }
+
+      .switch-wrapper {
+        margin-bottom: 25px;
+        font-weight: 700;
+
+        .switch {
+          margin: 0 15px;
+          vertical-align: middle;
+        }
+      }
+
+      h2 {
+        font-size: 24px;
+        line-height: 30px;
+        color: #464646;
+        font-weight: 700;
+        margin-top: 10px;
+
+        &.with-label {
+          margin-bottom: 10px;
+          color: $SECONDARY;
+
+          + label {
+            font-size: 15px;
+            color: #4b4044;
+            font-weight: 400;
+            display: block;
+          }
+        }
+      }
+
+      .file-uplad {
+        background-color: #fff;
+        border-radius: 4px;
+        width: 250px;
+        height: 155px;
+        display: inline-grid;
+        justify-content: center;
+        align-items: center;
+        margin: 40px 0;
+        font-size: 18px;
+        color: #4b4044;
+        font-weight: 700;
+        cursor: pointer;
+        vertical-align: middle;
+        grid-column-gap: 10px;
+
+        &--light {
+          font-size: 15px;
+          line-height: 24px;
+          color: #4b4044;
+          font-weight: 300;
+          padding: 24px;
+        }
+
+        .image {
+          object-fit: cover;
+          height: 155px;
+          width: 250px;
+          border-radius: 4px;
+          cursor: default;
+          background-color: #fff;
+
+          + .image {
+            margin-left: 10px;
+          }
+        }
+
+        + .file-uplad {
+          margin-left: 10px;
+        }
+      }
+
+      .file-upload--light {
+        font-size: 15px;
+        line-height: 24px;
+        color: #4b4044;
+        font-weight: 300;
+        padding: 24px;
+      }
+
+      .flex {
+        > div {
+          width: calc(100% + 30px);
+        }
+      }
+    }
+
+    .sector {
+      margin-bottom: 20px;
+
+      + label {
+        margin-left: 10px;
+        font-size: 17px;
+        color: #4b4044;
+        font-weight: 700;
+      }
+    }
+  }
+}

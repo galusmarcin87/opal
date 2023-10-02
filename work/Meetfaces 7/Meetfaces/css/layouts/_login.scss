@@ -1,0 +1,62 @@
+.login {
+  padding-bottom: 50px;
+
+  h1 {
+    margin-bottom: 0 !important;
+    font-size: 40px !important;
+
+    + .hr {
+      margin-top: 10px !important;
+    }
+  }
+
+  .highlighted {
+    color: $PRIMARY;
+
+    img {
+      width: 50px;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+
+  .list {
+    margin-bottom: 0px;
+
+    li {
+      font-weight: normal;
+    }
+  }
+
+  .service {
+    padding: 10px;
+
+    @media (min-width: $TABLET) {
+      padding: 50px;
+    }
+  }
+
+  .input {
+    margin-bottom: 28px;
+  }
+
+  &__form {
+    background-color: #f8effb !important;
+    margin-top: 20px !important;
+    margin-bottom: 0;
+
+    .btn {
+      margin-top: 28px;
+    }
+  }
+
+  .contact-form__header {
+    color: #4b4044;
+    margin-bottom: 40px;
+    margin-top: 10px;
+  }
+
+  .input {
+    width: 100%;
+  }
+}

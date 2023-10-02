@@ -1,0 +1,52 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: Arial, sans-serif;
+    font-size: 12px;
+}
+
+table{
+    width: 100%;
+    border-spacing: 0;
+}
+
+.cols2 tr td{
+ width: 50%;
+}
+
+.cols2  td td{
+    width: auto;
+}
+
+th{
+    background-color: #EDEDED;
+    padding: 10px;
+}
+td{
+    text-align: center;
+}
+
+
+
+.bordered th, .bordered td{
+    border: 2px solid #DCDCDC;
+}
+
+.right{
+    float: right;
+    margin-left: 29%    ;
+}
+
+.p70{
+    width: 70%;
+}
+.w30{
+    width: 30%;
+}
+
+td.bordered{
+    border: 1px solid #DCDCDC;
+}

@@ -1,0 +1,59 @@
+.btn {
+  border-radius: 4px;
+  border-width: 3px;
+  border-style: solid;
+  font-size: 15px;
+  color: #ffffff !important;
+  font-weight: 700;
+  font-family: 'Nunito';
+  text-align: center;
+  filter: drop-shadow(0.766px 0.643px 0.5px rgba(66, 44, 183, 0.3));
+  display: inline-grid;
+  align-content: center;
+  height: 50px;
+  text-decoration: none !important;
+  min-width: 190px;
+  position: relative;
+  padding: 0 15px;
+  cursor: pointer;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+    background-color: #ffffff;
+    display: block;
+    height: 1px;
+    background-color: #fff;
+    filter: blur(2px);
+  }
+
+  &--small {
+    min-width: unset;
+  }
+
+  &--medium {
+    min-width: 160px;
+  }
+
+  &--primary {
+    background: $PRIMARY;
+    border-color: $PRIMARY;
+  }
+
+  &--secondary {
+    background: $SECONDARY;
+    border-color: $SECONDARY;
+  }
+
+  &--block {
+    width: 100%;
+  }
+
+  + .btn {
+    margin-left: 25px;
+  }
+}

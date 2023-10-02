@@ -1,0 +1,84 @@
+.testimonials-container {
+  padding-right: 20px;
+  padding-bottom: 0;
+
+  + footer {
+    margin-top: 100px;
+  }
+}
+
+.testimonials {
+  background-color: $SECONDARY;
+  font-size: 20px;
+  line-height: 30px;
+  color: #ffffff;
+  font-weight: 400;
+  font-style: italic;
+  font-family: 'Nunito';
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  z-index: 1;
+
+  @media (min-width: $LG) {
+    font-size: 30px;
+    line-height: 40px;
+  }
+
+  &__image {
+    transform: scaleX(-1);
+    object-fit: cover;
+    height: 100%;
+  }
+
+  &__item {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    padding-right: 60px;
+    padding-left: 40px;
+
+    @media (min-width: $TABLET) {
+      padding-left: 30%;
+    }
+
+    @media (min-width: $LG) {
+      padding-right: 115px;
+      padding-left: 40%;
+    }
+
+    p {
+      margin-bottom: 40px;
+    }
+  }
+
+  &__quote {
+    width: 45px !important;
+    margin-bottom: 10px;
+  }
+
+  .owl-dots {
+    position: absolute;
+    display: grid;
+    grid-row-gap: 20px;
+    background-color: $PRIMARY;
+    width: 35px;
+    padding: 10px;
+    right: -17px;
+    top: 50%;
+    transform: translate(0, -50%);
+    border-radius: 4px;
+
+    .owl-dot {
+      width: 15px;
+      height: 15px;
+      background: #dfb3eb;
+      border-radius: 50%;
+
+      &.active {
+        height: 50px;
+        background: $SECONDARY;
+        border-radius: 8px;
+      }
+    }
+  }
+}

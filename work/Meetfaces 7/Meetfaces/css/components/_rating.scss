@@ -1,0 +1,29 @@
+.rating {
+  font-size: 14px;
+  color: #4b4044;
+  font-weight: 500;
+
+  &__star {
+    color: #a095db;
+    cursor: pointer;
+    font-size: 18px;
+    margin: 0 2px;
+    display: inline-block;
+    vertical-align: text-bottom;
+
+    &--active,
+    &:hover {
+      color: $SECONDARY;
+    }
+
+    &:hover {
+      ~ .rating__star {
+        color: #a095db !important;
+      }
+    }
+  }
+
+  &__rate {
+    color: $SECONDARY;
+  }
+}

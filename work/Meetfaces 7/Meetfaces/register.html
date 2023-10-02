@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,400&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css"
+      integrity="sha512-+EoPw+Fiwh6eSeRK7zwIKG2MA8i3rV/DGa3tdttQGgWyatG/SkncT53KHQaS5Jh9MNOT3dmFL0FjTY08And/Cw=="
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+      crossorigin="anonymous"
+    />
+    <link href="./css/style.css" rel="stylesheet" type="text/css" />
+  </head>
+  <body>
+    <div class="menu-wrapper">
+      <div class="container">
+        <div class="menu">
+          <a href="./index.html">
+            <img
+              class="menu__logo"
+              src="./img/logo_meetfaces_trading.png"
+              alt=""
+            />
+          </a>
+          <div>
+            <div class="arr-down">
+              <div class="dropdown">
+                <a href="#">Wicej o MFT</a>
+                <a href="#">Dla inwestorów</a>
+                <a href="#">Produkty w promocji</a>
+                <a href="#">Jak kupić reklam?</a>
+              </div>
+            </div>
+          </div>
+          <div class="search-wrapper">
+            <form action="./wyniki-wyszukiwania.html">
+              <input
+                type="text"
+                placeholder="Filmy, usługi, produkty, NIP, REGON, KRS..."
+                class="search"
+              />
+              <img class="search-wrapper__icon" src="/svg/lupa.svg" alt="" />
+            </form>
+          </div>
+          <div>
+            <a class="btn btn--secondary" href="./register.html"
+              >Zarejestruj sie</a
+            >
+          </div>
+          <div>
+            <a class="btn btn--primary" href="./login.html">Zaloguj sie</a>
+          </div>
+          <div class="language-select">
+            <img
+              class="language-select__selected-lang"
+              src="./img/flaga_pl.png"
+              alt=""
+            />
+            <div class="dropdown">
+              <img
+                class="language-select__selected-lang"
+                src="./img/flaga_panama.png"
+                alt=""
+              />
+              <img
+                class="language-select__selected-lang"
+                src="./img/flaga_kanada.png"
+                alt=""
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section class="service-wrapper company-wrapper login register">
+      <div class="container">
+        <div class="breadcrumb">
+          <a href="./index.html"> meetfaces </a>
+          <span>Rejestracja</span>
+        </div>
+
+        <div class="service single-company">
+          <div class="flex">
+            <div>
+              <h1 class="text-left">Rejestracja</h1>
+              <div class="hr"></div>
+              <h3 class="highlighted">
+                <img src="./svg/atuty.svg" alt="" />
+                Zalety posiadania konta:
+              </h3>
+              <ul class="list">
+                <li></li>
+                <li>
+                  lorem ipsum dolor sit amet, consectetur adipisicing elit
+                </li>
+                <li>
+                  sed do eiusmod tempor incididunt ut labore et dolore magna
+                  aliqua
+                </li>
+                <li>ut enim ad minim veniam, quis nostrud exercitation</li>
+                <li>lamco laboris nisi ut aliquip ex ea commodo consequat</li>
+              </ul>
+              <div class="hr"></div>
+              <h3>Masz juz swoje konto?</h3>
+              <a href="./login.html" class="btn btn--primary">Zaloguj sie</a>
+            </div>
+            <div>
+              <form class="contact-form login__form" method="POST">
+                <div class="contact-form__header">Załóz nowe konto</div>
+                <input
+                  type="text"
+                  class="input"
+                  placeholder="Imie i nazwisko"
+                  name="imie"
+                />
+                <input
+                  type="email"
+                  class="input"
+                  placeholder="Adres e-mail"
+                  name="email"
+                />
+                <input
+                  type="password"
+                  class="input"
+                  placeholder="Hasło"
+                  name="haslo"
+                />
+                <input
+                  type="password"
+                  class="input"
+                  placeholder="Powrórz hasło"
+                  name="haslo2"
+                />
+                <input
+                  type="text"
+                  class="input"
+                  placeholder="Kod agenta (jezeli posiadasz)"
+                  name="kod"
+                />
+                <div class="switch-wrapper">
+                  Konto standardowe
+                  <label class="switch">
+                    <input type="checkbox" checked />
+                    <span class="slider round"></span>
+                  </label>
+                  Firma na sprzedaz
+                </div>
+                <div>
+                  <input
+                    type="checkbox"
+                    class="checkbox"
+                    name="zapamietaj"
+                    id="check-1"
+                  />
+                  <label for="check-1">
+                    Akceptuje
+                    <a href="" class="underline highlighted normal"
+                      >regulamin</a
+                    >
+                    serwisu
+                  </label>
+                </div>
+                <button class="btn btn--secondary btn--block" type="submit">
+                  Zaloguj sie
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer-wrapper">
+      <div class="container">
+        <img src="./img/logo_meetfaces_white.png" class="footer__Logo" alt="" />
+        <div class="footer">
+          <div>
+            <p>
+              Meetfaces S.A <br />
+              al. Tadeusza Rejtana 20A<br />
+              35-310 Rzeszów
+            </p>
+
+            <p>
+              <a href="mailto:office@meetfaces.com"> office@meetfaces.com</a>
+              <a href="tel:+48580909009"> +48 58 090 90 09</a>
+            </p>
+          </div>
+          <div>
+            <p>
+              Oddział w Warszawie <br />
+              Mindspace, ul. Koszykowa 61 <br />
+              00-667 Warszawa
+            </p>
+          </div>
+          <div>
+            <ul class="footer__menu fadeIn animated">
+              <li class="footer__menu__item">
+                <a class="footer__menu__link" href="">Aplikacja Meetfaces</a>
+              </li>
+              <li class="footer__menu__item">
+                <a
+                  class="footer__menu__link footer__menu__link--active"
+                  href="."
+                  >Meetfaces Conference & Exibition System</a
+                >
+              </li>
+              <li class="footer__menu__item">
+                <a class="footer__menu__link" href="./rodo.html">RODO</a>
+              </li>
+              <li class="footer__menu__item">
+                <a class="footer__menu__link" href="./pomoc.html">Pomoc</a>
+              </li>
+              <li class="footer__menu__item">
+                <a class="footer__menu__link" href="./regulamin.html"
+                  >Regulamin i dokumenty</a
+                >
+              </li>
+              <li class="footer__menu__item">
+                <a class="footer__menu__link" href=""
+                  >Inspektor Danych Osobowych</a
+                >
+              </li>
+              <li class="footer__menu__item">
+                <a class="footer__menu__link" href="./register.html"
+                  >Załóz konto</a
+                >
+              </li>
+              <li class="footer__menu__item">
+                <a class="footer__menu__link" href="./login.html"
+                  >Zaloguj sie
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="social-icons">
+            <a class="social-icons__icon">
+              <img src="./svg/tik-tok.svg" alt="" />
+            </a>
+            <a class="social-icons__icon">
+              <img src="./svg/facebook.svg" alt="" />
+            </a>
+            <a class="social-icons__icon">
+              <img src="./svg/linkedin.svg" alt="" />
+            </a>
+            <a class="social-icons__icon">
+              <img src="./svg/instagram.svg" alt="" />
+            </a>
+          </div>
+        </div>
+        <div class="footer__copy">
+          &copy; 2021, Meetfaces Trading, All right reserved · Polityka
+          prywatności
+          <div class="footer__realization">Realizacja: Vertes Design</div>
+        </div>
+      </div>
+    </footer>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"
+      integrity="sha512-IsNh5E3eYy3tr/JiX2Yx4vsCujtkhwl7SLqgnwLNgf04Hrt9BT9SXlLlZlWx+OK4ndzAoALhsMNcCmkggjZB1w=="
+      crossorigin="anonymous"
+    ></script>
+    <script src="./scripts/main.js"></script>
+  </body>
+</html>
