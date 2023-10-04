@@ -18,7 +18,10 @@ $search = "$('.search-button').click(function(){
 	return false;
 });";
 $this->registerJs($search);
+
 $currentUserId = Yii::$app->getRequest()->getQueryParam('CompanySearch')? Yii::$app->getRequest()->getQueryParam('CompanySearch')['created_by'] : false;
+
+
 ?>
 <div class="company-index">
 
@@ -31,7 +34,7 @@ $currentUserId = Yii::$app->getRequest()->getQueryParam('CompanySearch')? Yii::$
         <?= Html::a(Yii::t('app', 'Advance Search'), '#', ['class' => 'btn btn-info search-button']) ?>
     </p>
     <div class="search-form" style="<?= $currentUserId ? '': 'display:none'?>">
-        <?= $this->render('_search', ['model' => $searchModel]); ?>
+
     </div>
     <?php
     $gridColumn = [

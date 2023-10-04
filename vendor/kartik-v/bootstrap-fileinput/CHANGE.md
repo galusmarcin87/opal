@@ -1,6 +1,24 @@
 Change Log: `bootstrap-fileinput`
 =================================
 
+## version 5.5.2
+
+**Date**: 13-Oct-2022
+
+- (bug #1822): Correct file type tokenizer parsing.
+- (enh #1821): Update Indonesian Translations.
+- (enh #1819): Update Chinese Translations.
+- (enh #1817): Fix invalid signature detection.
+- 
+## version 5.5.1
+
+**Date**: 17-Aug-2022
+
+- (enh #1809, #1810): Correct minified plugins file "filetype.min.js".
+- (enh #1803): Add image/vnd.dwg signature.
+- (bug #1802): Fix SassError Invalid parent selector.
+- (bug #1782): Fix loading indicator reset for same file selected again.
+
 ## version 5.5.0
 
 **Major Release: BC Breaking**

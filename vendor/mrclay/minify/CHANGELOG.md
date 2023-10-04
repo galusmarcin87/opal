@@ -5,6 +5,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.14] - 2023-05-05
+
+- Support monolog v3, [#705]
+- Allow invalidation from manual invocation, [#700]
+- Add property declaration, [#699]
+
+[3.0.14]: https://github.com/mrclay/minify/compare/3.0.13...3.0.14
+[#705]: https://github.com/mrclay/minify/pull/705
+[#700]: https://github.com/mrclay/minify/pull/700
+[#699]: https://github.com/mrclay/minify/pull/699
+
+## [3.0.13] - 2022-10-03
+
+- Add `Minify_Cache_APCu` to replace `Minify_Cache_APC`, [#697]
+- Require `marcusschwarz/lesserphp:^0.5.5` to fix php 7.4 compatibility, [#688]
+
+[3.0.13]: https://github.com/mrclay/minify/compare/3.0.12...3.0.13
+[#697]: https://github.com/mrclay/minify/pull/697
+[#688]: https://github.com/mrclay/minify/pull/688
+
 ## [3.0.12] - 2022-05-14
 
 - Update jquery to 1.12.4 to avoid xss attacks, [#692]

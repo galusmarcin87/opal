@@ -145,7 +145,7 @@ class MgHelpers extends \yii\base\Component
      */
     public static function getCurrentUrl($ifUri = true)
     {
-        $s = empty($_SERVER["HTTPS"]) ? '' : ($_SERVER["HTTPS"] == "on") ? "s" : "";
+        $s = (empty($_SERVER["HTTPS"]) ? '' : ($_SERVER["HTTPS"] == "on")) ? "s" : "";
         $protocol = self::strleft(strtolower($_SERVER["SERVER_PROTOCOL"]), "/") . $s;
         $port = ($_SERVER["SERVER_PORT"] == "80") ? "" : (":" . $_SERVER["SERVER_PORT"]);
         $url = $ifUri ? $_SERVER['REQUEST_URI'] : $_SERVER['SCRIPT_NAME'];
@@ -169,7 +169,7 @@ class MgHelpers extends \yii\base\Component
      */
     public static function getProjectBaseUrl()
     {
-        $s = empty($_SERVER["HTTPS"]) ? '' : ($_SERVER["HTTPS"] == "on") ? "s" : "";
+        $s = (empty($_SERVER["HTTPS"]) ? '' : ($_SERVER["HTTPS"] == "on")) ? "s" : "";
         $protocol = self::strleft(strtolower($_SERVER["SERVER_PROTOCOL"]), "/") . $s;
         $port = ($_SERVER["SERVER_PORT"] == "80") ? "" : (":" . $_SERVER["SERVER_PORT"]);
         return $protocol . "://" . $_SERVER['SERVER_NAME'] . $port;

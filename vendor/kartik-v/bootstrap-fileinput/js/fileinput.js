@@ -1,5 +1,5 @@
 /*!
- * bootstrap-fileinput v5.5.0
+ * bootstrap-fileinput v5.5.2
  * http://plugins.krajee.com/file-input
  *
  * Author: Kartik Visweswaran
@@ -445,7 +445,8 @@
             }
             return str.match(/^\s*<\?xml/i) && (str.match(/<!DOCTYPE svg/i) || str.match(/<svg/i));
         },
-        getMimeType: function (signature, contents, type) {
+        getMimeType: function (sign, contents, type) {
+            var signature = sign || "";
             switch (signature) {
                 case 'ffd8ffe0':
                 case 'ffd8ffe1':
@@ -459,6 +460,8 @@
                     return 'image/tiff';
                 case '52494646':
                     return 'image/webp';
+                case '41433130':
+                    return 'image/vnd.dwg';
                 case '66747970':
                     return 'video/3gp';
                 case '4f676753':
@@ -5549,10 +5552,10 @@
                 }).on('focusin.fileinput', function () {
                     setTimeout(function () {
                         if (!$el.val()) {
-                            self._toggleLoading('hide');
                             self._setFileDropZoneTitle();
                         }
                         $body.off(ev);
+                        self._toggleLoading('hide');
                     }, 2500);
                 });
             } else {

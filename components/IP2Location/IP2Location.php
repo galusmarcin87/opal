@@ -325,15 +325,15 @@ class IP2Location {
       $i = 0;
 
       foreach ($f as $f_value) {
-        $repeater = intval(substr($f_value, 1));
+        $repeater = (int)substr($f_value, 1);
 
         if ($repeater == 0) {
           $repeater = 1;
         }
-        if ($f_value{1} == '*') {
+        if ($f_value[1] == '*') {
           $repeater = count($ar) - $i;
         }
-        if ($f_value{0} != 'd') {
+        if ($f_value[0] != 'd') {
           $i += $repeater;
           continue;
         }
