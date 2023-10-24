@@ -1,0 +1,1 @@
+{"version":3,"sources":["invest.scss","invest.css"],"names":[],"mappings":"AACI;EACI,gBAAA;ACAR","file":"invest.css","sourcesContent":[".invest-summary {\r\n    p {\r\n        margin-bottom: 0;\r\n    }\r\n\r\n}",".invest-summary p {\n  margin-bottom: 0;\n}"]}
