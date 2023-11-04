@@ -8,30 +8,16 @@ use yii\widgets\DetailView;
 /* @var $model app\models\mgcms\db\Article */
 ?>
 
-<div class="Projects__card fadeIn animated item">
-    <a href="<?= $model->linkUrl ?>">
-        <div class="Projects__card__image-wrapper">
-            <div class="Projects__card__date">
-                <img
-                        src="/svg/kalendarz.svg"
-                        class="Projects__card__date__ico"
-                        alt=""
-                />
-                <?= date('d.m.Y', strtotime($model->created_on)) ?>
-            </div>
-            <? if ($model->file && $model->file->isImage()): ?>
-                <img src="<?= $model->file->imageSrc ?>" alt=""/>
-            <? endif ?>
+<a class="card card-light mb-3" href="<?= $model->linkUrl ?>">
+    <div class="card-body">
+
+        <h5 class="card-title card-title--news">
+            <?= $model->title ?>
+        </h5>
+        <div class="card-date">
+            <?= $model->created_on ?>
         </div>
-        <div class="Projects__card__header">
-            <div class="Projects__card__heading">
-                <?= $model->title ?>
-            </div>
-        </div>
-        <div class="Projects__card__body">
-            <p class="Project__card__body__text">
-                <?= $model->excerpt ?>
-            </p>
-        </div>
-    </a>
-</div>
+        <?= $model->excerpt ?>
+        <span class="card-readmore"><?= Yii::t('db', 'Find out more') ?></span>
+    </div>
+</a>

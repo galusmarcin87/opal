@@ -13,3 +13,5 @@ use app\models\mgcms\db\Project;
 <?= $this->render('index/section2') ?>
 <?= $this->render('index/actualProjects') ?>
 <?= $this->render('index/endedProjects') ?>
+<?// $this->render('index/counters') ?>
+<?= $this->render('index/news') ?>
