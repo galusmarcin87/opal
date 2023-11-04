@@ -12,3 +12,4 @@ use app\models\mgcms\db\Project;
 <?= $this->render('index/section1') ?>
 <?= $this->render('index/section2') ?>
 <?= $this->render('index/actualProjects') ?>
+<?= $this->render('index/endedProjects') ?>

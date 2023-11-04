@@ -53,7 +53,8 @@ $dataProvider = new ActiveDataProvider([
 
         </div>
         <div class="col-lg-4 d-flex align-items-center">
-            <a class="cta cta--style1" href="<?= \yii\helpers\Url::to('/project/index') ?>">
+            <a class="cta cta--style1"
+               href="<?= \yii\helpers\Url::to(['/project/index', 'status' => Project::STATUS_ACTIVE]) ?>">
         <span class="cta-large">
           <?= Yii::t('db', 'See other campaigns') ?>
         </span>
