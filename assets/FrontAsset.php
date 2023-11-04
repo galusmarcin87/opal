@@ -21,10 +21,17 @@ class FrontAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/main.css'
+        'css/main.css',
+        'less/front.less',
     ];
     public $js = [
-
+        '/js/vendor/bootstrap.bundle.min.js',
+        '/js/vendor/jquery.appear.js',
+        '/js/vendor/TweenLite.min.js',
+        '/js/vendor/infobox_packed.js',
+        '/js/vendor/countdown.js',
+        '/js/vendor/swiper-bundle.min.js',
+        'js/app.js',
     ];
     public $depends = [
         'yii\web\JqueryAsset'
