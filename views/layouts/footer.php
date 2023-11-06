@@ -6,87 +6,80 @@ use app\components\mgcms\MgHelpers;
 use yii\bootstrap\ActiveForm;
 
 $menu = new NobleMenu(['name' => 'footer_' . Yii::$app->language, 'loginLink' => false]);
-$menu2 = new NobleMenu(['name' => 'footer2_' . Yii::$app->language, 'loginLink' => false]);
 
+$facebook = MgHelpers::getSettingTypeText('footer facebook');
+$linkedin = MgHelpers::getSettingTypeText('footer linkedin');
+$instagram = MgHelpers::getSettingTypeText('footer instagram');
 
 ?>
-<footer class="footer-wrapper">
-    <div class="container">
 
-        <img src="/img/logo_meetfaces_white.png" class="footer__Logo" alt=""/>
-        <div class="footer">
-            <div>
-                <?= MgHelpers::getSettingTypeText('footer left column', true, '<p>
-              <strong>Meetface S.A.</strong> <br />
-			  The Warsaw HUB <br />
-              ul. Rondo Daszyńskiego 2B<br />
-              00-843 Warszawa<br /><br />
-			  Kapitał Spółki 248.353,35 PLN
-            </p><br />') ?>
+<footer class="site-footer">
+    <div class="site-footer-content">
+        <div class="container">
+            <div class="footer-widgets">
+                <div class="row align-items-center">
+                    <div class="col-lg-4 mb-4 mb-lg-0">
+                        <img src="/images/logo-white.png" class="footer-logo" width="275" alt="">
 
-            </div>
-            <div>
-                <p>
-                    <strong><?= MgHelpers::getSettingTypeText('footer header 2 ' . Yii::$app->language, false, 'MEETFACES TRADING') ?></strong><br/>
-                    <? foreach ($menu->getItems() as $item): ?>
-                        <a href="<?= $item['url'] ?>"><?= $item['label'] ?></a><br/>
-                    <? endforeach ?>
-                </p>
-            </div>
-            <div>
-                <p>
-                    <strong><?= MgHelpers::getSettingTypeText('footer header 3 ' . Yii::$app->language, false, 'WSPARCIE') ?></strong><br/>
-                    <? foreach ($menu2->getItems() as $item): ?>
-                        <a href="<?= $item['url'] ?>"><?= $item['label'] ?></a><br/>
-                    <? endforeach ?>
-                </p>
-            </div>
-            <div>
-                <p>
-                    <strong><?= MgHelpers::getSettingTypeText('footer header 4 ' . Yii::$app->language, false, 'SKONTAKTUJ SIĘ Z NAMI') ?>
-                        ></strong><br/>
-                    <? $mail = MgHelpers::getSettingTypeText('footer email', false, 'biuro@meetfacestrading.com') ?>
-                    <? $phone = MgHelpers::getSettingTypeText('footer phone', false, '+48502253886') ?>
-                    <?= Yii::t('db', 'e-mail') ?>: <a href="mailto:<?= $mail ?>"><?= $mail ?></a><br/>
-                    <?= Yii::t('db', 'phone') ?>: <a href="tel:<?= $phone ?>"><?= $phone ?></a><br><br><br><br>
-                </p>
-                <div class="social-icons">
-                    <?
-                    $tiktok = MgHelpers::getSettingTypeText('footer tiktok');
-                    $facebook = MgHelpers::getSettingTypeText('footer facebook');
-                    $linkedin = MgHelpers::getSettingTypeText('footer linkedin');
-                    $instagram = MgHelpers::getSettingTypeText('footer instagram');
-                    ?>
-                    <? if ($tiktok): ?>
-                        <a class="social-icons__icon" href="<?= $tiktok ?>">
-                            <img src="/svg/tik-tok.svg" alt=""/>
-                        </a>
-                    <? endif ?>
-                    <? if ($facebook): ?>
-                        <a class="social-icons__icon" href="<?= $facebook ?>">
-                            <img src="/svg/facebook.svg" alt=""/>
-                        </a>
-                    <? endif ?>
-                    <? if ($linkedin): ?>
-                        <a class="social-icons__icon" href="<?= $linkedin ?>">
-                            <img src="/svg/linkedin.svg" alt=""/>
-                        </a>
-                    <? endif ?>
-                    <? if ($instagram): ?>
-                        <a class="social-icons__icon" href="<?= $instagram ?>">
-                            <img src="/svg/instagram.svg" alt=""/>
-                        </a>
-                    <? endif ?>
+                        <?= MgHelpers::getSetting('footer text ' . Yii::$app->language, true, '<p>
+                            Opalcrowd Spółka z Ograniczoną Odpowiedzialnością<br />
+                            Siedziba: ul. Żurawia 6/12 lok. 321<br />
+                            00-503 Warszawa
+                        </p>') ?>
+
+
+                        <ul class="nav nav-social">
+
+                            <? if ($facebook): ?>
+                                <li class="nav-item">
+                                    <a href="<?= $facebook ?>" target="_blank" class="nav-link">
+                                        <svg class="icon">
+                                            <use xlink:href="#facebook"/>
+                                        </svg>
+                                    </a>
+                                </li>
+                            <? endif; ?>
+
+                            <? if ($instagram): ?>
+                                <li class="nav-item">
+                                    <a href="<?= $instagram ?>" target="_blank" class="nav-link">
+                                        <svg class="icon">
+                                            <use xlink:href="#instagram"/>
+                                        </svg>
+                                    </a>
+                                </li>
+                            <? endif; ?>
+                            <? if ($linkedin): ?>
+                                <li class="nav-item">
+                                    <a href="<?= $linkedin ?>" target="_blank" class="nav-link">
+                                        <svg class="icon">
+                                            <use xlink:href="#linkedin"/>
+                                        </svg>
+                                    </a>
+                                </li>
+                            <? endif; ?>
+                        </ul>
+                    </div>
+                    <div class="col-lg-8 col-xl-7 ms-auto">
+                        <ul class="nav footer-nav">
+
+                            <? foreach ($menu->getItems() as $item): ?>
+                                <li class="nav-item">
+                                    <a href="<?= $item['url'] ?>" class="nav-link"><?= $item['label'] ?></a>
+                                </li>
+                            <? endforeach ?>
+
+                        </ul>
+                    </div>
                 </div>
             </div>
 
-
-        </div>
-        <div class="footer__copy">
-            <?= MgHelpers::getSettingTypeText('footer copy '.Yii::$app->language,false,'&copy; 2022 Meetface S.A. - Meetfaces Trading Platform. All rights reserved.'); ?>
-
-            <div class="footer__realization"><?= Yii::t('db', 'Realisation') ?>: <a href="https://www.vertesdesign.pl" target="_blank"
-                                                            title="projektowanie stron internetowych">Vertes Design</a>
+            <div class="site-info">
+                <div class="row">
+                    <div class="col-12">
+                        <?= MgHelpers::getSetting('footer copyright ' . Yii::$app->language, true, '&copy; 2023 OpalCrowd | Realizacja platformy www: <a href="https://vertesdesign.pl/">Vertes Design</a>') ?>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
