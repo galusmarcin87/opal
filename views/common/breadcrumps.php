@@ -5,18 +5,27 @@ use yii\web\View;
 /* @var $this yii\web\View */
 
 ?>
-<section class="Breadcrumbs">
-    <div class="container">
-        <a href="/" class="Breadcrumbs__link">
-            <?= Yii::t('db', 'Home'); ?>
-        </a>
-        <? if (isset($subNode)): ?>
-            <a href="<?= $subNode['url'] ?>" class="Breadcrumbs__link">
-                <?= $subNode['name'] ?>
-            </a>
-        <? endif ?>
-        <a href="#" class="Breadcrumbs__link Breadcrumbs__link--active">
-            <?= $this->title ?>
-        </a>
+
+<div class="page-header ">
+    <div class="page-header-content">
+        <div class="container">
+
+            <div class="breadcrumbs">
+                <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="#"><svg class="icon"><use xlink:href="#home" /></svg></a></li>
+
+
+                        <li class="breadcrumb-item active" aria-current="page"><?= $this->title ?></li>
+
+
+                    </ol>
+                </nav>
+            </div>
+
+            <h1 class="page-header-title">
+                <?= $this->title ?>
+            </h1>
+        </div>
     </div>
-</section>
+</div>

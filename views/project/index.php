@@ -9,33 +9,49 @@ use yii\widgets\ListView;
 use app\models\mgcms\db\Project;
 use app\models\mgcms\db\Category;
 
-$this->title = Yii::t('db', 'Current projects');
+$this->title = Yii::t('db', 'Campaigns');
 $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
 <?= $this->render('/common/breadcrumps') ?>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8">
+            <?= \app\components\mgcms\MgHelpers::getSettingTypeText('projects - text ' . Yii::$app->language, true, ' <p>
+                Z Opal Crowd masz możliwość inwestowania w spółki do tej pory zarezerwowane dla nielicznych.<br/>
+                Dołącz do grona profesjonalistów i zdobądź możliwość osiągnięcia ponadprzeciętnych zysków, dzięki
+                korzyściom jakie oferuje platforma CrowdFoundingu udziałowego z Opal Crowd
+            </p>') ?>
 
-<section class="Section Projects Projects--white-top">
-    <div class="container">
-        <div class="Projects__header__wrapper">
-            <h4 class="Projects__header text-center"><?= \app\components\mgcms\MgHelpers::getSettingTypeText('projects header ' . ' ' . Yii::$app->language, false, 'Projects Jewellery ') ?></h4>
-            <div class="Select hidden">
-                <select class="Select__select">
-                    <option>- sortuj w -</option>
-                </select>
-            </div>
         </div>
     </div>
-    <div class="container">
+
+
+    <div class="campaigns">
+
+        <div class="filters">
+            <div class="filters-label">
+                <?= Yii::t('db', 'Choose filter') ?>:
+            </div>
+            <div class="filters-items">
+                <a href="<?= \yii\helpers\Url::to(['project/index', 'status' => Project::STATUS_ACTIVE]) ?>"
+                   class="filters-items-item <?= $status == Project::STATUS_ACTIVE ? 'active' : '' ?> js-filter"><?= Yii::t('db', 'Active') ?></a>
+                <a href="<?= \yii\helpers\Url::to(['project/index', 'status' => Project::STATUS_PLANNED]) ?>"
+                   class="filters-items-item <?= $status == Project::STATUS_PLANNED ? 'active' : '' ?> js-filter"><?= Yii::t('db', 'Upcoming') ?></a>
+                <a href="<?= \yii\helpers\Url::to(['project/index', 'status' => Project::STATUS_ENDED]) ?>"
+                   class="filters-items-item <?= $status == Project::STATUS_ENDED ? 'active' : '' ?> js-filter"><?= Yii::t('db', 'Ended') ?></a>
+            </div>
+        </div>
+
         <?=
         ListView::widget([
             'dataProvider' => $dataProvider,
             'itemOptions' => [
-                'class' => 'Projects__card item'
+                'class' => 'col-lg-4'
             ],
             'options' => [
-                'class' => 'Projects__sortable ' ,
+                'class' => 'row gy-5',
             ],
             'layout' => '{items}',
             'itemView' => function ($model, $key, $index, $widget) {
@@ -45,39 +61,44 @@ $this->params['breadcrumbs'][] = $this->title;
 
         ?>
 
-    </div>
-    <div class="Pagination text-center">
-        <?=
-        ListView::widget([
-            'dataProvider' => $dataProvider,
-            'layout' => '{pager}',
-            'options' => [
-                'class' => 'Page navigation example',
-                'tag' => 'nav'
-            ],
-            'pager' => [
-                'firstPageLabel' => '&laquo;',
-                'lastPageLabel' => '&raquo;',
-                'prevPageLabel' => '&lt;',
-                'nextPageLabel' => '&gt;',
-                // Customzing CSS class for pager link
-                'linkOptions' => [
-                    'class' => 'page-link'
+        <div class="Pagination text-center">
+            <?=
+            ListView::widget([
+                'dataProvider' => $dataProvider,
+                'layout' => '{pager}',
+                'options' => [
+                    'class' => 'Page navigation',
+                    'tag' => 'nav'
                 ],
-                'activePageCssClass' => 'active',
-                'pageCssClass' => 'page-item',
-                // Customzing CSS class for navigating link
-                'prevPageCssClass' => 'page-item ',
-                'nextPageCssClass' => 'page-item page-next',
-                'firstPageCssClass' => 'page-item page-first',
-                'lastPageCssClass' => 'page-item page-last',
-            ],
-        ])
+                'pager' => [
+                    'options' => ['class' => 'pagination justify-content-center'],
+                    'firstPageLabel' => false,
+                    'lastPageLabel' => false,
+                    'prevPageLabel' => '<svg class="icon">
+                            <use xlink:href="#long-left-arrow"></use>
+                        </svg>',
+                    'nextPageLabel' => '<svg class="icon">
+                            <use xlink:href="#long-right-arrow"/>
+                        </svg>',
+                    // Customzing CSS class for pager link
+                    'linkOptions' => [
+                        'class' => 'page-link'
+                    ],
+                    'activePageCssClass' => 'active',
+                    'pageCssClass' => 'page-item',
+                    // Customzing CSS class for navigating link
+                    'prevPageCssClass' => 'page-item prev',
+                    'nextPageCssClass' => 'page-item next',
+                    'firstPageCssClass' => 'page-item first',
+                    'lastPageCssClass' => 'page-item page-last',
+                ],
+            ])
 
-        ?>
+            ?>
+        </div>
+
     </div>
 
-</section>
 
+</div>
 
-<?= $this->render('/common/newsletterForm') ?>
