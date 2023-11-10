@@ -60,7 +60,7 @@ $dataProvider = new ActiveDataProvider([
             </div>
         </div>
         <div class="text-center text-lg-start">
-            <a href="<?= \yii\helpers\Url::to(['/article/index']) ?>" class="readmore btn btn-primary"><?= Yii::t('db', 'See all') ?></a>
+            <a href="<?= \yii\helpers\Url::to(['/article']) ?>" class="readmore btn btn-primary"><?= Yii::t('db', 'See all') ?></a>
         </div>
 
     </div>

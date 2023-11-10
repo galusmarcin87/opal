@@ -6,7 +6,17 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\mgcms\db\Article */
+
 ?>
+
+<?if($index == 2):?>
+<div class="news decoration">
+    <img src="/images/home-news.png" alt="" class="img-fluid">
+</div>
+</div>
+<div class="col-lg-4">
+
+<?endif;?>
 
 <a class="card card-light mb-3" href="<?= $model->linkUrl ?>">
     <div class="card-body">

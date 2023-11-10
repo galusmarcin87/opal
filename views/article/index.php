@@ -24,16 +24,16 @@ $this->registerJs($search);
 
 <?= $this->render('/common/breadcrumps') ?>
 
-<section class="Section Section--grey News News--with-pagination">
+<div class="section-background">
     <div class="container">
         <?=
         ListView::widget([
             'dataProvider' => $dataProvider,
             'itemOptions' => [
-                'class' => 'animatedParent'
+                'class' => 'col-lg-4'
             ],
             'options' => [
-                'class' => 'News__list',
+                'class' => 'row gy-5',
             ],
             'layout' => '{items}',
             'itemView' => function ($model, $key, $index, $widget) {
@@ -44,38 +44,44 @@ $this->registerJs($search);
         ?>
 
         <div class="Pagination text-center">
-            <nav aria-label="Page navigation example">
-                <?=
-                ListView::widget([
-                    'dataProvider' => $dataProvider,
-                    'layout' => '{pager}',
-                    'pager' => [
-                        'firstPageLabel' => '&laquo;',
-                        'lastPageLabel' => '&raquo;',
-                        'prevPageLabel' => '&#8249;',
-                        'nextPageLabel' => '&#8250;',
-
-
-                        // Customzing CSS class for pager link
-                        'linkOptions' => [
-                            'class' => 'page-link',
-                        ],
-                        'activePageCssClass' => 'page-link--active',
-                        'pageCssClass' => 'page-item',
-                        // Customzing CSS class for navigating link
-                        'prevPageCssClass' => 'page-item',
-                        'nextPageCssClass' => 'page-item',
-                        'firstPageCssClass' => 'page-item',
-                        'lastPageCssClass' => 'page-item',
+            <?=
+            ListView::widget([
+                'dataProvider' => $dataProvider,
+                'layout' => '{pager}',
+                'options' => [
+                    'class' => 'Page navigation',
+                    'tag' => 'nav'
+                ],
+                'pager' => [
+                    'options' => ['class' => 'pagination justify-content-center'],
+                    'firstPageLabel' => false,
+                    'lastPageLabel' => false,
+                    'prevPageLabel' => '<svg class="icon">
+                            <use xlink:href="#long-left-arrow"></use>
+                        </svg>',
+                    'nextPageLabel' => '<svg class="icon">
+                            <use xlink:href="#long-right-arrow"/>
+                        </svg>',
+                    // Customzing CSS class for pager link
+                    'linkOptions' => [
+                        'class' => 'page-link'
                     ],
-                ])
+                    'activePageCssClass' => 'active',
+                    'pageCssClass' => 'page-item',
+                    // Customzing CSS class for navigating link
+                    'prevPageCssClass' => 'page-item prev',
+                    'nextPageCssClass' => 'page-item next',
+                    'firstPageCssClass' => 'page-item first',
+                    'lastPageCssClass' => 'page-item page-last',
+                ],
+            ])
 
-                ?>
-            </nav>
+            ?>
         </div>
 
+        
     </div>
-</section>
+</div>
 
-<?= $this->render('/common/newsletterForm') ?>
+
 
