@@ -50,6 +50,7 @@ use yii\helpers\Html;
  * @property string $risks
  *
  * @property \app\models\mgcms\db\Bonus[] $bonuses
+ * @property \app\models\mgcms\db\Bonus[] $faqs
  * @property \app\models\mgcms\db\Payment[] $payments
  * @property \app\models\mgcms\db\File $file
  * @property \app\models\mgcms\db\File $flag
@@ -146,7 +147,13 @@ class Project extends \app\models\mgcms\db\AbstractRecord
      */
     public function getBonuses()
     {
-        return $this->hasMany(\app\models\mgcms\db\Bonus::className(), ['project_id' => 'id']);
+        return $this->hasMany(\app\models\mgcms\db\Bonus::className(), ['project_id' => 'id'])->andWhere(['to' => 1]);
+    }
+
+
+    public function getFaqs()
+    {
+        return $this->hasMany(\app\models\mgcms\db\Bonus::className(), ['project_id' => 'id'])->andWhere(['to' => 2]);
     }
 
     /**

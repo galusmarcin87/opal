@@ -40,7 +40,7 @@ class ProjectController extends MgBackendController
     public function actionIndex()
     {
         $searchModel = new ProjectSearch();
-        if($this->getUserModel()->role == User::ROLE_PROJECT_OWNER){
+        if ($this->getUserModel()->role == User::ROLE_PROJECT_OWNER) {
             $searchModel->created_by = $this->getUserModel()->id;
         }
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -83,14 +83,14 @@ class ProjectController extends MgBackendController
 
         if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll()) {
             $fiberPayConfig = MgHelpers::getConfigParam('fiberPay');
-            $fiberClient = new FiberPayClient( $fiberPayConfig['apikey'], $fiberPayConfig['secretkey'], $fiberPayConfig['testServer']);
+            $fiberClient = new FiberPayClient($fiberPayConfig['apikey'], $fiberPayConfig['secretkey'], $fiberPayConfig['testServer']);
             $collect = $fiberClient->createCollect($model->pay_name, $model->iban, 'USD');
 
             $collectObj = Json::decode($collect);
             $code = $collectObj['data']['code'];
 
-           $model->fiber_collect_id = $code;
-           $model->save();
+            $model->fiber_collect_id = $code;
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -109,18 +109,29 @@ class ProjectController extends MgBackendController
     {
         if (Yii::$app->request->post('_asnew') == '1') {
             $model = new Project();
-        }else{
+        } else {
             $model = $this->findModel($id);
         }
 
         $model->language = $lang;
-        if ($model->loadAll(Yii::$app->request->post()) && $model->saveAll(['payments'])) {
+
+        $post = Yii::$app->request->post();
+        $this->_assignPostFaqs($post);
+
+        if ($model->loadAll($post) && $model->saveAll(['payments','faqs'])) {
             $this->_assignDownloadFiles($model);
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
             ]);
+        }
+    }
+
+    private function _assignPostFaqs(&$post)
+    {
+        if (isset($post['Faq'])) {
+            $post['Bonus'] = array_merge($post['Bonus'], $post['Faq']);
         }
     }
 
@@ -144,7 +155,8 @@ class ProjectController extends MgBackendController
      * @param integer $id
      * @return mixed
      */
-    public function actionPdf($id) {
+    public function actionPdf($id)
+    {
         $model = $this->findModel($id);
         $providerBonus = new \yii\data\ArrayDataProvider([
             'allModels' => $model->bonuses,
@@ -178,14 +190,15 @@ class ProjectController extends MgBackendController
     }
 
     /**
-    * Creates a new Project model by another data,
-    * so user don't need to input all field from scratch.
-    * If creation is successful, the browser will be redirected to the 'view' page.
-    *
-    * @param type $id
-    * @return type
-    */
-    public function actionSaveAsNew($id) {
+     * Creates a new Project model by another data,
+     * so user don't need to input all field from scratch.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     *
+     * @param type $id
+     * @return type
+     */
+    public function actionSaveAsNew($id)
+    {
         $model = new Project();
 
         if (Yii::$app->request->post('_asnew') != '1') {
@@ -218,38 +231,50 @@ class ProjectController extends MgBackendController
     }
 
     /**
-    * Action to load a tabular form grid
-    * for Bonus
-    * @author Yohanes Candrajaya <moo.tensai@gmail.com>
-    * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
-    *
-    * @return mixed
-    */
+     * Action to load a tabular form grid
+     * for Bonus
+     * @return mixed
+     * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+     *
+     * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+     */
     public function actionAddBonus()
     {
         if (Yii::$app->request->isAjax) {
             $row = Yii::$app->request->post('Bonus');
-            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
-                $row[] = [];
+            if ((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+                $row[] = ['to' => 1];
             return $this->renderAjax('_formBonus', ['row' => $row]);
         } else {
             throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
         }
     }
 
+    public function actionAddFaq()
+    {
+        if (Yii::$app->request->isAjax) {
+            $row = Yii::$app->request->post('Faq');
+            if ((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+                $row[] = ['to' => 2];
+            return $this->renderAjax('_formFaq', ['row' => $row]);
+        } else {
+            throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
+        }
+    }
+
     /**
-    * Action to load a tabular form grid
-    * for Payment
-    * @author Yohanes Candrajaya <moo.tensai@gmail.com>
-    * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
-    *
-    * @return mixed
-    */
+     * Action to load a tabular form grid
+     * for Payment
+     * @return mixed
+     * @author Jiwantoro Ndaru <jiwanndaru@gmail.com>
+     *
+     * @author Yohanes Candrajaya <moo.tensai@gmail.com>
+     */
     public function actionAddPayment()
     {
         if (Yii::$app->request->isAjax) {
             $row = Yii::$app->request->post('Payment');
-            if((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
+            if ((Yii::$app->request->post('isNewRecord') && Yii::$app->request->post('_action') == 'load' && empty($row)) || Yii::$app->request->post('_action') == 'add')
                 $row[] = [];
             return $this->renderAjax('_formPayment', ['row' => $row]);
         } else {

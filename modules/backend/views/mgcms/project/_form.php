@@ -18,11 +18,13 @@ use kartik\icons\Icon;
         'isNewRecord' => ($model->isNewRecord) ? 1 : 0
     ]
 ]);
+
+
 \mootensai\components\JsBlock::widget(['viewFile' => '_script', 'pos' => \yii\web\View::POS_END,
     'viewParams' => [
-        'class' => 'Payment',
-        'relID' => 'payment',
-        'value' => \yii\helpers\Json::encode($model->payments),
+        'class' => 'Faq',
+        'relID' => 'faq',
+        'value' => \yii\helpers\Json::encode($model->faqs),
         'isNewRecord' => ($model->isNewRecord) ? 1 : 0
     ]
 ]);
@@ -166,7 +168,7 @@ yii\jui\JuiAsset::register($this);
 
         <?= $form->field6md($model, 'token_left')->textInput(['placeholder' => '']) ?>
 
-        <?if(MgHelpers::getUserModel()->role === 'admin'):?>
+        <? if (MgHelpers::getUserModel()->role === 'admin'): ?>
             <?= $form->field6md($model, 'created_by')->widget(\kartik\widgets\Select2::classname(), [
                 'data' => \yii\helpers\ArrayHelper::map(\app\models\mgcms\db\User::find()->orderBy('id')->all(), 'id', 'toString'),
                 'options' => ['placeholder' => Yii::t('app', 'Wybierz użytkownika')],
@@ -174,7 +176,7 @@ yii\jui\JuiAsset::register($this);
                     'allowClear' => true
                 ],
             ]); ?>
-        <?endif?>
+        <? endif ?>
 
         <?= $form->field3md($model, 'fiber_collect_id')->textInput(['placeholder' => '']) ?>
         <?= $form->field3md($model, 'iban')->textInput(['placeholder' => '']) ?>
@@ -194,13 +196,13 @@ yii\jui\JuiAsset::register($this);
         </div>
 
         <legend><?= Yii::t('app', 'Images'); ?></legend>
-        <?/*---------------specyfic for this project distinguish between files ------------------*/?>
+        <? /*---------------specyfic for this project distinguish between files ------------------*/ ?>
         <div class="row images itemsFlex">
             <? foreach ($model->fileRelations as $relation): ?>
 
-                <?if ($relation->json == '1' || !$relation->file) continue?>
+                <? if ($relation->json == '1' || !$relation->file) continue ?>
                 <div class="col-md-3 center bottom10">
-                    <?= \kartik\helpers\Html::hiddenInput("fileOrder[".$relation->file->id."]") ?>
+                    <?= \kartik\helpers\Html::hiddenInput("fileOrder[" . $relation->file->id . "]") ?>
                     <? echo \yii\helpers\Html::a(Icon::show('trash', ['class' => 'gi-2x']), MgHelpers::createUrl(['backend/mgcms/file/delete-relation', 'relId' => $model->id, 'fileId' => $relation->file->id, 'model' => $model::className()]), ['onclick' => 'return confirm("' . Yii::t('app', 'Are you sure?') . '")', 'class' => 'deleteLink']) ?>
                     <?= $relation->file->getThumb(250, 250, true, \Imagine\Image\ManipulatorInterface::THUMBNAIL_INSET, ['class' => 'img-responsive']) ?>
                     <? \kartik\helpers\Html::textarea("FileRelation[$relation->file->id][$model->id][" . $model::className() . "][description]", 'aaa', ['class' => 'form-control']) ?>
@@ -209,9 +211,9 @@ yii\jui\JuiAsset::register($this);
         </div>
 
         <script type="text/javascript">
-          $(document).ready(function () {
-            $('.images').sortable()
-          })
+            $(document).ready(function () {
+                $('.images').sortable()
+            })
 
         </script>
     </div>
@@ -221,10 +223,10 @@ yii\jui\JuiAsset::register($this);
         <?= $form->field($model, 'downloadFiles[]')->fileInput(['multiple' => true]) ?>
         <legend><?= Yii::t('app', 'Files to download'); ?></legend>
         <? foreach ($model->fileRelations as $relation): ?>
-            <?if ($relation->json != '1' || !$relation->file) continue?>
+            <? if ($relation->json != '1' || !$relation->file) continue ?>
             <div class="col-md-3 center bottom10">
                 <? echo \yii\helpers\Html::a(Icon::show('trash', ['class' => 'gi-2x']), MgHelpers::createUrl(['backend/mgcms/file/delete-relation', 'relId' => $model->id, 'fileId' => $relation->file->id, 'model' => $model::className()]), ['onclick' => 'return confirm("' . Yii::t('app', 'Are you sure?') . '")', 'class' => 'deleteLink']) ?>
-                <?= Html::a($relation->file->origin_name,$relation->file->linkUrl) ?>
+                <?= Html::a($relation->file->origin_name, $relation->file->linkUrl) ?>
 
             </div>
         <? endforeach ?>
@@ -236,14 +238,15 @@ yii\jui\JuiAsset::register($this);
             'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'Lista cech')),
             'content' => $this->render('_formBonus', [
                 'row' => \yii\helpers\ArrayHelper::toArray($model->bonuses),
+            ])
+        ],
+        [
+
+            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'FAQ')),
+            'content' => $this->render('_formFaq', [
+                'row' => \yii\helpers\ArrayHelper::toArray($model->faqs),
             ]),
         ],
-//        [
-//            'label' => '<i class="glyphicon glyphicon-book"></i> ' . Html::encode(Yii::t('app', 'Payment')),
-//            'content' => $this->render('_formPayment', [
-//                'row' => \yii\helpers\ArrayHelper::toArray($model->payments),
-//            ]),
-//        ],
     ];
     echo kartik\tabs\TabsX::widget([
         'items' => $forms,

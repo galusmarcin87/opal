@@ -1,4 +1,4 @@
-<div class="form-group" id="add-bonus">
+<div class="form-group" id="add-faq">
     <?php
 
     use kartik\grid\GridView;
@@ -15,7 +15,7 @@
     ]);
     echo TabularForm::widget([
         'dataProvider' => $dataProvider,
-        'formName' => 'Bonus',
+        'formName' => 'Faq',
         'checkboxColumn' => false,
         'actionColumn' => false,
         'attributeDefaults' => [
@@ -23,14 +23,14 @@
         ],
         'attributes' => [
             "id" => ['type' => TabularForm::INPUT_HIDDEN_STATIC, 'columnOptions' => ['hidden' => true]],
-            'from' => ['type' => TabularForm::INPUT_TEXT, 'label' => 'Nagłówek'],
-            'to' => ['type' => TabularForm::INPUT_HIDDEN, 'label' => 'Do','value' => 1, 'columnOptions' => ['hidden' => true]],
-            'value' => ['type' => TabularForm::INPUT_TEXT, 'label' => 'Tekst'],
+            'from' => ['type' => TabularForm::INPUT_TEXT, 'label' => 'Pytanie'],
+            'to' => ['type' => TabularForm::INPUT_HIDDEN, 'label' => 'Do', 'value' => 2, 'columnOptions' => ['hidden' => true]],
+            'value' => ['type' => TabularForm::INPUT_TEXT, 'label' => 'Odpowiedź'],
             'del' => [
                 'type' => 'raw',
                 'label' => '',
                 'value' => function ($model, $key) {
-                    return Html::a('<i class="glyphicon glyphicon-trash"></i>', '#', ['title' => Yii::t('app', 'Usuń'), 'onClick' => 'delRowBonus(' . $key . '); return false;', 'id' => 'bonus-del-btn']);
+                    return Html::a('<i class="glyphicon glyphicon-trash"></i>', '#', ['title' => Yii::t('app', 'Usuń'), 'onClick' => 'delRowFaq(' . $key . '); return false;', 'id' => 'faq-del-btn']);
                 },
             ],
         ],
@@ -40,7 +40,7 @@
                 'type' => GridView::TYPE_DEFAULT,
                 'before' => false,
                 'footer' => false,
-                'after' => Html::button('<i class="glyphicon glyphicon-plus"></i>' . Yii::t('app', 'Dodaj'), ['type' => 'button', 'class' => 'btn btn-success kv-batch-create', 'onClick' => 'addRowBonus()']),
+                'after' => Html::button('<i class="glyphicon glyphicon-plus"></i>' . Yii::t('app', 'Dodaj'), ['type' => 'button', 'class' => 'btn btn-success kv-batch-create', 'onClick' => 'addRowFaq()']),
             ]
         ]
     ]);
