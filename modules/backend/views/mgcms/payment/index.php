@@ -50,20 +50,9 @@ $this->registerJs($search);
           ],
           'filterInputOptions' => ['placeholder' => Yii::t('app', 'User'), 'id' => 'grid-payment-search-user_id']
       ],
-      [
-          'attribute' => 'type',
-          'filterType' => GridView::FILTER_SELECT2,
-          'value' => function($model) {
-              return $model->typeStr;
-          },
-          'filter' => \app\models\mgcms\db\Payment::TYPES,
-          'filterWidgetOptions' => [
-              'pluginOptions' => ['allowClear' => true],
-          ],
-          'filterInputOptions' => ['placeholder' => Yii::t('app', 'Status')]
-      ],
+
       'amount',
-      'relLink:raw',
+      'project',
       [
           'class' => app\components\mgcms\yii\ActionColumn::className(),
           'template' => '{view} {delete}',

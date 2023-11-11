@@ -15,52 +15,121 @@ use  \app\models\mgcms\db\Project;
 
 $this->title = $model->name;
 $model->language = Yii::$app->language;
-if (!$model->money_full) {
-    return false;
-}
-$index = 0;
+
+
+$this->params['breadcrumbs'][] = [\yii\helpers\Url::to('/project/index'), Yii::t('db', 'Campaigns')];
 ?>
+
 
 <?= $this->render('/common/breadcrumps') ?>
 
-<section class="Section Project">
+<div class="single-campaign">
+
     <div class="container">
-        <h1 class="text-center"><?= $model->name ?></h1>
-        <div class="Project__content <?= str_replace(' ', '_', $model->type) ?>">
-
-            <? if ($model->type == Project::TYPE_BUSINESS_OWNER): ?>
-                <?= $this->render('view/gallery', ['model' => $model]) ?>
+        <div class="row gy-3 gx-5">
+            <? if ($model->file && $model->file->isImage()): ?>
+                <div class="col-lg-6">
+                    <img src="<?= $model->file->getImageSrc(624, 416) ?>" class="img-fluid img-rounded-right-top"
+                         alt="<?= $model ?>">
+                </div>
             <? endif; ?>
-            <div class="Project__info__content">
+            <div class="col-lg-6 d-flex">
 
-                <a class="btn btn-secondary w-100 btn-square"
-                   href="<?= Url::to(['project/buy', 'id' => $model->id]) ?>"><?= Yii::t('db', $model->type == Project::TYPE_BUSINESS_OWNER ? 'BUY' : 'INVEST') ?></a>
+                <div class="campaign-info">
 
-
-                <div class="mb-3">
-                    <h6 style="margin-bottom: 20px"><?= Yii::t('db', 'Files to download') ?></h6>
-                    <? foreach ($model->fileRelations as $fileRelation): ?>
-                        <? if ($fileRelation->json != '1' || !$fileRelation->file) continue ?>
-                        <a class="Project__file" href="<?= $fileRelation->file->linkUrl ?>" target="_blank">
-
-                            <div class="Project__file__ico">
-                                <img src="/svg/pdf.svg" alt=""/>
-                            </div>
-                            <?= $fileRelation->file->origin_name ?>
+                    <div class="campaign-buttons">
+                        <span class="btn btn-success btn-invest-count">
+                            <span><?= count($model->payments) ?></span> <?= Yii::t('db', 'investitions') ?>
+                        </span>
+                        <a href="#" class="btn btn-blue btn-like hidden">
+                            <svg class="icon">
+                                <use xlink:href="#like-outline"/>
+                            </svg>
                         </a>
-                    <? endforeach; ?>
+                    </div>
+
+
+                    <?= $this->render('view/progress', ['model' => $model]) ?>
+                    <?= $this->render('_counterTimer', ['model' => $model]) ?>
+
+
+                    <div class="campaign-actions">
+                        <div class="row gy-4 align-items-center mt-auto">
+                            <div class="col-md-6 text-center text-md-start">
+                                <?= $this->render('view/socialShares', ['model' => $model]) ?>
+
+                            </div>
+                            <div class="col-md-6 text-center text-md-end">
+                                <a href="<?= Url::to(['/project/buy', 'id' => $model->id]) ?>"
+                                   class="btn-primary"><?= Yii::t('db', 'Invest') ?></a>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
 
-
-                <? if ($model->type == Project::TYPE_BUSINESS_PROFIT && $model->money_full): ?>
-                    <?= $this->render('_counterMoney', ['model' => $model]) ?>
-                <? endif; ?>
-
             </div>
-            <div class="Project__text">
-                <?= $model->text ?>
+        </div>
+    </div>
+
+    <?= $this->render('view/bonuses', ['model' => $model]) ?>
+
+
+    <div class="container">
+
+        <?= $model->text ?>
+    </div>
+
+</div>
+
+
+<div class="container">
+    <?= $this->render('view/tabs', ['model' => $model]) ?>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+
+        <div class="tab-pane " id="about" role="tabpanel" aria-labelledby="about-tab" tabindex="0">
+            <?= $model->text2 ?>
+        </div>
+
+        <div class="tab-pane " id="board" role="tabpanel" aria-labelledby="board-tab" tabindex="0">
+            <div class="my-5">
+                <h3><?= Yii::t('db', 'Management') ?></h3>
+            </div>
+
+            <?= $model->management ?>
+        </div>
+
+        <div class="tab-pane " id="investments" role="tabpanel" aria-labelledby="investments-tab" tabindex="0">
+            <?= $this->render('view/investments', ['model' => $model]) ?>
+        </div>
+
+        <div class="tab-pane " id="downloads" role="tabpanel" aria-labelledby="downloads-tab" tabindex="0">
+            <div class="py-5">
+                <?= $this->render('view/downloads', ['model' => $model]) ?>
             </div>
         </div>
 
+        <div class="tab-pane " id="risks" role="tabpanel" aria-labelledby="risks-tab" tabindex="0">
+            <div class="py-5">
+                <h3><?= Yii::t('db', 'Significant risk factors') ?></h3>
+            </div>
+
+            <?= $model->risks ?>
+        </div>
+
+        <div class="tab-pane active" id="faq" role="tabpanel" aria-labelledby="faq-tab" tabindex="0">
+            <div class="py-5">
+                <?= $this->render('view/faq', ['model' => $model]) ?>
+
+
+            </div>
+        </div>
+
+
     </div>
-</section>
+
+</div>
+
+

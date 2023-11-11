@@ -345,7 +345,8 @@ or <b>=</b>) na początku każdej wyszukiwanej wartości.',
     'Date To' => 'Data do',
     'Country' => 'Kraj',
     'Update Ad' => 'Aktualizauj reklamę',
-
+    'Management' => 'Zarząd',
+    'Risks' => 'Istotne czynniki ryzyka',
 
 ];
 

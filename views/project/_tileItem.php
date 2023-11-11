@@ -20,7 +20,7 @@ $model->language = Yii::$app->language;
             <span><?= Yii::t('db', 'See more') ?></span>
         </div>
         <div class="card-main-image-flags">
-            <strong><?= count($model->payments) ?></strong> <?= Yii::t('db', 'Investitions') ?>
+            <strong><?= count($model->payments) ?></strong> <?= Yii::t('db', 'investitions') ?>
         </div>
         <div class="card-main-image-like hidden">
             <svg class="icon">

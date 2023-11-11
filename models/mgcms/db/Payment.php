@@ -123,6 +123,11 @@ class Payment extends \app\models\mgcms\db\AbstractRecord
         return array_key_exists($this->type, self::TYPES) ? self::TYPES[$this->type] : '';
     }
 
+    public function getProject()
+    {
+        return $this->hasOne(\app\models\mgcms\db\Project::className(), ['id' => 'project_id']);
+    }
+
     public function getRelLink(){
         $model = false;
         switch($this->type){
@@ -131,7 +136,10 @@ class Payment extends \app\models\mgcms\db\AbstractRecord
                 break;
             case self::TYPE_SERVICE:
                 $model = Service::findOne($this->rel_id);
-
+                break;
+            default:
+                $model = Project::findOne($this->rel_id);
+                break;
         }
         if($model && isset($model->linkUrl)){
 

@@ -56,9 +56,11 @@ yii\jui\JuiAsset::register($this);
 
         <?= $form->field12md($model, 'text')->tinyMce() ?>
 
-        <div class="hidden">
-            <?= $form->field12md($model, 'text2')->tinyMce() ?>
-        </div>
+        <?= $form->field12md($model, 'text2')->tinyMce() ?>
+
+        <?= $form->field12md($model, 'management')->tinyMce() ?>
+
+        <?= $form->field12md($model, 'risks')->tinyMce() ?>
 
 
         <?= $form->field6md($model, 'file_id')->widget(\kartik\widgets\Select2::classname(), [
