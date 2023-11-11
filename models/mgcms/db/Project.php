@@ -187,12 +187,12 @@ class Project extends \app\models\mgcms\db\AbstractRecord
 
     public function getLinkUrl()
     {
-        return \yii\helpers\Url::to(['/project/view', 'name' => $this->name]);
+        return \yii\helpers\Url::to(['/project/view', 'id' => $this->id]);
     }
 
     public function getLink()
     {
-        return Html::a(Yii::t('db', 'See'), \yii\helpers\Url::to(['/project/view', 'name' => $this->name]));
+        return Html::a(Yii::t('db', 'See'), \yii\helpers\Url::to(['/project/view', 'name' => $this->id]));
     }
 
     public function getDaysLeft()

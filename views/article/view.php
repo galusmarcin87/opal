@@ -5,26 +5,28 @@ use yii\web\View;
 /* @var $this yii\web\View */
 /* @var $model \app\models\mgcms\db\Article */
 $this->registerLinkTag(['rel' => 'canonical', 'href' => \yii\helpers\Url::canonical()]);
-$this->params['breadcrumbs'][] = $model->title;
+$this->params['breadcrumbs'][] = [\yii\helpers\Url::to('/article/index'), Yii::t('db', 'News')];
 
 ?>
 
-<section class="service-wrapper company-wrapper">
-    <div class="container">
-        <div class="breadcrumb">
-            <a href="/"> meetfaces </a>
-            <span><?= $model->title ?></span>
+<?= $this->render('/common/breadcrumps') ?>
+
+
+<div class="post-single">
+
+    <div class="post-single-content">
+
+        <div class="container">
+
+
+            <div class="post-single-date">
+                <?= $model->created_on ?>
+            </div>
+
+            <?= $model->content ?>
         </div>
 
-        <div class="service single-company">
-            <div class="flex">
-                <div>
-                    <h1><?= $model->title ?></h1>
-                    <div class="content">
-                        <?= $model->content ?>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
-</section>
+
+
+</div>

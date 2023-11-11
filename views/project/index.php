@@ -10,7 +10,6 @@ use app\models\mgcms\db\Project;
 use app\models\mgcms\db\Category;
 
 $this->title = Yii::t('db', 'Campaigns');
-$this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
