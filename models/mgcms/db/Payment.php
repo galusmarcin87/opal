@@ -14,7 +14,7 @@ use yii\helpers\Html;
  * @property integer $user_id
  * @property double $amount
  * @property string $status
- * @property integer $rel_id
+ * @property integer $project_id
  * @property string $type
  * @property integer $rate
  *
@@ -54,7 +54,7 @@ class Payment extends \app\models\mgcms\db\AbstractRecord
         return [
             [['created_on', 'type'], 'safe'],
             [['user_id'], 'required'],
-            [['user_id', 'status', 'rate', 'rel_id'], 'integer'],
+            [['user_id', 'status', 'rate', 'project'], 'integer'],
             [['amount'], 'number'],
         ];
     }

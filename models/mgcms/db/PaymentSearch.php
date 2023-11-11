@@ -20,7 +20,7 @@ use app\components\mgcms\MgHelpers;
     {
         return [
             [['id', 'user_id'], 'integer'],
-            [['created_on', 'status', 'user_id', 'type'], 'safe'],
+            [['created_on', 'status', 'user_id', 'type', 'project_id'], 'safe'],
             [['amount'], 'number'],
         ];
     }
@@ -64,6 +64,7 @@ use app\components\mgcms\MgHelpers;
             'user_id' => $this->user_id,
             'amount' => $this->amount,
             'type' => $this->type,
+            'project_id' => $this->project_id,
         ]);
 
         $query->andFilterWhere(['like', 'status', $this->status]);
