@@ -13,7 +13,7 @@ return [
         '/admin' => '/backend/default',
         [
             'encodeParams' => false,
-            'pattern' => '/art<categorySlug:.*>/<slug:[a-z0-9\-_\.]+>',
+            'pattern' => '/art/<categorySlug:.*>/<slug:[a-z0-9\-_\.]+>',
             'route' => '/article/view',
         ],
         '/art/<slug>' => '/article/view',
