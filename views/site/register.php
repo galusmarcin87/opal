@@ -9,99 +9,152 @@ use yii\bootstrap\ActiveForm;
 use app\components\mgcms\MgHelpers;
 
 $this->title = Yii::t('db', 'Register');
-$this->params['breadcrumbs'][] = $this->title;
-
 
 ?>
 
-<style>
-    .login .input{
-        margin-bottom: 0px;
-    }
-    .help-block {
-        margin-bottom: 28px;
-    }
+<?= $this->render('/common/breadcrumps'); ?>
 
-</style>
-<section class="service-wrapper company-wrapper login register">
-    <div class="container">
-        <div class="breadcrumb">
-            <a href="/"> meetfaces </a>
-            <span><?= Yii::t('db', 'Register') ?></span>
+<div class="container">
+
+
+    <div class="text-center my-5">
+        <img src="/images/logo.png" alt="Opal Crowd" class="img-fluid mx-auto">
+    </div>
+
+    <h3 class="my-5 text-center">
+        <?= Yii::t('db', 'Fill the data') ?>
+    </h3>
+
+    <?php
+    $form = ActiveForm::begin([
+        'id' => 'login-form',
+        'options' => ['class' => 'contact-form login__form'],
+        'fieldConfig' => \app\components\ProjectHelper::getFormFieldConfig(true)
+    ]);
+
+    //          echo $form->errorSummary($model);
+    ?>
+    <div class="row">
+        <div class="col-lg-6 mx-auto">
+
+
+            <div class="text-center mb-4">
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="RegisterForm[isCompany]" id="client_type-person"
+                           checked
+                           value="0">
+                    <label class="form-check-label" for="client_type-person"><?= Yii::t('db', 'person') ?></label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="RegisterForm[isCompany]" id="client_type-company"
+                           value="1">
+                    <label class="form-check-label" for="client_type-company"><?= Yii::t('db', 'company') ?></label>
+                </div>
+
+            </div>
+
+
+            <div class="mb-4">
+                <?= $form->field($model, 'firstName')->textInput(['placeholder' => $model->getAttributeLabel('firstName')]) ?>
+            </div>
+
+
+            <div class="mb-4">
+                <?= $form->field($model, 'surname')->textInput(['placeholder' => $model->getAttributeLabel('surname')]) ?>
+            </div>
+
+
+            <div class="mb-4">
+                <?= $form->field($model, 'birthDate')->textInput(["onfocus" => "(this.type='date')", 'placeholder' => $model->getAttributeLabel('birthDate')]) ?>
+            </div>
+
+
+            <div class="mb-4">
+                <?= $form->field($model, 'street')->textInput(['placeholder' => $model->getAttributeLabel('street')]) ?>
+            </div>
+
+
+            <div class="mb-4">
+                <?= $form->field($model, 'houseNo')->textInput(['placeholder' => $model->getAttributeLabel('houseNo')]) ?>
+            </div>
+
+
+            <div class="mb-4">
+                <?= $form->field($model, 'flatNo')->textInput(['placeholder' => $model->getAttributeLabel('flatNo')]) ?>
+            </div>
+
+
+            <div class="mb-4">
+                <?= $form->field($model, 'postalCode')->textInput(['placeholder' => $model->getAttributeLabel('postalCode')]) ?>
+            </div>
+
+
+            <div class="mb-4">
+                <?= $form->field($model, 'city')->textInput(['placeholder' => $model->getAttributeLabel('city')]) ?>
+            </div>
+
+
+            <div class="mb-4">
+                <?= $form->field($model, 'voivodeship')->textInput(['placeholder' => $model->getAttributeLabel('voivodeship')]) ?>
+            </div>
+
+
+            <div class="mb-4">
+                <?= $form->field($model, 'pesel')->textInput(['placeholder' => $model->getAttributeLabel('pesel')]) ?>
+            </div>
+
+
+            <div class="mb-4">
+                <?= $form->field($model, 'idNumber')->textInput(['placeholder' => $model->getAttributeLabel('idNumber')]) ?>
+            </div>
+
+
         </div>
 
-        <div class="service single-company">
-            <div class="flex">
-                <div>
-                    <h1 class="text-left"><?= Yii::t('db', 'Register') ?></h1>
-                    <div class="hr"></div>
-                    <h3 class="highlighted">
-                        <img src="/svg/atuty.svg" alt=""/>
-                        Zalety posiadania konta:
-                    </h3>
-                    <ul class="list">
-                        <li></li>
-                        <li>
-                            lorem ipsum dolor sit amet, consectetur adipisicing elit
-                        </li>
-                        <li>
-                            sed do eiusmod tempor incididunt ut labore et dolore magna
-                            aliqua
-                        </li>
-                        <li>ut enim ad minim veniam, quis nostrud exercitation</li>
-                        <li>lamco laboris nisi ut aliquip ex ea commodo consequat</li>
-                    </ul>
-                    <div class="hr"></div>
-                    <h3>Masz juz swoje konto?</h3>
-                    <a href="<?= \yii\helpers\Url::to('/site/login') ?>"
-                       class="btn btn--primary"><?= Yii::t('db', 'Log in') ?></a>
-                </div>
-                <div>
-                    <?php
-                    $form = ActiveForm::begin([
-                        'id' => 'login-form',
-                        'options' => ['class' => 'contact-form login__form'],
-                        'fieldConfig' => \app\components\ProjectHelper::getFormFieldConfig(true)
-                    ]);
+    </div>
 
-                    //          echo $form->errorSummary($model);
-                    ?>
-                    <div class="contact-form__header"><?= Yii::t('db', 'Create new account') ?></div>
-                    <?= $form->field($model, 'firstName')->textInput(['placeholder' => $model->getAttributeLabel('firstName')]) ?>
-                    <?= $form->field($model, 'surname')->textInput(['placeholder' => $model->getAttributeLabel('surname')]) ?>
-                    <?= $form->field($model, 'username')->textInput(['placeholder' => $model->getAttributeLabel('username')]) ?>
-                    <?= $form->field($model, 'password')->passwordInput(['placeholder' => $model->getAttributeLabel('password')]) ?>
-                    <?= $form->field($model, 'passwordRepeat')->passwordInput(['placeholder' => $model->getAttributeLabel('passwordRepeat')]) ?>
-                    <?= $form->field($model, 'agentCode')->textInput(['placeholder' => $model->getAttributeLabel('agentCode')]) ?>
+    <div class="row">
+        <div class="col-lg-9 mx-auto">
+            <div class="text-center">
+                <?= MgHelpers::getSettingTypeText('register text ' . Yii::$app->language, true, '<p>W celu dokonania rejestracji należy wyrazić zgodę na warunki regulaminu i politkę prywatności serwisu OpalCrowd.com</p>') ?>
+            </div>
 
-
-                    <div class="switch-wrapper">
-                        <?= Yii::t('db', 'Normal account') ?>
-                        <label class="switch">
-                            <input type="checkbox" name="RegisterForm[isForSale]"/>
-                            <span class="slider round"></span>
-                        </label>
-                        <?= Yii::t('db', 'Company for sale') ?>
-                    </div>
-                    <div>
-                        <input
-                                type="checkbox"
-                                class="checkbox"
-                                name="RegisterForm[acceptTerms]"
-                                id="check-1"
-                                value="1"
-                        />
-                        <label for="check-1">
-                            <?= MgHelpers::getSettingTranslated('register_terms_label', 'Akceptuje <a href="#">regulamin</a> serwisu i wyrażamzgode...') ?>
-                        </label>
-                        <?= Html::error($model, 'acceptTerms', ['class' => 'help-block']); ?>
-                    </div>
-                    <button class="btn btn--secondary btn--block" type="submit">
-                        <?= Yii::t('db', 'Register') ?>
-                    </button>
-                    <?php ActiveForm::end(); ?>
+            <div class="my-4">
+                <div class="ratio ratio-16x9">
+                    <iframe src="<?= MgHelpers::getSetting('register PDF ' . Yii::$app->language, false, '/images/sample_pdf2.pdf') ?>"
+                            frameborder="0"></iframe>
                 </div>
             </div>
+
+            <div class="form-check form-check-acceptance mb-4">
+                <div class="Form__group form-group text-left checkbox">
+                    <?= $form->field($model, 'acceptTerms',
+                        [
+                            'checkboxTemplate' => "{input}\n{label}\n{error}",
+                            'labelOptions' => ['encode' => false]
+                        ]
+                    )->checkbox(['class' => 'form-check-input','label' => $model->getAttributeLabel('acceptTerms')])->label(true); ?>
+                </div>
+            </div>
+            <div class="form-check form-check-acceptance mb-5">
+                <?= $form->field($model, 'acceptTerms2',
+                    [
+                        'checkboxTemplate' => "{input}\n{label}\n{error}",
+                        'labelOptions' => ['encode' => false]
+                    ]
+                )->checkbox(['class' => 'form-check-input','label' => $model->getAttributeLabel('acceptTerms')])->label(true); ?>
+            </div>
+            <div class="text-end">
+                <button type="submit" class="btn btn-primary">
+                    <?= Yii::t('db', 'Register') ?>
+                </button>
+            </div>
+
         </div>
     </div>
-</section>
+
+
+    <?php ActiveForm::end(); ?>
+
+
+</div>

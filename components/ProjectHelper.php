@@ -20,12 +20,12 @@ class ProjectHelper extends \yii\base\Component
                     'class' => "Contact-form__label",
                 ],
                 'template' => "{input}\n{error}",
-                'inputOptions' => ['class' => 'input'],
+                'inputOptions' => ['class' => 'form-control'],
                 'labelOptions' => [
-                    'class' => "Form__label",
+                    'class' => "form-control",
                 ],
                 'wrapperOptions' => [
-                    'class' => "Form__group  form-group",
+                    'class' => "form-control",
                 ]
             ];
         } else {

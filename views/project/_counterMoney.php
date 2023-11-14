@@ -21,7 +21,7 @@ $percentage = round(($model->money / $model->money_full) * 100, 3);
             <p class="fs-6"><strong><?= MgHelpers::convertNumberToNiceString($model->money) ?>  PLN</strong></p>
         </div>
         <div class="col-6 text-end">
-            <p>Cel:</p>
+            <p><?= Yii::t('db', 'Goal') ?>:</p>
             <p class="fs-6"><?= MgHelpers::convertNumberToNiceString($model->money_full) ?> PLN</p>
         </div>
     </div>

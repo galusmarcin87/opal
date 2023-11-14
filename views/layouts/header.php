@@ -45,7 +45,14 @@ $menu = new NobleMenu(['name' => 'header_' . Yii::$app->language, 'loginLink' =>
                         </li>
                     <? else: ?>
                         <li class="nav-item">
-                            <a href="<?= Url::to('/account/index') ?>" class="nav-link"><?= Yii::t('db', 'Login') ?></a>
+                            <a href="<?= Url::to('/account/index') ?>"
+                               class="nav-link"><?= Yii::t('db', 'My account') ?>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="javascript:submitLogoutForm()" class="nav-link">
+                                <?= Yii::t('db', 'Log out'); ?>
+                            </a>
                         </li>
                     <? endif; ?>
                 </ul>
@@ -111,7 +118,8 @@ $menu = new NobleMenu(['name' => 'header_' . Yii::$app->language, 'loginLink' =>
                             <? foreach ($menu->getItems() as $item): ?>
                                 <? if (isset($item['url'])): ?>
                                     <li class="nav-item">
-                                        <a class="nav-link " href="<?= \yii\helpers\Url::to($item['url']) ?>"><?= $item['label'] ?></a>
+                                        <a class="nav-link "
+                                           href="<?= \yii\helpers\Url::to($item['url']) ?>"><?= $item['label'] ?></a>
                                     </li>
                                 <? endif ?>
                             <? endforeach ?>
@@ -125,7 +133,6 @@ $menu = new NobleMenu(['name' => 'header_' . Yii::$app->language, 'loginLink' =>
         </div>
     </div>
 </nav>
-
 
 
 <?= Html::beginForm(['/site/logout'], 'post', ['id' => 'logoutForm']) ?>

@@ -24,8 +24,16 @@ class RegisterForm extends Model
     public $surname;
     public $phone;
     public $agentCode;
-    public $isForSale;
-
+    public $isCompany;
+    public $birthDate;
+    public $street;
+    public $houseNo;
+    public $flatNo;
+    public $postalCode;
+    public $city;
+    public $voivodeship;
+    public $pesel;
+    public $idNumber;
 
     /**
      * @return array the validation rules.
@@ -43,9 +51,10 @@ class RegisterForm extends Model
                 'special' => 0,
                 'userAttribute' => 'username'],
             ['passwordRepeat', 'compare', 'compareAttribute' => 'password', 'message' => Yii::t('db', "Passwords don't match")],
-            [['acceptTerms'], 'required', 'requiredValue' => 1, 'message' => Yii::t('db', 'This field is required')],
+            [['acceptTerms', 'acceptTerms2'], 'required', 'requiredValue' => 1, 'message' => Yii::t('db', 'This field is required')],
             ['username', 'email'],
-            [['phone', 'acceptTerms5', 'acceptTerms6', 'agentCode','isForSale'], 'safe'],
+            [['phone', 'acceptTerms5', 'acceptTerms6', 'agentCode', 'isCompany'], 'safe'],
+            [['birthDate', 'street', 'flatNo', 'houseNo', 'postalCode', 'city', 'voivodeship', 'pesel', 'idNumber'], 'required'],
 //        [['password'], StrengthValidator::className(), 'min' => 8, 'digit' => 1, 'special' => 1, 'upper' => 1, 'lower' => 1, 'userAttribute' => 'username'],
         ];
     }
@@ -59,14 +68,23 @@ class RegisterForm extends Model
             'surname' => Yii::t('db', 'Surname'),
             'phone' => Yii::t('db', 'Phone'),
             'passwordRepeat' => Yii::t('db', 'Repeat password'),
-            'agentCode' => Yii::t('db','Agent code (if you have)'),
-            'isForSale' => Yii::t('db','Is for sale'),
+            'agentCode' => Yii::t('db', 'Agent code (if you have)'),
+            'isCompany' => Yii::t('db', 'Is company'),
             'acceptTerms' => MgHelpers::getSettingTranslated('register_terms_label1', 'Akceptuje <a href="#">regulamin</a> serwisu i wyrażamzgode...'),
             'acceptTerms2' => MgHelpers::getSettingTranslated('register_terms_label2', 'Akceptuje <a href="#">regulamin</a> serwisu i wyrażamzgode...'),
             'acceptTerms3' => MgHelpers::getSettingTranslated('register_terms_label3', 'Akceptuje <a href="#">regulamin</a> serwisu i wyrażamzgode...'),
             'acceptTerms4' => MgHelpers::getSettingTranslated('register_terms_label4', 'Akceptuje <a href="#">regulamin</a> serwisu i wyrażamzgode...'),
             'acceptTerms5' => MgHelpers::getSettingTranslated('register_terms_label5', 'Akceptuje <a href="#">regulamin</a> serwisu i wyrażamzgode...'),
             'acceptTerms6' => MgHelpers::getSettingTranslated('register_terms_label6', 'Akceptuje <a href="#">regulamin</a> serwisu i wyrażamzgode...'),
+            'birthDate' => Yii::t('db','Birthdate'),
+            'street' => Yii::t('db','Street'),
+            'flatNo' => Yii::t('db','Flat number'),
+            'houseNo' => Yii::t('db','House number'),
+            'postalCode' => Yii::t('db','Postal code'),
+            'city' => Yii::t('db','City'),
+            'voivodeship' => Yii::t('db','Voivodeship'),
+            'pesel' => Yii::t('db','PESEL'),
+            'idNumber' => Yii::t('db','ID number'),
         ];
     }
 
@@ -97,8 +115,8 @@ class RegisterForm extends Model
             $mailer = Yii::$app->mailer->compose('activation', [
                 'model' => $user
             ])
-                ->setTo([$user->username,MgHelpers::getSetting('owner email',false,'Tomasz.kopacz@meetfacestrading.com')])
-                ->attach(Yii::getAlias('@webroot').'/files/abonament_mft.pdf')
+                ->setTo([$user->username, MgHelpers::getSetting('owner email', false, 'Tomasz.kopacz@meetfacestrading.com')])
+                ->attach(Yii::getAlias('@webroot') . '/files/abonament_mft.pdf')
                 ->setFrom([MgHelpers::getSetting('email from') => MgHelpers::getSetting('email from name')])
                 ->setSubject(MgHelpers::getSettingTranslated('register_activation_email_subject', 'Noble Platform - activation'));
             $sent = $mailer->send();
