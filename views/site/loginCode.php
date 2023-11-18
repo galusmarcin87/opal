@@ -11,6 +11,7 @@ use yii\authclient\widgets\AuthChoice;
 
 
 $this->title = Yii::t('db', 'Log in');
+$this->params['breadcrumbs'][] = $this->title;
 $fieldConfig = \app\components\ProjectHelper::getFormFieldConfig(true)
 
 //https://yii2-framework.readthedocs.io/en/stable/guide/security-auth-clients/
@@ -37,31 +38,22 @@ $fieldConfig = \app\components\ProjectHelper::getFormFieldConfig(true)
             ?>
 
             <div class="mb-4">
-                <?= $form->field($model, 'username')->textInput(['placeholder' => $model->getAttributeLabel('username')]) ?>
+                <?= $form->field($loginCodeForm, 'code')->textInput(['type' => 'text', 'required' => true, 'placeholder' => $loginCodeForm->getAttributeLabel('code')]) ?>
             </div>
-            <div class="mb-4">
-                <?= $form->field($model, 'password')->passwordInput(['placeholder' => $model->getAttributeLabel('password')]) ?>
-            </div>
+
+            <?= $form->field($loginCodeForm, 'userId')->hiddenInput() ?>
+            <?= $form->field($loginCodeForm, 'rememberMe')->hiddenInput() ?>
 
 
             <div class="row align-items-center gy-4 my-5">
                 <div class="col-lg-8">
-                    <p class="text-uppercase text-center text-lg-start mb-0">
-                        <?= Yii::t('db', 'You dont have an account yet?') ?>
-                        <a href="<?= \yii\helpers\Url::to('/site/register') ?>">
-                            <?= Yii::t('db', 'Register') ?>
-                        </a>
-                    </p>
+
                 </div>
                 <div class="col-lg-4 text-center text-lg-end">
-                    <button class="btn btn-primary" type="submit"><?= Yii::t('db', 'Next') ?></button>
+                    <button class="btn btn-primary" type="submit"><?= Yii::t('db', 'Log in') ?></button>
 
                 </div>
             </div>
-
-            <p class="text-center my-4">
-                <?= Html::a(Yii::t('db', 'Forgotten password?'), ['/site/forgot-password'], ['class' => 'link-dark']) ?>
-            </p>
 
 
             <?php ActiveForm::end(); ?>
@@ -71,3 +63,4 @@ $fieldConfig = \app\components\ProjectHelper::getFormFieldConfig(true)
 
     </div>
 </div>
+

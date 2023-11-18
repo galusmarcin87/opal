@@ -65,11 +65,10 @@ class AccountController extends \app\components\mgcms\MgCmsController
      */
     public function actionIndex()
     {
-        $myCompany = $this->_getMyCompany();
 
 
         return $this->render('index', [
-            'myCompany' => $myCompany
+
         ]);
     }
 
