@@ -136,7 +136,7 @@ class User extends BaseUser implements IdentityInterface
     {
         return [
             [['username'], 'required', 'except' => 'onAgent'],
-            [['status', 'created_by', 'file_id', 'acceptTerms5', 'acceptTerms6'], 'integer'],
+            [['status', 'created_by', 'file_id', 'acceptTerms5', 'acceptTerms6', 'is_company'], 'integer'],
             [['created_on', 'last_login', 'birthdate', 'country', 'voivodeship', 'street', 'flat_no', 'citizenship', 'id_document_no', 'id_document_type', 'pesel', 'oldPassword'], 'safe'],
             [['username', 'password', 'first_name', 'last_name', 'email', 'address', 'postcode', 'city', 'cor_first_name', 'cor_last_name', 'cor_country', 'cor_voivodeship', 'cor_street', 'cor_flat_no', 'cor_house_no', 'cor_city', 'cor_postcode'], 'string', 'max' => 245],
             [['role', 'language'], 'string', 'max' => 45],
@@ -167,8 +167,8 @@ class User extends BaseUser implements IdentityInterface
     }
 
     /**
- * @return \yii\db\ActiveQuery
- */
+     * @return \yii\db\ActiveQuery
+     */
     public function getUsers()
     {
         return $this->hasMany(User::className(), ['created_by' => 'id']);
@@ -389,23 +389,23 @@ class User extends BaseUser implements IdentityInterface
 //                ->send();
 //        }
 
-        if($this->getOldAttribute('agent_code') && $this->getOldAttribute('agent_code') != $this->agent_code){
+        if ($this->getOldAttribute('agent_code') && $this->getOldAttribute('agent_code') != $this->agent_code) {
             $companies = Company::find()->where(['agent_code' => $this->getOldAttribute('agent_code')])->all();
 
-            foreach($companies as $company){
+            foreach ($companies as $company) {
                 $company->agent_code = $this->agent_code;
                 $company->save();
             }
         }
 
-        if($this->agent_code){
+        if ($this->agent_code) {
             $reflinkUser = User::find()->where(['agent_code' => $this->agent_code])->one();
-            if($reflinkUser){
+            if ($reflinkUser) {
                 $this->created_by = $reflinkUser->id;
             }
         }
 
-        if(!$this->agent_code){
+        if (!$this->agent_code) {
             $this->agent_code = bin2hex(random_bytes(10));
         }
 

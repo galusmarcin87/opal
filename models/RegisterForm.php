@@ -43,13 +43,13 @@ class RegisterForm extends Model
         return [
             // username and password are both required
             [['username', 'password', 'passwordRepeat', 'firstName', 'surname'], 'required'],
-            [['password'], StrengthValidator::className(),
-                'min' => 8,
-                'digit' => 1,
-                'upper' => 1,
-                'lower' => 1,
-                'special' => 0,
-                'userAttribute' => 'username'],
+//            [['password'], StrengthValidator::className(),
+//                'min' => 8,
+//                'digit' => 1,
+//                'upper' => 1,
+//                'lower' => 1,
+//                'special' => 0,
+//                'userAttribute' => 'username'],
             ['passwordRepeat', 'compare', 'compareAttribute' => 'password', 'message' => Yii::t('db', "Passwords don't match")],
             [['acceptTerms', 'acceptTerms2'], 'required', 'requiredValue' => 1, 'message' => Yii::t('db', 'This field is required')],
             ['username', 'email'],
@@ -76,20 +76,21 @@ class RegisterForm extends Model
             'acceptTerms4' => MgHelpers::getSettingTranslated('register_terms_label4', 'Akceptuje <a href="#">regulamin</a> serwisu i wyrażamzgode...'),
             'acceptTerms5' => MgHelpers::getSettingTranslated('register_terms_label5', 'Akceptuje <a href="#">regulamin</a> serwisu i wyrażamzgode...'),
             'acceptTerms6' => MgHelpers::getSettingTranslated('register_terms_label6', 'Akceptuje <a href="#">regulamin</a> serwisu i wyrażamzgode...'),
-            'birthDate' => Yii::t('db','Birthdate'),
-            'street' => Yii::t('db','Street'),
-            'flatNo' => Yii::t('db','Flat number'),
-            'houseNo' => Yii::t('db','House number'),
-            'postalCode' => Yii::t('db','Postal code'),
-            'city' => Yii::t('db','City'),
-            'voivodeship' => Yii::t('db','Voivodeship'),
-            'pesel' => Yii::t('db','PESEL'),
-            'idNumber' => Yii::t('db','ID number'),
+            'birthDate' => Yii::t('db', 'Birthdate'),
+            'street' => Yii::t('db', 'Street'),
+            'flatNo' => Yii::t('db', 'Flat number'),
+            'houseNo' => Yii::t('db', 'House number'),
+            'postalCode' => Yii::t('db', 'Postal code'),
+            'city' => Yii::t('db', 'City'),
+            'voivodeship' => Yii::t('db', 'Voivodeship'),
+            'pesel' => Yii::t('db', 'PESEL'),
+            'idNumber' => Yii::t('db', 'ID number'),
         ];
     }
 
     public function register()
     {
+
 
         if ($this->validate()) {
             $user = new mgcms\db\User;
@@ -104,7 +105,18 @@ class RegisterForm extends Model
             $user->acceptTerms5 = (int)$this->acceptTerms5;
             $user->acceptTerms6 = (int)$this->acceptTerms6;
             $user->agent_code = $this->agentCode;
-            $user->setModelAttribute('companyForSale', $this->isForSale);
+
+            $user->birthdate = $this->birthDate;
+            $user->street = $this->street;
+            $user->flat_no = $this->flatNo;
+            $user->house_no = $this->houseNo;
+            $user->postcode = $this->postalCode;
+            $user->city = $this->city;
+            $user->voivodeship = $this->voivodeship;
+            $user->pesel = $this->pesel;
+            $user->id_document_no = $this->idNumber;
+            $user->is_company = $this->isCompany;
+
             $saved = $user->save();
             if (!$saved) {
                 MgHelpers::setFlashError(Yii::t('db', 'Error during registration:') . MgHelpers::getErrorsString($user->getErrors()));
@@ -115,10 +127,9 @@ class RegisterForm extends Model
             $mailer = Yii::$app->mailer->compose('activation', [
                 'model' => $user
             ])
-                ->setTo([$user->username, MgHelpers::getSetting('owner email', false, 'Tomasz.kopacz@meetfacestrading.com')])
-                ->attach(Yii::getAlias('@webroot') . '/files/abonament_mft.pdf')
+                ->setTo([$user->username, MgHelpers::getSetting('owner email', false, 'email@email.com')])
                 ->setFrom([MgHelpers::getSetting('email from') => MgHelpers::getSetting('email from name')])
-                ->setSubject(MgHelpers::getSettingTranslated('register_activation_email_subject', 'Noble Platform - activation'));
+                ->setSubject(MgHelpers::getSettingTranslated('register_activation_email_subject', 'Activation'));
             $sent = $mailer->send();
 
             if (!$sent) {

@@ -32,7 +32,7 @@ $this->title = Yii::t('db', 'Register');
         'fieldConfig' => \app\components\ProjectHelper::getFormFieldConfig(true)
     ]);
 
-    //          echo $form->errorSummary($model);
+    echo $form->errorSummary($model);
     ?>
     <div class="row">
         <div class="col-lg-6 mx-auto">
@@ -51,6 +51,18 @@ $this->title = Yii::t('db', 'Register');
                     <label class="form-check-label" for="client_type-company"><?= Yii::t('db', 'company') ?></label>
                 </div>
 
+            </div>
+
+            <div class="mb-4">
+                <?= $form->field($model, 'username')->textInput(['placeholder' => $model->getAttributeLabel('username')]) ?>
+            </div>
+
+            <div class="mb-4">
+                <?= $form->field($model, 'password')->passwordInput(['placeholder' => $model->getAttributeLabel('password')]) ?>
+            </div>
+
+            <div class="mb-4">
+                <?= $form->field($model, 'passwordRepeat')->passwordInput(['placeholder' => $model->getAttributeLabel('passwordRepeat')]) ?>
             </div>
 
 
@@ -133,7 +145,7 @@ $this->title = Yii::t('db', 'Register');
                             'checkboxTemplate' => "{input}\n{label}\n{error}",
                             'labelOptions' => ['encode' => false]
                         ]
-                    )->checkbox(['class' => 'form-check-input','label' => $model->getAttributeLabel('acceptTerms')])->label(true); ?>
+                    )->checkbox(['class' => 'form-check-input', 'label' => $model->getAttributeLabel('acceptTerms')])->label(true); ?>
                 </div>
             </div>
             <div class="form-check form-check-acceptance mb-5">
@@ -142,7 +154,7 @@ $this->title = Yii::t('db', 'Register');
                         'checkboxTemplate' => "{input}\n{label}\n{error}",
                         'labelOptions' => ['encode' => false]
                     ]
-                )->checkbox(['class' => 'form-check-input','label' => $model->getAttributeLabel('acceptTerms')])->label(true); ?>
+                )->checkbox(['class' => 'form-check-input', 'label' => $model->getAttributeLabel('acceptTerms')])->label(true); ?>
             </div>
             <div class="text-end">
                 <button type="submit" class="btn btn-primary">
