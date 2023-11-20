@@ -27,7 +27,7 @@ $this->registerJs($search);
         <? endif?>
     </p>
 
-    <?php 
+    <?php
     $gridColumn = [
         ['class' => 'yii\grid\SerialColumn'],
         [
@@ -46,6 +46,7 @@ $this->registerJs($search);
         'name',
         'lang',
         'type',
+        'link:raw',
         [
             'class' => app\components\mgcms\yii\ActionColumn::className(),
             'template' => '{save-as-new} {view} {update} {delete}',
@@ -55,7 +56,7 @@ $this->registerJs($search);
                 },
             ],
         ],
-    ]; 
+    ];
     ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
