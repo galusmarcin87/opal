@@ -31,7 +31,7 @@ class FrontAsset extends AssetBundle
         '/js/vendor/infobox_packed.js',
         '/js/vendor/countdown.js',
         '/js/vendor/swiper-bundle.min.js',
-        'js/app.js',
+        '/js/app.js',
     ];
     public $depends = [
         'yii\web\JqueryAsset'
