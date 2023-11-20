@@ -68,6 +68,7 @@ use app\components\mgcms\MgHelpers;
  * @property integer $acceptTerms5
  * @property integer $acceptTerms6
  * @property string $agent_code
+ * @property string $testResult
  *
  *
  * @property User $createdBy
@@ -79,7 +80,7 @@ class User extends BaseUser implements IdentityInterface
 {
 
     public $fileUpload;
-    public $modelAttributes = ['facebook', 'twitter', 'linkedin', 'instagram', 'companyForSale', 'company_id'];
+    public $modelAttributes = ['facebook', 'twitter', 'linkedin', 'instagram', 'companyForSale', 'company_id', 'testResult'];
     public $languageAttributes = ['description', 'position'];
 
 

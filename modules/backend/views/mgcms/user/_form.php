@@ -104,6 +104,7 @@ use yii\helpers\Url;
 
         <?= $form->field12md($model, 'description')->tinyMce() ?>
 
+        <?= $form->field12md($model, 'testResult')->tinyMce([],['rows' => 60]) ?>
 
 
     </div>

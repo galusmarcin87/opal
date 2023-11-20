@@ -319,7 +319,7 @@ class MgHelpers extends \yii\base\Component
             return array();
         }
         foreach ($array as $item) {
-            if (isset($item)){
+            if (isset($item)) {
                 $retArray[$item] = Yii::t('app', $item);
             }
         }
@@ -958,13 +958,13 @@ class MgHelpers extends \yii\base\Component
         return MgHelpers::getUserModel()->isAdmin();
     }
 
-    static function getTinyMceOptions($options = [])
+    static function getTinyMceOptions($clientOptions = [], $options = [])
     {
 
         return [
-            'options' => ['rows' => 6],
+            'options' => \yii\helpers\ArrayHelper::merge(['rows' => 6], $options ),
             'language' => substr(Yii::$app->language, 0, 2),
-            'clientOptions' => \yii\helpers\ArrayHelper::merge($options, [
+            'clientOptions' => \yii\helpers\ArrayHelper::merge($clientOptions, [
                 'plugins' => [
                     "advlist autolink lists link charmap print preview anchor",
                     "searchreplace visualblocks code fullscreen",

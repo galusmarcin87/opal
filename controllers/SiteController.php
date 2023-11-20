@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use _;
 use app\models\BecameConsultantForm;
 use app\models\BecomeConsultantForm;
 use app\models\InvestForm;
@@ -126,7 +127,7 @@ class SiteController extends \app\components\mgcms\MgCmsController
         }
 
         $model = new RegisterForm();
-        if($agentCode){
+        if ($agentCode) {
             $model->agentCode = $agentCode;
         }
         if ($model->load(Yii::$app->request->post()) && $model->register()) {
@@ -421,6 +422,80 @@ class SiteController extends \app\components\mgcms\MgCmsController
 
         return $this->render('search', [
             'dataProvider' => $dataProvider
+        ]);
+    }
+
+    private function _renderQuestion($options, $answerPost)
+    {
+        $str = '';
+        extract($options);
+        $str .= '<p>' . ($questionIndex + 1) . '.' . ($isSubquestion ? ($subQuestionIndex + 1) . '.' : '') . $question['question'] . '</p>';
+
+
+        if ($isSubquestion) {
+            $subquestionAnswersPost = Yii::$app->request->post('AnswerSubquestion');
+            $answer = _::get($subquestionAnswersPost, [(string)$sectionIndex, (string)$questionIndex, (string)$subQuestionIndex]);
+
+        } else {
+            $answer = _::get($answerPost, [(string)$sectionIndex, (string)$questionIndex]);
+        }
+
+        if ($answer !== NULL) {
+            if (is_array($answer)) {
+                foreach ($answer as $answerItem) {
+                    $str .= _::get($question, 'answers.' . $answerItem) . ',';
+                }
+
+            } else {
+                $str .= _::get($question, 'answers.' . $answer);
+            }
+        }
+
+
+        if (isset($question['subquestions'])) {
+            foreach ($question['subquestions'] as $subQuestionIndex => $subQuestion) {
+                $str .= $this->_renderQuestion([
+                    'sectionIndex' => $sectionIndex,
+                    'questionIndex' => $questionIndex,
+                    'question' => $subQuestion,
+                    'subQuestionIndex' => $subQuestionIndex,
+                    'isSubquestion' => true,
+                ], $answerPost);
+            }
+        }
+
+
+        return $str;
+
+    }
+
+    public function actionKnowledgeTest()
+    {
+        $config = MgHelpers::getConfigParam('knowledgeTest');
+
+        if (Yii::$app->request->post('Answer')) {
+            $answers = Yii::$app->request->post('Answer');
+            $strToSave = '';
+            foreach ($config['sections'] as $sectionIndex => $section) {
+                $strToSave .= '<h2>' . $section['name'] . '</h2>';
+                foreach ($section['questions'] as $questionIndex => $question) {
+                    $strToSave .= $this->_renderQuestion([
+                        'sectionIndex' => $sectionIndex,
+                        'questionIndex' => $questionIndex,
+                        'question' => $question,
+                        'subQuestionIndex' => false,
+                        'isSubquestion' => false,
+                    ], $answers);
+
+                }
+            }
+            $user = $this->getUserModel();
+            $user->testResult = $strToSave;
+            $user->save();
+
+        }
+        return $this->render('knowledgeTest', [
+            'config' => $config
         ]);
     }
 

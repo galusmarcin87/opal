@@ -121,6 +121,7 @@ class User extends \app\models\mgcms\db\AbstractRecord
         'file_text' => 'Pliki oddzielane enterem, nazwa;link',
         'imAgentCheckbox' => Yii::t('db', 'I am agent'),
         'agent_code' => Yii::t('db', 'Agent code'),
+        'testResult' => Yii::t('db', 'Test result'),
     ];
   }
 

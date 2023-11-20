@@ -16,4 +16,5 @@ return [
         'siteKey' => '6LeA-CUbAAAAACVgBPUjUY2PfRo3HOaK3gVzVyPj',
         'secretKey' => '6LeA-CUbAAAAAErEaliKQa3oKkP7uVxJCP6x7mg2'
     ],
+    'knowledgeTest' => require __DIR__ . '/knowledgeTest.php'
 ];
