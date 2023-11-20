@@ -2,29 +2,17 @@
 /* @var $model app\models\mgcms\db\FaqItem */
 
 ?>
-
-<div class="Accordion__card fadeIn animated">
-    <a
-            class="Accordion__card__header collapsed"
-            role="tab"
-            id="heading-<?= $model->id ?>"
-            data-toggle="collapse"
-            href="#collapse-<?= $model->id ?>"
-            aria-expanded="true"
-            aria-controls="collapseOne"
-    >
-        <div><?= $model->question ?></div>
-    </a>
-
-    <div
-            id="collapse-<?= $model->id ?>"
-            class="Accordion__card__collapse collapse"
-            role="tabpanel"
-            aria-labelledby="heading-<?= $model->id ?>"
-            data-parent="#accordion"
-    >
-        <div class="Accordion__card__body" style="display: none">
-            <?= $model->answer ?>
+<div class="accordion-item">
+    <h2 class="accordion-header">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?= $model->id ?>"  aria-controls="collapse<?= $model->id ?>">
+            <?= $model->question ?>
+        </button>
+    </h2>
+    <div id="collapse<?= $model->id ?>" class="accordion-collapse collapse " data-bs-parent="#faq">
+        <div class="accordion-body">
+            <p>
+                <?= $model->answer ?>
+            </p>
         </div>
     </div>
 </div>
