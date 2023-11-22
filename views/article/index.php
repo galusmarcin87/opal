@@ -37,7 +37,7 @@ $this->registerJs($search);
             ],
             'layout' => '{items}',
             'itemView' => function ($model, $key, $index, $widget) {
-                return $this->render('_index', ['model' => $model, 'key' => $key, 'index' => $index, 'widget' => $widget, 'view' => $this]);
+                return $this->render('_index', ['model' => $model, 'key' => $key, 'index' => $index, 'widget' => $widget, 'view' => $this,'displayImageHook' => true]);
             },
         ])
 
@@ -79,7 +79,7 @@ $this->registerJs($search);
             ?>
         </div>
 
-        
+
     </div>
 </div>
 

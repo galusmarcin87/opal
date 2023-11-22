@@ -6,10 +6,10 @@ use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\mgcms\db\Article */
-
+$displayImageHook = isset($displayImageHook) ? $displayImageHook : false;
 ?>
 
-<?if($index == 2):?>
+<?if($index == 2 && $displayImageHook):?>
 <div class="news decoration">
     <img src="/images/home-news.png" alt="" class="img-fluid">
 </div>

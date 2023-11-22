@@ -491,7 +491,12 @@ class SiteController extends \app\components\mgcms\MgCmsController
             }
             $user = $this->getUserModel();
             $user->testResult = $strToSave;
-            $user->save();
+            $saved = $user->save();
+            if($saved){
+                MgHelpers::setFlashSuccess(Yii::t('db','Knowledge test saved'));
+                $this->redirect('/');
+            }
+
 
         }
         return $this->render('knowledgeTest', [
