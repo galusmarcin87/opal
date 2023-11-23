@@ -2,8 +2,8 @@
 return [
     'adminEmail' => 'admin@email.com',
     'roles' => ['admin', 'front', 'agent', 'representative','manager','sales director','international director'],
-    'languages' => ['pl', 'en','es'],
-    'languagesDisplay' => ['pl', 'en', 'es'],
+    'languages' => ['pl', 'en'],
+    'languagesDisplay' => ['pl', 'en'],
     'icon-framework' => 'bsg',
     'containerComponents' => require __DIR__ . '/containerComponents.php',
     'secretKey' => 'IASD77asdj**dkdl%*',
