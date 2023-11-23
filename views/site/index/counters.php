@@ -4,14 +4,16 @@
 use app\components\mgcms\MgHelpers;
 use yii\web\View;
 use yii\widgets\ListView;
+use app\models\mgcms\db\User;
 
-
-
-?><div class="section section-counters">
+$registeredInvestorsCount = User::find()->where(['role' => User::ROLE_CLIENT])->count();
+$investitionsCount = \app\models\mgcms\db\Project::find()->count();
+$collectedFunds = \app\models\mgcms\db\Payment::find()->sum('amount');
+$plannedInvestitionsCount = \app\models\mgcms\db\Project::find()->where(['status' => \app\models\mgcms\db\Project::STATUS_PLANNED])->count();
+?>
+<div class="section section-counters">
     <div class="container">
         <div class="row gy-5">
-
-
 
 
             <div class="col-lg-3 counters-col">
@@ -30,14 +32,14 @@ use yii\widgets\ListView;
                                   data-refresh-interval="10"
                                   data-from="0"
                                   data-decimals=""
-                                  data-to="783">783
+                                  data-to="<?= $registeredInvestorsCount ?>>"><?= $registeredInvestorsCount ?>
                                 </span>
                                 <span class="postfix"></span>
                             </span>
                         </h3>
                         <p>
 
-                            zarejestrowanych inwestorów
+                            <?= Yii::t('db', 'registered investors') ?>
 
                         </p>
 
@@ -50,7 +52,7 @@ use yii\widgets\ListView;
             <div class="col-lg-3 counters-col">
                 <div class="counters-item">
                     <div class="icon">
-                        <img class="icon-img" src="/assets/images/counters2.svg" alt="">
+                        <img class="icon-img" src="/images/counters2.svg" alt="">
                     </div>
 
 
@@ -63,14 +65,14 @@ use yii\widgets\ListView;
                                   data-refresh-interval="10"
                                   data-from="0"
                                   data-decimals=""
-                                  data-to="7839">7839
+                                  data-to="<?= $investitionsCount ?>"><?= $investitionsCount ?>
                                 </span>
                                 <span class="postfix"></span>
                             </span>
                         </h3>
                         <p>
 
-                            inwestycji
+                            <?= Yii::t('db', 'investitions') ?>
 
                         </p>
 
@@ -83,7 +85,7 @@ use yii\widgets\ListView;
             <div class="col-lg-3 counters-col">
                 <div class="counters-item">
                     <div class="icon">
-                        <img class="icon-img" src="/assets/images/counters3.svg" alt="">
+                        <img class="icon-img" src="/images/counters3.svg" alt="">
                     </div>
 
 
@@ -96,14 +98,14 @@ use yii\widgets\ListView;
                                   data-refresh-interval="10"
                                   data-from="0"
                                   data-decimals=""
-                                  data-to="783990998">783990998
+                                  data-to="<?= $collectedFunds ?>"><?= $collectedFunds ?>
                                 </span>
                                 <span class="postfix">PLN</span>
                             </span>
                         </h3>
                         <p>
 
-                            zebranych środków
+                            <?= Yii::t('db', 'collected funds') ?>
 
                         </p>
 
@@ -116,7 +118,7 @@ use yii\widgets\ListView;
             <div class="col-lg-3 counters-col">
                 <div class="counters-item">
                     <div class="icon">
-                        <img class="icon-img" src="/assets/images/counters4.svg" alt="">
+                        <img class="icon-img" src="/images/counters4.svg" alt="">
                     </div>
 
 
@@ -129,14 +131,14 @@ use yii\widgets\ListView;
                                   data-refresh-interval="10"
                                   data-from="0"
                                   data-decimals=""
-                                  data-to="78489">78489
+                                  data-to="<?= $plannedInvestitionsCount ?>"><?= $plannedInvestitionsCount ?>
                                 </span>
                                 <span class="postfix"></span>
                             </span>
                         </h3>
                         <p>
 
-                            nadchodzące emisje
+                            <?= Yii::t('db', 'upcoming campaigns') ?>
 
                         </p>
 

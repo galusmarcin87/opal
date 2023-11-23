@@ -494,7 +494,7 @@ class SiteController extends \app\components\mgcms\MgCmsController
             $saved = $user->save();
             if($saved){
                 MgHelpers::setFlashSuccess(Yii::t('db','Knowledge test saved'));
-                $this->redirect('/');
+                return $this->redirect('/');
             }
 
 
