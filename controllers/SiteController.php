@@ -505,4 +505,11 @@ class SiteController extends \app\components\mgcms\MgCmsController
     }
 
 
+    public function actionGetCapital(){
+        return $this->render('getCapital', [
+
+        ]);
+    }
+
+
 }

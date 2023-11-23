@@ -23,7 +23,7 @@ $this->title = Yii::t('db', 'Knowledge test');
     ?>
 
     <div class="survey">
-            <? foreach ($config['sections'] as $sectionIndex => $section): ?>
+        <? foreach ($config['sections'] as $sectionIndex => $section): ?>
             <div class="survey-block">
                 <h2 class="survey-title">
                     <?= $section['name'] ?>
@@ -61,21 +61,22 @@ $this->title = Yii::t('db', 'Knowledge test');
         <? endforeach; ?>
 
         <h2 class="survey-title">
-            Oświadczenie klienta
+            <?= Yii::t('db', 'Client statement') ?>
         </h2>
 
         <div class="form-check form-check-acceptance mb-4">
             <input class="form-check-input" type="checkbox" value="" id="acceptance1" required>
             <label class="form-check-label" for="acceptance1">
-                Oświadczam, że wskazane przeze mnie odpowiedzi na pytania zawarte w powyższym teście są rzetelne
-                oraz  potwierdzam, że OpalCrowd nie zachęcał ani nie sugerował mi nieprzedstawiania informacji
+                <?= MgHelpers::getSettingTypeText('knowledge test - term ' . Yii::$app->language, true, 'Oświadczam, że wskazane przeze mnie odpowiedzi na pytania zawarte w powyższym teście są rzetelne
+                oraz potwierdzam, że OpalCrowd nie zachęcał ani nie sugerował mi nieprzedstawiania informacji
                 objętych testem. Przyjmuję do wiadomości, że w przypadku podania nieprawdziwych informacji,
-                OpalCrowd nie ponosi odpowiedzialności za dokonaną ocenę.
+                OpalCrowd nie ponosi odpowiedzialności za dokonaną ocenę.')?>
+
             </label>
         </div>
 
         <div class="text-end mt-4">
-            <button type="submit" class="btn btn-primary">Dalej</button>
+            <button type="submit" class="btn btn-primary"><?= Yii::t('db', 'Next') ?></button>
         </div>
 
 
