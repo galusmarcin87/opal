@@ -6,6 +6,10 @@ defined('YII_DEBUG') or define('YII_DEBUG', true);defined('YII_ENV') or define('
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../vendor/yiisoft/yii2/Yii.php';
 
+if($_GET['info']){
+    phpinfo();
+}
+
 if (YII_ENV == 'dev') {
     error_reporting(E_ALL ^ E_DEPRECATED);
     ini_set('display_errors', 'On');
