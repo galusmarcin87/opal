@@ -6,7 +6,7 @@ defined('YII_DEBUG') or define('YII_DEBUG', true);defined('YII_ENV') or define('
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../vendor/yiisoft/yii2/Yii.php';
 
-if($_GET['info']){
+if(isset($_GET['info'])){
     phpinfo();
 }
 
