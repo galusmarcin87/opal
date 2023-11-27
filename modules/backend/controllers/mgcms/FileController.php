@@ -91,10 +91,10 @@ class FileController extends MgBackendController
           $model->created_by = $this->getUserModel()->id;
           $model->save();
         } else {
-            echo '<pre>';
-            echo var_dump($file->error);
-            echo '</pre>';
-            exit();
+//            echo '<pre>';
+//            echo var_dump($file->error);
+//            echo '</pre>';
+//            exit();
           MgHelpers::setFlash(MgHelpers::FLASH_TYPE_WARNING, Yii::t('app', 'Problem with uploading file') . ' ' . (string) $file);
         }
       }
