@@ -77,29 +77,6 @@ class UserSearch extends User
             ->andFilterWhere(['like', 'agent_code', $this->agent_code])
             ->andFilterWhere(['like', 'city', $this->city]);
 
-        $currentUser = MgHelpers::getUserModel();
-        if($currentUser && ($currentUser->role === User::ROLE_MANAGER || $currentUser->role === User::ROLE_AGENT) ){
-            $query->andFilterWhere(['created_by' => $currentUser->id]);
-            $query->orFilterWhere(['agent_code' => $currentUser->agent_code]);
-        }
-
-        if($currentUser && $currentUser->role === User::ROLE_SALES_DIRECTOR ){
-            $query->joinWith('createdBy as createdByManager');
-            $query->join('LEFT JOIN','user createdBySalesDirector','`createdByManager`.`created_by` = `createdBySalesDirector`.`id`');
-            $query->andFilterWhere(['createdBySalesDirector.id' => $currentUser->id]);
-            $query->orFilterWhere(['createdByManager.id' => $currentUser->id]);
-            $query->orFilterWhere(['createdByManager.agent_code' => $currentUser->agent_code]);
-        }
-
-        if($currentUser && $currentUser->role === User::ROLE_INTERNATIONAL_DIRECTOR ){
-            $query->joinWith('createdBy as createdByManager');
-            $query->join('LEFT JOIN','user createdBySalesDirector','`createdByManager`.`created_by` = `createdBySalesDirector`.`id`');
-            $query->join('LEFT JOIN','user createdByInternationalDirector','`createdBySalesDirector`.`created_by` = `createdByInternationalDirector`.`id`');
-            $query->andFilterWhere(['createdByInternationalDirector.id' => $currentUser->id]);
-            $query->orFilterWhere(['createdBySalesDirector.id' => $currentUser->id]);
-            $query->orFilterWhere(['createdByManager.id' => $currentUser->id]);
-            $query->orFilterWhere(['createdByManager.agent_code' => $currentUser->agent_code]);
-        }
 
         return $dataProvider;
     }

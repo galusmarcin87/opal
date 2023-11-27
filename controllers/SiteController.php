@@ -491,6 +491,7 @@ class SiteController extends \app\components\mgcms\MgCmsController
             }
             $user = $this->getUserModel();
             $user->testResult = $strToSave;
+            $user->role = User::ROLE_INVESTOR_EXPERIENCED_NOT_CONFIRMED;
             $saved = $user->save();
             if($saved){
                 MgHelpers::setFlashSuccess(Yii::t('db','Knowledge test saved'));

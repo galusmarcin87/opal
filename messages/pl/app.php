@@ -348,6 +348,10 @@ or <b>=</b>) na początku każdej wyszukiwanej wartości.',
     'Management' => 'Zarząd',
     'Risks' => 'Istotne czynniki ryzyka',
 
+    'investor_experienced' => 'Inwestor doświadczony',
+    'investor_experienced_not_confirmed'=>'Inwestor doświadczony niepotwierdzony',
+    'investor_not_experienced' => 'Inwestor niedoświadczony',
+    'worker'=>'Pracownik',
 ];
 
 return $arr;

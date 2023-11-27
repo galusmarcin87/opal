@@ -92,15 +92,17 @@ class User extends BaseUser implements IdentityInterface
     const ROLE_REPRESENTATIVE = 'representative';
     const ROLE_MANAGER = 'manager';
     const ROLE_SALES_DIRECTOR = 'sales director';
-    const ROLE_INTERNATIONAL_DIRECTOR = 'international director';
+
+    const ROLE_INVESTOR_EXPERIENCED = 'investor_experienced';
+    const ROLE_INVESTOR_EXPERIENCED_NOT_CONFIRMED = 'investor_experienced_not_confirmed';
+    const ROLE_INVESTOR_NOT_EXPERIENCED = 'investor_not_experienced';
+    const ROLE_WORKER = 'worker';
     const   ROLES = [
         self::ROLE_ADMIN,
-        self::ROLE_CLIENT,
-        self::ROLE_AGENT,
-        self::ROLE_REPRESENTATIVE,
-        self::ROLE_MANAGER,
-        self::ROLE_SALES_DIRECTOR,
-        self::ROLE_INTERNATIONAL_DIRECTOR
+        self::ROLE_INVESTOR_EXPERIENCED,
+        self::ROLE_INVESTOR_EXPERIENCED_NOT_CONFIRMED,
+        self::ROLE_INVESTOR_NOT_EXPERIENCED,
+        self::ROLE_WORKER,
     ];
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 0;
@@ -453,8 +455,6 @@ class User extends BaseUser implements IdentityInterface
                 return [self::ROLE_AGENT, self::ROLE_CLIENT];
             case self::ROLE_SALES_DIRECTOR:
                 return [self::ROLE_AGENT, self::ROLE_MANAGER, self::ROLE_CLIENT];
-            case self::ROLE_INTERNATIONAL_DIRECTOR:
-                return [self::ROLE_SALES_DIRECTOR, self::ROLE_AGENT, self::ROLE_MANAGER, self::ROLE_CLIENT];
             case self::ROLE_ADMIN:
                 return self::ROLES;
         }

@@ -96,7 +96,7 @@ class RegisterForm extends Model
             $user = new mgcms\db\User;
             $user->username = $this->username;
             $user->password = $this->password;
-            $user->role = User::ROLE_CLIENT;
+            $user->role = User::ROLE_INVESTOR_NOT_EXPERIENCED;
             $user->status = 1;
             $user->language = Yii::$app->language;
             $user->first_name = $this->firstName;
