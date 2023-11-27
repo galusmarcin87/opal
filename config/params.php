@@ -1,7 +1,7 @@
 <?php
 return [
     'adminEmail' => 'admin@email.com',
-    'roles' => ['admin', 'front', 'agent', 'representative','manager','sales director','international director'],
+    'roles' => ['admin', 'front', 'agent', 'representative', 'manager', 'sales director', 'international director'],
     'languages' => ['pl', 'en'],
     'languagesDisplay' => ['pl', 'en'],
     'icon-framework' => 'bsg',
@@ -16,5 +16,11 @@ return [
         'siteKey' => '6LeA-CUbAAAAACVgBPUjUY2PfRo3HOaK3gVzVyPj',
         'secretKey' => '6LeA-CUbAAAAAErEaliKQa3oKkP7uVxJCP6x7mg2'
     ],
-    'knowledgeTest' => require __DIR__ . '/knowledgeTest.php'
+    'knowledgeTest' => require __DIR__ . '/knowledgeTest.php',
+    'tpay' => [
+        'merchantId' => 1010,
+        'merchantSecret' => 'demo',
+        'trApiKey' => '75f86137a6635df826e3efe2e66f7c9a946fdde1',
+        'trApiPass' => 'p@$$w0rd#@!',
+    ]
 ];

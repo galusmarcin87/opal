@@ -36,7 +36,8 @@
     "guzzlehttp/guzzle": "6.5.5",
     "stripe/stripe-php": "v7.125.0",
     "yiimaker/yii2-social-share": "~2.3",
-    "kartik-v/yii2-widget-rating": "dev-master"
+    "kartik-v/yii2-widget-rating": "dev-master",
+    "tpay-com/tpay-php": "2.3.6"
   },
   "require-dev": {
     "yiisoft/yii2-debug": "~2.0.0",

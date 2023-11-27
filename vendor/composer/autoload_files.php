@@ -24,4 +24,5 @@ return array(
     'f598d06aa772fa33d905e87be6398fb1' => $vendorDir . '/symfony/polyfill-intl-idn/bootstrap.php',
     '37a3dc5111fe8f707ab4c132ef1dbc62' => $vendorDir . '/guzzlehttp/guzzle/src/functions_include.php',
     '91c98f290cee6130db6e4364079af680' => $vendorDir . '/lodash-php/lodash-php/src/bootstrap.php',
+    '28fc68c69dc62ea1c94b9ba398c1d507' => $vendorDir . '/tpay-com/tpay-php/src/legacy_classes.php',
 );

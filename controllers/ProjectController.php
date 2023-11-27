@@ -22,8 +22,8 @@ use yii\web\Session;
 use FiberPay\FiberPayClient;
 use JWT;
 use yii\validators\EmailValidator;
-use Przelewy24\Przelewy24;
-use Przelewy24\Exceptions\Przelewy24Exception;
+
+use app\components\mgcms\tpay\TPayTransaction;
 
 class ProjectController extends \app\components\mgcms\MgCmsController
 {
@@ -304,36 +304,30 @@ class ProjectController extends \app\components\mgcms\MgCmsController
         return json_encode($output);
     }
 
-    public function actionTokenomia()
-    {
-        $project = Project::find()
-            ->where(['status' => Project::STATUS_ACTIVE])
-            ->one();
 
-        return $this->render('view', ['model' => $project]);
-    }
 
     public function actionBuyTest()
     {
-
-        $pubkey = 'ddcb401f-0ae6-46c7-9b62-81f9d6a01889';
-        $privkey = 'a8d4075a-3903-4444-beb9-28833aa9be1e';
-
-        $zondaApi = new \app\components\ZondaPayAPI($pubkey, $privkey);
-
-        $response = $zondaApi->callApi('/payments', [
-            'destinationCurrency' => 'PLN',
-            'orderId' => 'e5rh45uq34udomAEADFGqaddd',
-            'price' => 100,
-            'sourceCurrency' => 'BTC',
-            'keepSourceCurrency' => true
-
-        ], 'POST');
+        $config = [
+            'amount' => 999.99,
+            'description' => 'Transaction description',
+            //'crc' => '100020003000',
+            'result_url' => 'http://example.pl/examples/TransactionApiExample.php?transaction_confirmation',
+            'result_email' => 'shop@example.com',
+            'return_url' => 'http://example.pl/examples/TransactionApiExample.php',
+            'email' => 'customer@example.com',
+            'name' => 'John Doe',
+            'group' => isset($_POST['group']) ? (int) $_POST['group'] : 150,
+            'accept_tos' => 1,
+        ];
 
 
-        $res = Json::decode($response);
-        if ($res['status'] == 'Ok' && $res['data']['url']) {
-            return $this->redirect($res['data']['url']);
+        try{
+            $transactionSdk = new TPayTransaction(MgHelpers::getConfigParam('tpay'));
+            $url = $transactionSdk->createRedirUrlForTransaction($config);
+            return $this->redirect($url);
+        }catch(Exception $e){
+
         }
 
 

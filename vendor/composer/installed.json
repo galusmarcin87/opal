@@ -110,17 +110,17 @@
         },
         {
             "name": "bower-asset/jquery",
-            "version": "3.7.1",
-            "version_normalized": "3.7.1.0",
+            "version": "3.6.4",
+            "version_normalized": "3.6.4.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jquery/jquery-dist.git",
-                "reference": "fde1f76e2799dd877c176abde0ec836553246991"
+                "url": "git@github.com:jquery/jquery-dist.git",
+                "reference": "91ef2d8836342875f2519b5815197ea0f23613cf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/fde1f76e2799dd877c176abde0ec836553246991",
-                "reference": "fde1f76e2799dd877c176abde0ec836553246991"
+                "url": "https://api.github.com/repos/jquery/jquery-dist/zipball/91ef2d8836342875f2519b5815197ea0f23613cf",
+                "reference": "91ef2d8836342875f2519b5815197ea0f23613cf"
             },
             "type": "bower-asset",
             "installation-source": "dist",
@@ -349,20 +349,20 @@
         },
         {
             "name": "components/flag-icon-css",
-            "version": "v6.11.1",
-            "version_normalized": "6.11.1.0",
+            "version": "v7.0.2",
+            "version_normalized": "7.0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lipis/flag-icons.git",
-                "reference": "6784329d3fa1466fb8ef184ac69b021a45691271"
+                "reference": "42093e73487f4bfcc57ab61de8b1f99eccf49243"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lipis/flag-icons/zipball/6784329d3fa1466fb8ef184ac69b021a45691271",
-                "reference": "6784329d3fa1466fb8ef184ac69b021a45691271",
+                "url": "https://api.github.com/repos/lipis/flag-icons/zipball/42093e73487f4bfcc57ab61de8b1f99eccf49243",
+                "reference": "42093e73487f4bfcc57ab61de8b1f99eccf49243",
                 "shasum": ""
             },
-            "time": "2023-09-17T19:45:16+00:00",
+            "time": "2023-11-18T09:24:51+00:00",
             "type": "library",
             "installation-source": "dist",
             "notification-url": "https://packagist.org/downloads/",
@@ -387,27 +387,27 @@
             ],
             "support": {
                 "issues": "https://github.com/lipis/flag-icons/issues",
-                "source": "https://github.com/lipis/flag-icons/tree/v6.11.1"
+                "source": "https://github.com/lipis/flag-icons/tree/v7.0.2"
             },
             "install-path": "../components/flag-icon-css"
         },
         {
             "name": "ezyang/htmlpurifier",
-            "version": "v4.16.0",
-            "version_normalized": "4.16.0.0",
+            "version": "v4.17.0",
+            "version_normalized": "4.17.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ezyang/htmlpurifier.git",
-                "reference": "523407fb06eb9e5f3d59889b3978d5bfe94299c8"
+                "reference": "bbc513d79acf6691fa9cf10f192c90dd2957f18c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/523407fb06eb9e5f3d59889b3978d5bfe94299c8",
-                "reference": "523407fb06eb9e5f3d59889b3978d5bfe94299c8",
+                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/bbc513d79acf6691fa9cf10f192c90dd2957f18c",
+                "reference": "bbc513d79acf6691fa9cf10f192c90dd2957f18c",
                 "shasum": ""
             },
             "require": {
-                "php": "~5.6.0 || ~7.0.0 || ~7.1.0 || ~7.2.0 || ~7.3.0 || ~7.4.0 || ~8.0.0 || ~8.1.0 || ~8.2.0"
+                "php": "~5.6.0 || ~7.0.0 || ~7.1.0 || ~7.2.0 || ~7.3.0 || ~7.4.0 || ~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0"
             },
             "require-dev": {
                 "cerdic/css-tidy": "^1.7 || ^2.0",
@@ -419,7 +419,7 @@
                 "ext-iconv": "Converts text to and from non-UTF-8 encodings",
                 "ext-tidy": "Used for pretty-printing HTML"
             },
-            "time": "2022-09-18T07:06:19+00:00",
+            "time": "2023-11-17T15:01:25+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -451,7 +451,7 @@
             ],
             "support": {
                 "issues": "https://github.com/ezyang/htmlpurifier/issues",
-                "source": "https://github.com/ezyang/htmlpurifier/tree/v4.16.0"
+                "source": "https://github.com/ezyang/htmlpurifier/tree/v4.17.0"
             },
             "install-path": "../ezyang/htmlpurifier"
         },
@@ -3965,17 +3965,17 @@
         },
         {
             "name": "monolog/monolog",
-            "version": "3.4.0",
-            "version_normalized": "3.4.0.0",
+            "version": "3.5.0",
+            "version_normalized": "3.5.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/monolog.git",
-                "reference": "e2392369686d420ca32df3803de28b5d6f76867d"
+                "reference": "c915e2634718dbc8a4a15c61b0e62e7a44e14448"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/e2392369686d420ca32df3803de28b5d6f76867d",
-                "reference": "e2392369686d420ca32df3803de28b5d6f76867d",
+                "url": "https://api.github.com/repos/Seldaek/monolog/zipball/c915e2634718dbc8a4a15c61b0e62e7a44e14448",
+                "reference": "c915e2634718dbc8a4a15c61b0e62e7a44e14448",
                 "shasum": ""
             },
             "require": {
@@ -4020,7 +4020,7 @@
                 "rollbar/rollbar": "Allow sending log messages to Rollbar",
                 "ruflin/elastica": "Allow sending log messages to an Elastic Search server"
             },
-            "time": "2023-06-21T08:46:11+00:00",
+            "time": "2023-10-27T15:32:31+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -4053,7 +4053,7 @@
             ],
             "support": {
                 "issues": "https://github.com/Seldaek/monolog/issues",
-                "source": "https://github.com/Seldaek/monolog/tree/3.4.0"
+                "source": "https://github.com/Seldaek/monolog/tree/3.5.0"
             },
             "funding": [
                 {
@@ -4331,17 +4331,17 @@
         },
         {
             "name": "mpdf/mpdf",
-            "version": "v8.2.0",
-            "version_normalized": "8.2.0.0",
+            "version": "v8.2.2",
+            "version_normalized": "8.2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mpdf/mpdf.git",
-                "reference": "170a236a588d177c2aa7447ce490a030ca68e6f4"
+                "reference": "596a87b876d7793be7be060a8ac13424de120dd5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mpdf/mpdf/zipball/170a236a588d177c2aa7447ce490a030ca68e6f4",
-                "reference": "170a236a588d177c2aa7447ce490a030ca68e6f4",
+                "url": "https://api.github.com/repos/mpdf/mpdf/zipball/596a87b876d7793be7be060a8ac13424de120dd5",
+                "reference": "596a87b876d7793be7be060a8ac13424de120dd5",
                 "shasum": ""
             },
             "require": {
@@ -4351,7 +4351,7 @@
                 "mpdf/psr-log-aware-trait": "^2.0 || ^3.0",
                 "myclabs/deep-copy": "^1.7",
                 "paragonie/random_compat": "^1.4|^2.0|^9.99.99",
-                "php": "^5.6 || ^7.0 || ~8.0.0 || ~8.1.0 || ~8.2.0",
+                "php": "^5.6 || ^7.0 || ~8.0.0 || ~8.1.0 || ~8.2.0 || ~8.3.0",
                 "psr/http-message": "^1.0 || ^2.0",
                 "psr/log": "^1.0 || ^2.0 || ^3.0",
                 "setasign/fpdi": "^2.1"
@@ -4368,7 +4368,7 @@
                 "ext-xml": "Needed mainly for SVG manipulation",
                 "ext-zlib": "Needed for compression of embedded resources, such as fonts"
             },
-            "time": "2023-09-01T11:44:52+00:00",
+            "time": "2023-11-07T13:52:14+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -6362,8 +6362,8 @@
         },
         {
             "name": "symfony/deprecation-contracts",
-            "version": "v3.3.0",
-            "version_normalized": "3.3.0.0",
+            "version": "v3.4.0",
+            "version_normalized": "3.4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/deprecation-contracts.git",
@@ -6412,7 +6412,7 @@
             "description": "A generic function and convention to trigger deprecation notices",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.3.0"
+                "source": "https://github.com/symfony/deprecation-contracts/tree/v3.4.0"
             },
             "funding": [
                 {
@@ -7199,17 +7199,17 @@
         },
         {
             "name": "symfony/string",
-            "version": "v6.3.5",
-            "version_normalized": "6.3.5.0",
+            "version": "v6.3.8",
+            "version_normalized": "6.3.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "13d76d0fb049051ed12a04bef4f9de8715bea339"
+                "reference": "13880a87790c76ef994c91e87efb96134522577a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/13d76d0fb049051ed12a04bef4f9de8715bea339",
-                "reference": "13d76d0fb049051ed12a04bef4f9de8715bea339",
+                "url": "https://api.github.com/repos/symfony/string/zipball/13880a87790c76ef994c91e87efb96134522577a",
+                "reference": "13880a87790c76ef994c91e87efb96134522577a",
                 "shasum": ""
             },
             "require": {
@@ -7229,7 +7229,7 @@
                 "symfony/translation-contracts": "^2.5|^3.0",
                 "symfony/var-exporter": "^5.4|^6.0"
             },
-            "time": "2023-09-18T10:38:32+00:00",
+            "time": "2023-11-09T08:28:21+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -7268,7 +7268,7 @@
                 "utf8"
             ],
             "support": {
-                "source": "https://github.com/symfony/string/tree/v6.3.5"
+                "source": "https://github.com/symfony/string/tree/v6.3.8"
             },
             "funding": [
                 {
@@ -7400,6 +7400,62 @@
                 "source": "https://github.com/tinymce/tinymce-dist/tree/4.7.3"
             },
             "install-path": "../tinymce/tinymce"
+        },
+        {
+            "name": "tpay-com/tpay-php",
+            "version": "2.3.6",
+            "version_normalized": "2.3.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tpay-com/tpay-php.git",
+                "reference": "724a104046928277dd1c9cc9b0f8fbebb6122939"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tpay-com/tpay-php/zipball/724a104046928277dd1c9cc9b0f8fbebb6122939",
+                "reference": "724a104046928277dd1c9cc9b0f8fbebb6122939",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.6.0"
+            },
+            "require-dev": {
+                "php-parallel-lint/php-parallel-lint": "^1.3.2",
+                "phpunit/phpunit": "^5.7.27 || ^9.6.10"
+            },
+            "time": "2023-08-25T08:50:40+00:00",
+            "type": "library",
+            "extra": [
+                {
+                    "engine": "PHP SDK"
+                }
+            ],
+            "installation-source": "dist",
+            "autoload": {
+                "files": [
+                    "src/legacy_classes.php"
+                ],
+                "psr-4": {
+                    "Tpay\\OriginApi\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "tpay.com",
+                    "homepage": "https://tpay.com"
+                }
+            ],
+            "description": "Tpay.com library",
+            "support": {
+                "issues": "https://github.com/tpay-com/tpay-php/issues",
+                "source": "https://github.com/tpay-com/tpay-php/tree/2.3.6"
+            },
+            "install-path": "../tpay-com/tpay-php"
         },
         {
             "name": "tubalmartin/cssmin",

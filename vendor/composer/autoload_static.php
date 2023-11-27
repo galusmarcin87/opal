@@ -25,6 +25,7 @@ class ComposerStaticInit6544a2bb20c292eaf871f47c7e1b1f50
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '91c98f290cee6130db6e4364079af680' => __DIR__ . '/..' . '/lodash-php/lodash-php/src/bootstrap.php',
+        '28fc68c69dc62ea1c94b9ba398c1d507' => __DIR__ . '/..' . '/tpay-com/tpay-php/src/legacy_classes.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -133,6 +134,10 @@ class ComposerStaticInit6544a2bb20c292eaf871f47c7e1b1f50
         'Z' => 
         array (
             'ZipStream\\' => 10,
+        ),
+        'T' => 
+        array (
+            'Tpay\\OriginApi\\' => 15,
         ),
         'S' => 
         array (
@@ -476,6 +481,10 @@ class ComposerStaticInit6544a2bb20c292eaf871f47c7e1b1f50
         'ZipStream\\' => 
         array (
             0 => __DIR__ . '/..' . '/maennchen/zipstream-php/src',
+        ),
+        'Tpay\\OriginApi\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/tpay-com/tpay-php/src',
         ),
         'Symfony\\Polyfill\\Php80\\' => 
         array (
