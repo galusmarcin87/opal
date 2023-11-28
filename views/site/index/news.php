@@ -7,7 +7,7 @@ use yii\web\View;
 use app\models\mgcms\db\Article;
 use yii\widgets\ListView;
 
-$query = Article::find()->where(['status' => Article::STATUS_ACTIVE])->orderBy(['id' => SORT_DESC]);
+$query = Article::find()->where(['status' => Article::STATUS_ACTIVE,'type'=>Article::TYPE_NEWS])->orderBy(['id' => SORT_DESC]);
 
 $dataProvider = new ActiveDataProvider([
     'query' => $query,
