@@ -53,28 +53,16 @@ $this->params['breadcrumbs'][] = $this->title;
       'language',
       'created_on',
       'updated_on',
-      'meta_title',
-      'meta_description',
-      'meta_keywords',
       'status:translate',
-      [
-          'attribute' => 'parent.title',
-          'label' => Yii::t('app', 'Parent'),
-      ],
-      [
-          'attribute' => 'category.name',
-          'label' => Yii::t('app', 'Category'),
-      ],
       [
           'attribute' => 'file.link',
           'format' => 'raw',
           'label' => Yii::t('app', 'File'),
       ],
+	  'meta_title',
+      'meta_description',
+      'meta_keywords',
       'tagString',
-//            'order',
-//            'promoted',
-//            'custom:ntext',
-//            'type',
   ];
   echo DetailView::widget([
       'model' => $model,

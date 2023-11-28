@@ -20,6 +20,21 @@ use yii\bootstrap\Modal;
     <?= $form->errorSummary($model); ?>
 
     <?= $form->field($model, 'id', ['template' => '{input}'])->textInput(['style' => 'display:none']); ?>
+	
+	   <div class="row">
+	  <div class="col-md-3"> 
+		  <?= $form->field($model, 'language')->dropDownList(array_combine(MgHelpers::getConfigParam('languages'), MgHelpers::getConfigParam('languages'))) ?>
+		  </div>
+	   <div class="col-md-3"> 
+		  <?= $form->field($model, 'status')->dropDownList(MgHelpers::translatedSBValueFromArray(Article::STATUSES)) ?>
+		   </div>
+	   <div class="col-md-3"> 
+		  <?= $form->field($model, 'type')->dropDownList(app\components\mgcms\MgHelpers::arrayKeyValueFromArray(\app\models\mgcms\db\Article::TYPES, true), ['maxlength' => true, 'placeholder' => 'Type', 'prompt' => '']) ?>
+		   </div>
+	   <div class="col-md-3">
+            <?= $form->field($model, 'order')->textInput(['placeholder' => $model->getAttributeLabel('order')]) ?>
+        </div>
+    </div>
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true, 'placeholder' => $model->getAttributeLabel('title')]) ?>
 
@@ -27,39 +42,9 @@ use yii\bootstrap\Modal;
 
     <?= $form->field($model, 'excerpt')->tinyMce() ?>
 
-    <?= $form->field($model, 'status')->dropDownList(MgHelpers::translatedSBValueFromArray(Article::STATUSES)) ?>
+
 
     <div class="row">
-        <div class="col-md-3">
-            <?= $form->field($model, 'language')->dropDownList(array_combine(MgHelpers::getConfigParam('languages'), MgHelpers::getConfigParam('languages'))) ?>
-        </div>
-
-        <div class="col-md-3">
-            <?=
-            $form->field($model, 'category_id')->widget(\kartik\widgets\Select2::classname(), [
-                'data' => \yii\helpers\ArrayHelper::map(\app\models\mgcms\db\Category::find()->orderBy('id')->asArray()->all(), 'id', 'name'),
-                'options' => ['placeholder' => Yii::t('app', 'Choose Category')],
-                'pluginOptions' => [
-                    'allowClear' => true
-                ],
-            ]);
-
-            ?>
-        </div>
-
-        <div class="col-md-3">
-            <?=
-            $form->field($model, 'parent_id')->widget(\kartik\widgets\Select2::classname(), [
-                'data' => \yii\helpers\ArrayHelper::map(\app\models\mgcms\db\Article::find()->where($model->isNewRecord ? [] : ['<>', 'id', $model->id])->orderBy('id')->asArray()->all(), 'id', 'title'),
-                'options' => ['placeholder' => Yii::t('app', 'Choose Article')],
-                'pluginOptions' => [
-                    'allowClear' => true
-                ],
-            ]);
-
-            ?>
-        </div>
-
         <div class="col-md-3">
             <?= $this->render('/common/_fileModalChooser', [
                 'model' => $model,
@@ -68,36 +53,24 @@ use yii\bootstrap\Modal;
 
     </div>
 
+    <div class="row">
+        <div class="col-md-3">
+            <?= $form->relatedFileInput($model, true, true) ?>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'meta_title')->textInput(['maxlength' => true, 'placeholder' => $model->getAttributeLabel('meta_title')]) ?>
+
+    <div class="well">
+        <legend><?= Yii::t('app', 'Images'); ?></legend>
+        <?= $this->render('/common/_images', ['model' => $model, 'editable' => true]) ?>
+    </div>
+	
+	
+	<?= $form->field($model, 'meta_title')->textInput(['maxlength' => true, 'placeholder' => $model->getAttributeLabel('meta_title')]) ?>
 
     <?= $form->field($model, 'meta_description')->textInput(['maxlength' => true, 'placeholder' => $model->getAttributeLabel('meta_description')]) ?>
 
     <?= $form->field($model, 'meta_keywords')->textInput(['maxlength' => true, 'placeholder' => $model->getAttributeLabel('meta_keywords')]) ?>
-
-
-    <div class="row">
-        <div class="col-md-3">
-            <?= $form->field($model, 'promoted')->switchInput() ?>
-        </div>
-        <div class="col-md-3">
-            <?= $form->relatedFileInput($model, true, true) ?>
-        </div>
-        <div class="col-md-3">
-            <?= $form->field($model, 'order')->textInput(['placeholder' => $model->getAttributeLabel('order')]) ?>
-        </div>
-        <div class="col-md-3">
-            <?= $form->field($model, 'custom')->textInput(['placeholder' => $model->getAttributeLabel('custom')]) ?>
-        </div>
-    </div>
-
-
-    <div class="">
-        <?=
-        $form->field($model, 'type')->dropDownList(app\components\mgcms\MgHelpers::arrayKeyValueFromArray(\app\models\mgcms\db\Article::TYPES, true), ['maxlength' => true, 'placeholder' => 'Type', 'prompt' => ''])
-
-        ?>
-    </div>
 
     <?= $form->field($model, 'tagString')->widget(\mgcms\tokenfield\Tokenfield::className(), [
         'pluginOptions' => [
@@ -109,11 +82,6 @@ use yii\bootstrap\Modal;
             ],
         ],
     ]); ?>
-
-    <div class="well">
-        <legend><?= Yii::t('app', 'Images'); ?></legend>
-        <?= $this->render('/common/_images', ['model' => $model, 'editable' => true]) ?>
-    </div>
 
     <div class="form-group">
         <?=
