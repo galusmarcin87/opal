@@ -33,7 +33,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= Html::a(Yii::t('app', 'Save As New'), ['save-as-new', 'id' => $model->id], ['class' => 'btn btn-info']) ?>
             <? endif ?>
 
-
             <? $controller = Yii::$app->controller->id;
             if (\app\components\mgcms\MgHelpers::getUserModel()->checkAccess($controller, 'update')):?>
                 <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
@@ -57,44 +56,40 @@ $this->params['breadcrumbs'][] = $this->title;
         $gridColumn = [
             'id',
             'name',
-//            'status',
-//            'localization',
-//            'gps_lat',
-//            'gps_long',
-            'lead:raw',
-//            'text:raw',
-//            'file:raw',
-//            'flag:raw',
-//            'whitepaper',
-//            'www',
-            'money',
-            'money_full',
-//            'investition_time',
-//            'percentage',
-//            'date_presale_start',
-//            'date_presale_end',
-//            'date_crowdsale_start',
-            'date_crowdsale_end',
-//            'percentage_presale_bonus',
-//            'date_realization_profit',
-//            'token_value',
-//            'token_blockchain',
-//            'token_to_sale',
-//            'token_minimal_buy',
-//            'token_left',
-//            'buy_token_info:raw',
-            [
-                'attribute' => 'emails',
-                'value' => function($model) {
-                    return $model->getModelAttribute('emails');
-                },
-                'format' => 'raw'
-            ],
-        ];
-        echo DetailView::widget([
-            'model' => $model,
-            'attributes' => $gridColumn
-        ]);
+	        'status',
+	        'lead:raw',
+	        'file_id',
+	        'money_full',
+	        'money',
+	        'token_value',
+	        'token_minimal_buy',
+	        'date_crowdsale_start',
+	        'date_crowdsale_end',
+	        'created_by',
+	        'lead',
+	        'text',
+	        'text2',
+	        'management',
+	        'risks',
+	        'fiber_collect_id',
+	        'iban',
+	        'pay_name',
+	        'pay_description',
+	        'Images',
+        	'Files to download',
+	
+ //           [
+ //               'attribute' => 'emails',
+ //               'value' => function($model) {
+ //                   return $model->getModelAttribute('emails');
+ //               },
+ //               'format' => 'raw'
+ //           ],
+       ];
+       echo DetailView::widget([
+           'model' => $model,
+           'attributes' => $gridColumn
+       ]);
         ?>
     </div>
 
@@ -114,14 +109,38 @@ $this->params['breadcrumbs'][] = $this->title;
                 'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-bonus']],
                 'panel' => [
                     'type' => GridView::TYPE_PRIMARY,
-                    'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode(Yii::t('app', 'Bonuses')),
+                    'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode(Yii::t('app', 'Lista cech')),
                 ],
                 'columns' => $gridColumnBonus
             ]);
         }
         ?>
     </div>
-
+	
+	    <div class="row">
+        <?php
+        if ($providerBonus->totalCount) {
+            $gridColumnBonus = [
+                ['class' => 'yii\grid\SerialColumn'],
+                'id',
+                'from',
+                'to',
+                'value',
+            ];
+            echo Gridview::widget([
+                'dataProvider' => $providerBonus,
+                'pjax' => true,
+                'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-bonus']],
+                'panel' => [
+                    'type' => GridView::TYPE_PRIMARY,
+                    'heading' => '<span class="glyphicon glyphicon-book"></span> ' . Html::encode(Yii::t('app', 'FAQ')),
+                ],
+                'columns' => $gridColumnBonus
+            ]);
+        }
+        ?>
+    </div>
+	
     <div class="row">
         <?php
         if ($providerPayment->totalCount) {
