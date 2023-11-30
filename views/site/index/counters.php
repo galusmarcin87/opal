@@ -6,7 +6,7 @@ use yii\web\View;
 use yii\widgets\ListView;
 use app\models\mgcms\db\User;
 
-$registeredInvestorsCount = User::find()->where(['role' => User::ROLE_CLIENT])->count();
+$registeredInvestorsCount = User::find()->where(['role' => [User::ROLE_INVESTOR_NOT_EXPERIENCED, User::ROLE_INVESTOR_EXPERIENCED, User::ROLE_INVESTOR_EXPERIENCED_NOT_CONFIRMED]])->count();
 $investitionsCount = \app\models\mgcms\db\Project::find()->count();
 $collectedFunds = \app\models\mgcms\db\Payment::find()->sum('amount');
 $plannedInvestitionsCount = \app\models\mgcms\db\Project::find()->where(['status' => \app\models\mgcms\db\Project::STATUS_PLANNED])->count();
