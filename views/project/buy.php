@@ -9,111 +9,120 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\web\View;
 
-/* @var $payment app\models\mgcms\db\Payment */
 
 /* @var $form app\components\mgcms\yii\ActiveForm */
 
-use \kartik\datecontrol\Module;
 
 $this->title = Yii::t('db', 'Invest');
 $fieldConfig = \app\components\ProjectHelper::getFormFieldConfig(true);
-
-$buyDefaultAmount = $project->type == \app\models\mgcms\db\Project::TYPE_BUSINESS_OWNER ? $project->value : MgHelpers::getSetting('buy default amount', false, 1000);
 
 ?>
 
 <?= $this->render('/common/breadcrumps') ?>
 
-<section class="Section Project">
+
+<div class="container">
+
+
+    <div class="text-center my-5">
+        <img src="/images/logo.png" alt="Opal Crowd" class="img-fluid mx-auto">
+    </div>
+
+    <h3 class="my-5 text-center">
+        <?= Yii::t('db', 'Fill the data') ?>
+    </h3>
+
     <?php
     $form = ActiveForm::begin([
         'id' => 'login-form',
-        'fieldConfig' => $fieldConfig
+        'options' => ['class' => 'contact-form login__form'],
+        'fieldConfig' => \app\components\ProjectHelper::getFormFieldConfig(false)
     ]);
 
+    echo $form->errorSummary($payment);
     ?>
-    <div class="container">
-        <h1 class="text-center"><?= Yii::t('db', 'Invest') ?></h1>
-        <div class="row">
-            <div class="col-md-12">
-                <h4><?= $project->name ?></h4>
-                <table>
-                    <tr>
-                        <th><?= Yii::t('db', 'Return on investment') ?> </th>
-                        <td><?= $project->percentage ?>%</td>
-                    </tr>
-                    <tr>
-                        <th><?= Yii::t('db', 'Money gathered') ?></th>
-                        <td><?= $project->money ?>$</td>
-                    </tr>
-                    <tr>
-                        <th><?= Yii::t('db', 'Goal') ?></th>
-                        <td><?= $project->money_full ?>$</td>
-                    </tr>
-                    <tr>
-                        <th><?= Yii::t('db', 'Time left') ?></th>
-                        <td><?= MgHelpers::dateDifference($project->date_crowdsale_end, date("Y-m-d H:i:s"), Yii::t('db', '%a days, %h hours')) ?></td>
-                    </tr>
-                </table>
+    <div class="row">
+        <div class="col-lg-6 mx-auto">
+
+
+            <div class="mb-4">
+                <?= $form->field($payment, 'amount')->textInput(['placeholder' => $payment->getAttributeLabel('amount')]) ?>
             </div>
+
+            <div class="mb-4">
+                <?= $form->field($payment, 'actions_amount')->textInput(['placeholder' => $payment->getAttributeLabel('actions_amount'), 'disabled' => true]) ?>
+            </div>
+
+
         </div>
-        <div class="row mt-4">
-            <div class="col-md-6">
-                <h4><?= Yii::t('db', 'Place and time of signing the notarial deed') ?></h4>
-                <?= $form->field($payment, 'notarial_act_city')->textInput(['required' => true, 'placeholder' => $payment->getAttributeLabel('notarial_act_city')]) ?>
-                <?= $form->field($payment, 'notarial_act_day')->widget(\kartik\datecontrol\DateControl::classname(), [
-                    'type' => \kartik\datecontrol\DateControl::FORMAT_DATE,
-                    'saveFormat' => 'php:Y-m-d',
-                    'ajaxConversion' => true,
-                    'options' => [
-                        'pluginOptions' => [
-                            'placeholder' => Yii::t('app', Yii::t('app', 'Choose ' . $payment->getAttributeLabel('notarial_act_day'))),
-                            'autoclose' => true
-                        ]
-                    ],
-                ]); ?>
-                <?= $form->field($payment, 'notarial_act_hour')->textInput(['required' => true, 'placeholder' => $payment->getAttributeLabel('notarial_act_hour')]) ?>
-                <?= $form->field($payment, 'notarial_act_day2')->widget(\kartik\datecontrol\DateControl::classname(), [
-                    'type' => \kartik\datecontrol\DateControl::FORMAT_DATE,
-                    'saveFormat' => 'php:Y-m-d',
-                    'ajaxConversion' => true,
-                    'options' => [
-                        'pluginOptions' => [
-                            'placeholder' => Yii::t('app', Yii::t('app', 'Choose ' . $payment->getAttributeLabel('notarial_act_day2'))),
-                            'autoclose' => true
-                        ]
-                    ],
-                ]); ?>
-                <?= $form->field($payment, 'notarial_act_hour2')->textInput(['required' => true, 'placeholder' => $payment->getAttributeLabel('notarial_act_hour2')]) ?>
-            </div>
-            <div class="col-md-6">
-                <h4><?= Yii::t('db', 'Fill information below to invest') ?></h4>
-                <?= $form->field($payment, 'is_company')->checkbox(['placeholder' => $payment->getAttributeLabel('is_company')]) ?>
-                <?= $form->field($payment, 'tax_id_type')->radioList(['nip' => Yii::t('db', 'NIP'), 'pesel' => Yii::t('db', 'PESEL')], ['inline' => true]) ?>
 
-                <div class="row">
-                    <? if ($project->type == \app\models\mgcms\db\Project::TYPE_BUSINESS_PROFIT): ?>
-                        <button class="btn-primary col-md-2 amountBtn" type="button"
-                                onclick="this.parentNode.querySelector('#payment-amount').stepDown()"> -
-                        </button>
-                    <? endif ?>
-                    <?= $form->field($payment, 'amount')->textInput([
-                            'type' => 'number',
-                        'disabled' => $project->type == \app\models\mgcms\db\Project::TYPE_BUSINESS_OWNER,
-                        'step' => $buyDefaultAmount,
-                        'value' => $buyDefaultAmount, 'required' => true, 'placeholder' => $payment->getAttributeLabel('amount')]) ?>
-                    <? if ($project->type == \app\models\mgcms\db\Project::TYPE_BUSINESS_PROFIT): ?>
-                        <button class="btn-primary col-md-2 amountBtn" type="button"
-                                onclick="this.parentNode.querySelector('#payment-amount').stepUp()"> +
-                        </button>
-                    <? endif ?>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-9 mx-auto">
+
+
+            <div class="form-check form-check-acceptance mb-3">
+                <div class="Form__group form-group text-left checkbox">
+                    <?= $form->field($payment, 'acceptTerms',
+                        [
+                            'checkboxTemplate' => "{input}\n{label}\n{error}",
+                            'labelOptions' => ['encode' => false]
+                        ]
+                    )->checkbox(['class' => 'form-check-input', 'label' => $payment->getAttributeLabel('acceptTerms')])->label(true); ?>
                 </div>
-
-
-                <button type="submit" class="btn btn-primary"><?= Yii::t('db', 'Next') ?></button>
             </div>
+            <div class="form-check form-check-acceptance mb-3">
+                <?= $form->field($payment, 'acceptTerms2',
+                    [
+                        'checkboxTemplate' => "{input}\n{label}\n{error}",
+                        'labelOptions' => ['encode' => false]
+                    ]
+                )->checkbox(['class' => 'form-check-input', 'label' => $payment->getAttributeLabel('acceptTerms2')])->label(true); ?>
+            </div>
+            <div class="form-check form-check-acceptance mb-3">
+                <?= $form->field($payment, 'acceptTerms3',
+                    [
+                        'checkboxTemplate' => "{input}\n{label}\n{error}",
+                        'labelOptions' => ['encode' => false]
+                    ]
+                )->checkbox(['class' => 'form-check-input', 'label' => $payment->getAttributeLabel('acceptTerms3')])->label(true); ?>
+            </div>
+            <div class="form-check form-check-acceptance mb-3">
+                <?= $form->field($payment, 'showUserName',
+                    [
+                        'checkboxTemplate' => "{input}\n{label}\n{error}",
+                        'labelOptions' => ['encode' => false]
+                    ]
+                )->checkbox(['class' => 'form-check-input', 'label' => $payment->getAttributeLabel('showUserName')])->label(true); ?>
+            </div>
+            <div class="form-check form-check-acceptance mb-3">
+                <?= $form->field($payment, 'showUserPhoto',
+                    [
+                        'checkboxTemplate' => "{input}\n{label}\n{error}",
+                        'labelOptions' => ['encode' => false]
+                    ]
+                )->checkbox(['class' => 'form-check-input', 'label' => $payment->getAttributeLabel('showUserPhoto')])->label(true); ?>
+            </div>
+            <div class="text-end">
+                <button type="submit" class="btn btn-primary">
+                    <?= Yii::t('db', 'Buy with TPay') ?>
+                </button>
+            </div>
+
         </div>
     </div>
 
+
     <?php ActiveForm::end(); ?>
-</section>
+
+
+</div>
+
+<script>
+    $('#payment-amount').on('change keyup', (function () {
+        const tokenValue = <?=(float)$project->token_value?>;
+        $('#payment-actions_amount').val(($(this).val()) / tokenValue);
+    }));
+</script>
+

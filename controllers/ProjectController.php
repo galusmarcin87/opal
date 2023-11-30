@@ -28,7 +28,7 @@ use app\components\mgcms\tpay\TPayTransaction;
 class ProjectController extends \app\components\mgcms\MgCmsController
 {
 
-    public function actionIndex( $categoryId = false, $status = Project::STATUS_ACTIVE)
+    public function actionIndex($categoryId = false, $status = Project::STATUS_ACTIVE)
     {
 
         $query = Project::find()->where(['status' => $status]);
@@ -38,7 +38,7 @@ class ProjectController extends \app\components\mgcms\MgCmsController
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
             'pagination' => [
-                'pageSize' =>  9,
+                'pageSize' => 9,
             ],
             'sort' => [
                 'attributes' => [
@@ -92,10 +92,41 @@ class ProjectController extends \app\components\mgcms\MgCmsController
 
         $payment = new Payment();
         $payment->project_id = $project->id;
+        $payment->user_id = $user->id;
+        $payment->status = Payment::STATUS_NEW;
+        $payment->type = $project::class;
 
         $loaded = $payment->load(Yii::$app->request->post());
         if ($loaded) {
-            return $this->render('buy2', ['project' => $project, 'payment' => $payment, 'user' => $user]);
+            $saved = $payment->save();
+            if (!$saved) {
+                MgHelpers::setFlashError(Yii::t('db', 'Problem with saving payment ' . MgHelpers::getErrorsString($payment->errors)));
+                return $this->redirect(['site/login']);
+            }
+            $payment->setModelAttribute('showUserName', $payment->showUserName);
+            $payment->setModelAttribute('showUserPhoto', $payment->showUserPhoto);
+
+            $config = [
+                'amount' => $payment->amount,
+                'description' => MgHelpers::getSettingTypeText('invest description' . Yii::$app->language, false, 'Zakup'),
+                'crc' => (string)$payment->id,
+                'result_url' => Url::to(['/project/notify', 'hash' => MgHelpers::encrypt(['payment_id' => $payment->id, 'project_id' => $project->id, 'user_id' => $user->id])], true),
+                'result_email' => $user->email ?: $user->username,
+                'return_url' => Url::to(['/project/buy-thank-you', 'hash' => MgHelpers::encrypt(['payment_id' => $payment->id, 'user_id' => $user->id])], true),
+                'email' => $user->email ?: $user->username,
+                'name' => (string)$user,
+                'group' => isset($_POST['group']) ? (int)$_POST['group'] : 150,
+                'accept_tos' => 1,
+            ];
+
+
+            try {
+                $transactionSdk = new TPayTransaction(MgHelpers::getConfigParam('tpay'));
+                $url = $transactionSdk->createRedirUrlForTransaction($config);
+                return $this->redirect($url);
+            } catch (Exception $e) {
+
+            }
         }
 
         //--------------------------------STEP 2 ---------------------------------
@@ -235,6 +266,11 @@ class ProjectController extends \app\components\mgcms\MgCmsController
             throw new \yii\web\HttpException(404, Yii::t('app', 'Not found'));
         }
 
+        echo '<pre>';
+        echo var_dump(unserialize($hashDecrypt));
+        echo '</pre>';
+        exit;
+
         MgHelpers::setFlashSuccess(Yii::t('db', 'Thank you for investment'));
         return $this->redirect('/');
         $hashExploded = explode(':', $hashDecrypt);
@@ -305,7 +341,6 @@ class ProjectController extends \app\components\mgcms\MgCmsController
     }
 
 
-
     public function actionBuyTest()
     {
         $config = [
@@ -317,16 +352,16 @@ class ProjectController extends \app\components\mgcms\MgCmsController
             'return_url' => 'http://example.pl/examples/TransactionApiExample.php',
             'email' => 'customer@example.com',
             'name' => 'John Doe',
-            'group' => isset($_POST['group']) ? (int) $_POST['group'] : 150,
+            'group' => isset($_POST['group']) ? (int)$_POST['group'] : 150,
             'accept_tos' => 1,
         ];
 
 
-        try{
+        try {
             $transactionSdk = new TPayTransaction(MgHelpers::getConfigParam('tpay'));
             $url = $transactionSdk->createRedirUrlForTransaction($config);
             return $this->redirect($url);
-        }catch(Exception $e){
+        } catch (Exception $e) {
 
         }
 

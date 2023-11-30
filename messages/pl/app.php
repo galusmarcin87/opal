@@ -352,6 +352,9 @@ or <b>=</b>) na początku każdej wyszukiwanej wartości.',
     'investor_experienced_not_confirmed'=>'Inwestor doświadczony niepotwierdzony',
     'investor_not_experienced' => 'Inwestor niedoświadczony',
     'worker'=>'Pracownik',
+    'worker_limited'=>'Pracownik ograniczony',
+    'role_1' => 'Rola 1',
+    'role_2' => 'Rola 2',
 ];
 
 return $arr;

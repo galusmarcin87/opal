@@ -154,7 +154,7 @@ $this->title = Yii::t('db', 'Register');
                         'checkboxTemplate' => "{input}\n{label}\n{error}",
                         'labelOptions' => ['encode' => false]
                     ]
-                )->checkbox(['class' => 'form-check-input', 'label' => $model->getAttributeLabel('acceptTerms')])->label(true); ?>
+                )->checkbox(['class' => 'form-check-input', 'label' => $model->getAttributeLabel('acceptTerms2')])->label(true); ?>
             </div>
             <div class="text-end">
                 <button type="submit" class="btn btn-primary">

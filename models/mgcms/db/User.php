@@ -97,12 +97,20 @@ class User extends BaseUser implements IdentityInterface
     const ROLE_INVESTOR_EXPERIENCED_NOT_CONFIRMED = 'investor_experienced_not_confirmed';
     const ROLE_INVESTOR_NOT_EXPERIENCED = 'investor_not_experienced';
     const ROLE_WORKER = 'worker';
+    const ROLE_WORKER_LIMITED = 'worker_limited';
+
+    const ROLE_ROLE_1 = 'role_1';
+
+    const ROLE_ROLE_2 = 'role_2';
     const   ROLES = [
         self::ROLE_ADMIN,
         self::ROLE_INVESTOR_EXPERIENCED,
         self::ROLE_INVESTOR_EXPERIENCED_NOT_CONFIRMED,
         self::ROLE_INVESTOR_NOT_EXPERIENCED,
         self::ROLE_WORKER,
+        self::ROLE_WORKER_LIMITED,
+        self::ROLE_ROLE_1,
+        self::ROLE_ROLE_2,
     ];
     const STATUS_ACTIVE = 1;
     const STATUS_INACTIVE = 0;

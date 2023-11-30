@@ -891,6 +891,9 @@ class MgHelpers extends \yii\base\Component
 
     public static function encrypt($data)
     {
+        if(is_array($data)){
+            $data = serialize($data);
+        }
         return self::base64_url_encode(Yii::$app->getSecurity()->encryptByPassword($data, MgHelpers::getConfigParam('secretKey')));
     }
 

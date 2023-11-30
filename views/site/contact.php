@@ -11,7 +11,7 @@ $this->title = MgHelpers::getSettingTranslated('contact_header', 'Contact');
 
 
 ?>
-<script src="https://maps.googleapis.com/maps/api/js?v=3&key=AIzaSyD9AbR7v9VcflkE06B3qdNXiU7ErvoUYP8"></script>
+
 <div class="text-page">
     <div class="container">
         <div class="text-page-intro">

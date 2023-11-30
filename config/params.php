@@ -1,7 +1,7 @@
 <?php
 return [
     'adminEmail' => 'admin@email.com',
-    'roles' => ['admin', 'investor_experienced', 'investor_experienced_not_confirmed', 'investor_not_experienced', 'worker'],
+    'roles' => ['admin', 'investor_experienced', 'investor_experienced_not_confirmed', 'investor_not_experienced', 'worker', 'worker_limited', 'role_1', 'role_2'],
     'languages' => ['pl', 'en'],
     'languagesDisplay' => ['pl', 'en'],
     'icon-framework' => 'bsg',

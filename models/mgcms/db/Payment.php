@@ -18,11 +18,13 @@ use yii\helpers\Html;
  * @property string $type
  * @property integer $rate
  *
+ *
  * @property \app\models\mgcms\db\User $user
  */
 class Payment extends \app\models\mgcms\db\AbstractRecord
 {
 
+    public $modelAttributes = ['showUserName','showUserPhoto'];
     const STATUS_NEW = 4;
     const STATUS_SUSPENDED = 0;
     const STATUS_AFTER_PAYMENT = 1;
@@ -46,6 +48,17 @@ class Payment extends \app\models\mgcms\db\AbstractRecord
     ];
 
 
+    public $acceptTerms;
+    public $acceptTerms2;
+    public $acceptTerms3;
+    public $acceptTerms4;
+    public $acceptTerms5;
+    public $acceptTerms6;
+
+    public $actions_amount;
+    public $showUserName;
+    public $showUserPhoto;
+
     /**
      * @inheritdoc
      */
@@ -53,9 +66,11 @@ class Payment extends \app\models\mgcms\db\AbstractRecord
     {
         return [
             [['created_on', 'type'], 'safe'],
-            [['user_id'], 'required'],
-            [['user_id', 'status', 'rate', 'project'], 'integer'],
+            [['user_id', 'amount'], 'required'],
+            [['user_id', 'status', 'rate'], 'integer'],
             [['amount'], 'number'],
+            [['showUserName', 'showUserPhoto'], 'safe'],
+            [['acceptTerms', 'acceptTerms2', 'acceptTerms3'], 'required', 'requiredValue' => 1, 'message' => Yii::t('db', 'This field is required')],
         ];
     }
 
@@ -91,8 +106,11 @@ class Payment extends \app\models\mgcms\db\AbstractRecord
             'comments' => 'Komentarz',
             'statusToDisplay' => Yii::t('db', 'Payment status'),
             'benefitWithAmount' => Yii::t('db', 'Expected return with profit'),
-            'type'=> Yii::t('app', 'Type'),
+            'type' => Yii::t('app', 'Type'),
             'amount' => Yii::t('db', 'Amount'),
+            'actions_amount' => Yii::t('db', 'Shares Amount'),
+            'showUserName' => Yii::t('db', 'Show login of person who invested'),
+            'showUserPhoto' => Yii::t('db', 'Show profile photo of person who invested'),
         ];
     }
 
@@ -128,9 +146,10 @@ class Payment extends \app\models\mgcms\db\AbstractRecord
         return $this->hasOne(\app\models\mgcms\db\Project::className(), ['id' => 'project_id']);
     }
 
-    public function getRelLink(){
+    public function getRelLink()
+    {
         $model = false;
-        switch($this->type){
+        switch ($this->type) {
             case self::TYPE_PRODUCT:
                 $model = Product::findOne($this->rel_id);
                 break;
@@ -141,12 +160,11 @@ class Payment extends \app\models\mgcms\db\AbstractRecord
                 $model = Project::findOne($this->rel_id);
                 break;
         }
-        if($model && isset($model->linkUrl)){
+        if ($model && isset($model->linkUrl)) {
 
-            return Html::a(Yii::t('db', $model->name), \yii\helpers\Url::to(['/backend/mgcms/'. strtolower($this->type) .'/view', 'id' => $model->id]));
+            return Html::a(Yii::t('db', $model->name), \yii\helpers\Url::to(['/backend/mgcms/' . strtolower($this->type) . '/view', 'id' => $model->id]));
         }
     }
-
 
 
 }
