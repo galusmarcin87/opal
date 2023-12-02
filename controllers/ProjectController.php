@@ -163,7 +163,7 @@ class ProjectController extends \app\components\mgcms\MgCmsController
         $notificationHandler = new TPayNotification($config);
         $res = $notificationHandler->getTpayNotification();
         \Yii::info("aaa", 'own');
-        \Yii::info(serialize($res), 'own');
+        \Yii::info($res, 'own');
 
         return 'OK';
     }

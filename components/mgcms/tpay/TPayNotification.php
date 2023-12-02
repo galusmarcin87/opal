@@ -18,6 +18,7 @@ class TPayNotification extends BasicNotificationHandler
         $this->merchantId = $config['merchantId'];
         $this->trApiKey = $config['trApiKey'];
         $this->trApiPass = $config['trApiPass'];
+        $this->validateServerIP = false;
         Util::$loggingEnabled = true;
         Util::$customLogPatch = \Yii::getAlias('@runtime/logs/tpay.log');
         parent::__construct();
