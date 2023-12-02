@@ -3,8 +3,10 @@
 namespace app\controllers;
 
 //use \app\components\ZondaPayAPI;
+use app\components\mgcms\tpay\TPayNotification;
 use app\models\mgcms\db\User;
 use app\models\SubscribeForm;
+use tpayLibs\src\_class_tpay\Notifications\BasicNotificationHandler;
 use Yii;
 use yii\base\BaseObject;
 use yii\console\widgets\Table;
@@ -24,6 +26,7 @@ use JWT;
 use yii\validators\EmailValidator;
 
 use app\components\mgcms\tpay\TPayTransaction;
+
 
 class ProjectController extends \app\components\mgcms\MgCmsController
 {
@@ -145,61 +148,23 @@ class ProjectController extends \app\components\mgcms\MgCmsController
 
     public function actionNotify($hash)
     {
+
+
+
         \Yii::info("notify", 'own');
         \Yii::info($hash, 'own');
 
 //        $headers = JSON::decode('{"user-agent":["Apache-HttpClient/4.1.1 (java 1.5)"],"content-type":["application/json"],"accept":["application/json"],"api-key":["dNlZtEJrvaJDJ5EX"],"content-length":["1484"],"connection":["close"],"host":["piesto.vertesprojekty.pl"]}');
 //        $body = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwYXlsb2FkIjp7Im9yZGVySXRlbSI6eyJkYXRhIjp7ImNvZGUiOiJhM3h2NnpnOSIsInN0YXR1cyI6InJlY2VpdmVkIiwidHlwZSI6ImNvbGxlY3RfaXRlbSIsImN1cnJlbmN5IjoiUExOIiwiYW1vdW50IjoiOC4wMCIsImZlZXMiOltdLCJ0b05hbWUiOiJhc2RzYSIsInBhcmVudENvZGUiOiJheWsyZ3FqczZoZDUiLCJkZXNjcmlwdGlvbiI6IlBpZXN0byIsIm1ldGFkYXRhIjpudWxsLCJjcmVhdGVkQXQiOiIyMDIxLTA2LTMwIDIxOjUyOjA3IiwidXBkYXRlZEF0IjoiMjAyMS0wNi0zMCAyMTo1MjoyMCIsInJlZGlyZWN0IjoiaHR0cHM6XC9cL3Rlc3QuZmliZXJwYXkucGxcL29yZGVyXC9hM3h2NnpnOSJ9LCJpbnZvaWNlIjp7ImFtb3VudCI6IjguMDAiLCJjdXJyZW5jeSI6IlBMTiIsImliYW4iOiJQTDE5MTk0MDEwNzYzMjAyODAxMDAwMDJURVNUIiwiYmJhbiI6IjE5MTk0MDEwNzYzMjAyODAxMDAwMDJURVNUIiwiZGVzY3JpcHRpb24iOiJhM3h2NnpnOSJ9LCJsaW5rcyI6eyJyZWwiOiJzZWxmIiwiaHJlZiI6Imh0dHBzOlwvXC9hcGl0ZXN0LmZpYmVycGF5LnBsXC8xLjBcL29yZGVyc1wvY29sbGVjdFwvaXRlbVwvYTN4djZ6ZzkifX0sInRyYW5zYWN0aW9uIjp7ImRhdGEiOnsiY29udHJhY3Rvck5hbWUiOiJGaWJlclBheSAtIHphcFx1MDE0MmFjb25vIHByemV6IHRlc3RlciIsImNvbnRyYWN0b3JJYmFuIjoiRmliZXJQYXkiLCJhbW91bnQiOiI4LjAwIiwiY3VycmVuY3kiOiJQTE4iLCJkZXNjcmlwdGlvbiI6ImEzeHY2emc5IiwiYmFua1JlZmVyZW5jZUNvZGUiOiJURVNUX2FrNGJobmVjIiwib3BlcmF0aW9uQ29kZSI6bnVsbCwiYWNjb3VudEliYW4iOiIiLCJib29rZWRBdCI6IjIwMjEtMDYtMzAgMjE6NTI6MjAiLCJjcmVhdGVkQXQiOiIyMDIxLTA2LTMwIDIxOjUyOjIwIiwidXBkYXRlZEF0IjoiMjAyMS0wNi0zMCAyMTo1MjoyMCJ9LCJ0eXBlIjoiYmFua1RyYW5zYWN0aW9uIn0sInR5cGUiOiJjb2xsZWN0X29yZGVyX2l0ZW1fcmVjZWl2ZWQiLCJjdXN0b21QYXJhbXMiOm51bGx9LCJpc3MiOiJGaWJlcnBheSIsImlhdCI6MTYyNTA4Mjc4NH0.5UqfPL-CF-58Si1wAEQ1fiZjwknxPxLu08cWgfJMm80';
-        \Yii::info(JSON::encode($this->request->headers), 'own');
-        \Yii::info(JSON::encode($this->request->rawBody), 'own');
+//        \Yii::info(JSON::encode($this->request->headers), 'own');
+//        \Yii::info(JSON::encode($this->request->rawBody), 'own');
 
-        try {
-            $body = JSON::decode($this->request->rawBody);
+        $config = MgHelpers::getConfigParam('tpay');
+        $notificationHandler = new TPayNotification($config);
+        $res = $notificationHandler->getTpayNotification();
 
+        \Yii::info($res, 'own');
 
-            $status = $body['status'];
-            \Yii::info($status, 'own');
-
-            $hashDecoded = JSON::decode(MgHelpers::decrypt($hash));
-            \Yii::info($hashDecoded, 'own');
-            $paymentId = $hashDecoded['paymentId'];
-            $userId = $hashDecoded['userId'];
-            $payment = Payment::find()->where(['id' => $paymentId, 'user_id' => $userId])->one();
-            if (!$payment) {
-                $this->throw404();
-            }
-
-            if ($payment->status == Payment::STATUS_PAYMENT_CONFIRMED) {
-                \Yii::info('already confirmed ' . $payment->id, 'own');
-                return 'ok';
-            }
-
-            switch ($status) {
-                case 'PAID':
-                    $payment->status = Payment::STATUS_PAYMENT_CONFIRMED;
-                    $project = $payment->project;
-                    $project->money += $payment->amount;
-                    $saved = $project->save();
-                    break;
-                default:
-                    $payment->status = Payment::STATUS_UNKNOWN;
-                    break;
-            }
-            $saved = $payment->save();
-
-
-            \Yii::info('saved ' . $saved, 'own');
-
-            Yii::$app->mailer->compose('afterBuy', ['model' => $payment])
-                ->setTo($payment->user->email)
-                ->setFrom([MgHelpers::getSetting('email from') => MgHelpers::getSetting('email from name')])
-                ->setSubject(Yii::t('db', 'Thank you for purchase'))
-                ->send();
-
-            \Yii::info('mail ', 'own');
-        } catch (Exception $e) {
-            \Yii::info('error: ' . $e->getMessage(), 'own');
-        }
         return 'OK';
     }
 

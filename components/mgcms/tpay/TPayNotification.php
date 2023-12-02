@@ -8,7 +8,7 @@ use Tpay\OriginApi\Utilities\Util;
 use Tpay\OriginApi\Notifications\BasicNotificationHandler;
 
 
-class TPayTransaction extends TransactionApi
+class TPayNotification extends BasicNotificationHandler
 {
     private $trId;
 
@@ -23,28 +23,9 @@ class TPayTransaction extends TransactionApi
         parent::__construct();
     }
 
-    public function getTransaction()
+    public function getTpayNotification()
     {
-        /**
-         * Get info about transaction
-         */
-        $transactionId = $this->trId;
-
-        try {
-            $transaction = $this->setTransactionID($transactionId)->get();
-            print_r($transaction);
-        } catch (TException $e) {
-            var_dump($e);
-        }
+        return $this->checkPayment();
     }
 
-    public function createRedirUrlForTransaction($config)
-    {
-        /**
-         * Create new transaction
-         */
-        $res = $this->create($config);
-        return $res['url'];
-
-    }
 }
