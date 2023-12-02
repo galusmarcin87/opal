@@ -513,4 +513,9 @@ class SiteController extends \app\components\mgcms\MgCmsController
     }
 
 
+    public function actionCompleteAttorney(){
+        return $this->render('completeAttorney', [
+
+        ]);
+    }
 }

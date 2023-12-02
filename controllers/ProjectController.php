@@ -95,6 +95,7 @@ class ProjectController extends \app\components\mgcms\MgCmsController
         $payment->user_id = $user->id;
         $payment->status = Payment::STATUS_NEW;
         $payment->type = $project::class;
+        $payment->scenario = 'invest';
 
         $loaded = $payment->load(Yii::$app->request->post());
         if ($loaded) {
@@ -266,30 +267,38 @@ class ProjectController extends \app\components\mgcms\MgCmsController
             throw new \yii\web\HttpException(404, Yii::t('app', 'Not found'));
         }
 
-        echo '<pre>';
-        echo var_dump(unserialize($hashDecrypt));
-        echo '</pre>';
-        exit;
+        $hashUnserialized = unserialize($hashDecrypt);
 
-        MgHelpers::setFlashSuccess(Yii::t('db', 'Thank you for investment'));
-        return $this->redirect('/');
-        $hashExploded = explode(':', $hashDecrypt);
-        $userId = $hashExploded[0];
-        $projectId = $hashExploded[1];
+        if (!$hashUnserialized['payment_id'] || !$hashUnserialized['user_id']) {
+            throw new \yii\web\HttpException(404, Yii::t('app', 'Not found'));
+        }
+
         $userModel = MgHelpers::getUserModel();
-        if ($userId != $userModel->id) {
+        if ($hashUnserialized['user_id'] != $userModel->id) {
             throw new \yii\web\HttpException(404, Yii::t('app', 'Not found'));
         }
-        $model = Project::findOne($projectId);
-        if (!$model) {
+
+        $payment = Payment::find()->where(['id' => $hashUnserialized['payment_id']])->one();
+        if (!$payment) {
             throw new \yii\web\HttpException(404, Yii::t('app', 'Not found'));
         }
-        $model->language = Yii::$app->language;
+
+        $project = $payment->project;
+        $payment->status = Payment::STATUS_AFTER_PAYMENT;
+        $payment->save();
+
+
+        Yii::$app->mailer->compose('afterBuy', ['project' => $project])
+            ->setTo($userModel->email ?: $userModel->username)
+            ->setFrom([MgHelpers::getSetting('email from') => MgHelpers::getSetting('email from name')])
+            ->setSubject(Yii::t('db', 'Investition'))
+            ->send();
 
         return $this->render('buyThanks', [
-            'model' => $model,
         ]);
     }
+
+
 
     private function getCryptocurrency($currency)
     {

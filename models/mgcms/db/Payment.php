@@ -24,7 +24,7 @@ use yii\helpers\Html;
 class Payment extends \app\models\mgcms\db\AbstractRecord
 {
 
-    public $modelAttributes = ['showUserName','showUserPhoto'];
+    public $modelAttributes = ['showUserName', 'showUserPhoto'];
     const STATUS_NEW = 4;
     const STATUS_SUSPENDED = 0;
     const STATUS_AFTER_PAYMENT = 1;
@@ -70,7 +70,7 @@ class Payment extends \app\models\mgcms\db\AbstractRecord
             [['user_id', 'status', 'rate'], 'integer'],
             [['amount'], 'number'],
             [['showUserName', 'showUserPhoto'], 'safe'],
-            [['acceptTerms', 'acceptTerms2', 'acceptTerms3'], 'required', 'requiredValue' => 1, 'message' => Yii::t('db', 'This field is required')],
+            [['acceptTerms', 'acceptTerms2', 'acceptTerms3'], 'required', 'requiredValue' => 1, 'message' => Yii::t('db', 'This field is required'), 'on' => 'invest'],
         ];
     }
 
