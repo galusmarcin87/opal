@@ -283,8 +283,8 @@ class ProjectController extends \app\components\mgcms\MgCmsController
         }
 
         $project = $payment->project;
-        $payment->status = Payment::STATUS_AFTER_PAYMENT;
-        $payment->save();
+//        $payment->status = Payment::STATUS_AFTER_PAYMENT;
+//        $payment->save();
 
 
         Yii::$app->mailer->compose('afterBuy', ['project' => $project])
