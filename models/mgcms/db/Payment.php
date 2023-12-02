@@ -20,6 +20,7 @@ use yii\helpers\Html;
  *
  *
  * @property \app\models\mgcms\db\User $user
+ * @property \app\models\mgcms\db\Project $project
  */
 class Payment extends \app\models\mgcms\db\AbstractRecord
 {
