@@ -151,7 +151,7 @@ class ProjectController extends \app\components\mgcms\MgCmsController
 
 
 
-//        \Yii::info("notify", 'own');
+        \Yii::info("notify", 'own');
 //        \Yii::info($hash, 'own');
 
 //        $headers = JSON::decode('{"user-agent":["Apache-HttpClient/4.1.1 (java 1.5)"],"content-type":["application/json"],"accept":["application/json"],"api-key":["dNlZtEJrvaJDJ5EX"],"content-length":["1484"],"connection":["close"],"host":["piesto.vertesprojekty.pl"]}');
@@ -162,7 +162,7 @@ class ProjectController extends \app\components\mgcms\MgCmsController
         $config = MgHelpers::getConfigParam('tpay');
         $notificationHandler = new TPayNotification($config);
         $res = $notificationHandler->getTpayNotification();
-
+        \Yii::info("aaa", 'own');
         \Yii::info(serialize($res), 'own');
 
         return 'OK';
