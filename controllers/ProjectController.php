@@ -189,11 +189,13 @@ class ProjectController extends \app\components\mgcms\MgCmsController
         \Yii::info("payment veryfication", 'own');
         \Yii::info($res, 'own');
 
-        if ($res['status'] == 'TRUE') {
+        if ($res['tr_status'] == 'TRUE') {
             $payment->status = Payment::STATUS_PAYMENT_CONFIRMED;
         } else {
             $payment->status = Payment::STATUS_SUSPENDED;
         }
+
+
 
         $saved = $payment->save();
         \Yii::info($saved, 'own');
