@@ -197,6 +197,8 @@ class ProjectController extends \app\components\mgcms\MgCmsController
 
         $saved = $payment->save();
         \Yii::info($saved, 'own');
+        \Yii::info($payment->errors, 'own');
+
 
 
         return 'OK';
