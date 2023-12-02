@@ -195,7 +195,8 @@ class ProjectController extends \app\components\mgcms\MgCmsController
             $payment->status = Payment::STATUS_SUSPENDED;
         }
 
-        $payment->save();
+        $saved = $payment->save();
+        \Yii::info($saved, 'own');
 
 
         return 'OK';
