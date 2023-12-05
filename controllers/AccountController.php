@@ -63,12 +63,12 @@ class AccountController extends \app\components\mgcms\MgCmsController
      *
      * @return string
      */
-    public function actionIndex()
+    public function actionIndex($tab = 'main')
     {
 
 
         return $this->render('index', [
-
+            'tab' => $tab
         ]);
     }
 
