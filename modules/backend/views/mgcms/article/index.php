@@ -60,37 +60,8 @@ $this->registerJs($search);
           ],
           'filterInputOptions' => ['placeholder' => Yii::t('app', 'Status')]
       ],
-      [
-          'attribute' => 'parent_id',
-          'label' => Yii::t('app', 'Parent'),
-          'value' => function($model) {
-            return $model->parent ? $model->parent->title : '';
-          },
-          'filterType' => GridView::FILTER_SELECT2,
-          'filter' => \yii\helpers\ArrayHelper::map(\app\models\mgcms\db\Article::find()->asArray()->all(), 'id', 'title'),
-          'filterWidgetOptions' => [
-              'pluginOptions' => ['allowClear' => true],
-          ],
-          'filterInputOptions' => ['placeholder' => Yii::t('app', 'Parent'), 'id' => 'grid-article-search-parent_id']
-      ],
-      [
-          'attribute' => 'category_id',
-          'label' => Yii::t('app', 'Category'),
-          'value' => function($model) {
-            return $model->category ? $model->category->name : '';
-          },
-          'filterType' => GridView::FILTER_SELECT2,
-          'filter' => \yii\helpers\ArrayHelper::map(\app\models\mgcms\db\Category::find()->asArray()->all(), 'id', 'name'),
-          'filterWidgetOptions' => [
-              'pluginOptions' => ['allowClear' => true],
-          ],
-          'filterInputOptions' => ['placeholder' => Yii::t('app', 'Category'), 'id' => 'grid-article-search-category_id']
-      ],
       'order',
-      'promoted:boolean',
       'type',
-      'tagString',
-
   ];
 
   ?>
