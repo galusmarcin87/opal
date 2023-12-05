@@ -22,16 +22,16 @@ $arr = [
 // for the mailer to send real emails.
         'transport' => [
             'class' => 'Swift_SmtpTransport',
-            'host' => 'mft.ai',
-            'username' => '',
-            'password' => '',
+            'host' => 's6.cyber-folks.pl',
+            'username' => 'test@opal.vertes-projekty.pl',
+            'password' => 'NPf-2)-dM5O.!kFQ',
             'port' => '587',
             'encryption' => '',
         ],
         // send all mails to a file by default. You have to set
 // 'useFileTransport' to false and configure a transport
 // for the mailer to send real emails.
-        'useFileTransport' => true,
+        'useFileTransport' => false,
     ],
     'log' => [
         'traceLevel' => YII_DEBUG ? 3 : 0,
