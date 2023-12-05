@@ -25,11 +25,6 @@ $this->registerJs($search);
     <p>
         <?= Html::a(Yii::t('app', 'Create User'), ['create'], ['class' => 'btn btn-success']) ?>
         <?// Html::a(Yii::t('app', 'Advance Search'), '#', ['class' => 'btn btn-info search-button']) ?>
-        <button class="btn-primary btn" id="affiliateLink"
-                data-href="<?= \yii\helpers\Url::to(['/site/register',
-                    'agentCode' => MgHelpers::getUserModel()->agent_code], true) ?>">
-            <?= Yii::t('db', 'Affiliate link') ?>
-        </button>
     </p>
     <div class="search-form" style="display:none">
         <?//  $this->render('_search', ['model' => $searchModel]); ?>
@@ -55,7 +50,6 @@ $this->registerJs($search);
         ],
         'created_on',
         'last_login',
-        'agent_code'
 
     ];
     ?>
