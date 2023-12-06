@@ -1,6 +1,6 @@
 <div class="account-menu">
     <ul class="nav flex-column">
-        
+
         <li class="nav-item">
             <a class="nav-link active" aria-current="page"
                href="<?= \yii\helpers\Url::to(['account', 'tab' => 'main']) ?>"><?= Yii::t('db', 'Main panel') ?></a>

@@ -97,7 +97,7 @@ class RegisterForm extends Model
             $user->username = $this->username;
             $user->password = $this->password;
             $user->role = User::ROLE_INVESTOR_NOT_EXPERIENCED;
-            $user->status = 1;
+            $user->status = User::STATUS_INACTIVE;
             $user->language = Yii::$app->language;
             $user->first_name = $this->firstName;
             $user->last_name = $this->surname;
@@ -127,7 +127,7 @@ class RegisterForm extends Model
             $mailer = Yii::$app->mailer->compose('activation', [
                 'model' => $user
             ])
-                ->setTo([$user->username, MgHelpers::getSetting('owner email', false, 'email@email.com')])
+                ->setTo([$user->username])
                 ->setFrom([MgHelpers::getSetting('email from') => MgHelpers::getSetting('email from name')])
                 ->setSubject(MgHelpers::getSettingTranslated('register_activation_email_subject', 'Activation'));
             $sent = $mailer->send();
