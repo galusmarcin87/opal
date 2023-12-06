@@ -518,4 +518,10 @@ class SiteController extends \app\components\mgcms\MgCmsController
 
         ]);
     }
+
+    public function actionInvest(){
+        return $this->render('invest', [
+
+        ]);
+    }
 }
