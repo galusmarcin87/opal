@@ -2,10 +2,20 @@
 /* @var $this yii\web\View */
 
 use app\models\mgcms\db\Project;
+use app\models\mgcms\db\ProjectSearch;
+use app\models\mgcms\db\User;
+use kartik\grid\GridView;
+use kartik\helpers\Html;
 use yii\data\ActiveDataProvider;
 use yii\widgets\ListView;
+use app\components\mgcms\MgHelpers;
 
 $this->title = Yii::t('db', 'Campaigns');
+
+$searchModel = new ProjectSearch();
+$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+
 ?>
 
 <?= $this->render('/common/breadcrumps') ?>
@@ -23,13 +33,13 @@ $this->title = Yii::t('db', 'Campaigns');
 
                 <div class="row">
                     <div class="col-12">
-                        <a href="#" class="btn btn-primary">
-                            + Dodaj nową
+                        <a href="<?= \yii\helpers\Url::to('/site/knowledge-test')?>" class="btn btn-primary">
+                            <?= Yii::t('db', 'Apply for experienced investor status') ?>
                         </a>
                     </div>
                 </div>
 
-                <div class="account-filters">
+                <div class="account-filters hidden">
                     <div class="row">
                         <div class="col-lg-3">
                             <label for="sort" class="form-label">Sortuj</label>
@@ -85,124 +95,39 @@ $this->title = Yii::t('db', 'Campaigns');
                     </div>
                 </div>
 
-                <div class="row mb-5">
+                <div class="row mb-5 hidden">
                     <div class="col-12 text-end">
                         <button type="submit" class="btn btn-primary">Filtruj</button>
                     </div>
                 </div>
 
-                <div class="table-responsive-lg">
-                    <table class="table table-striped account-table">
-                        <tr>
-                            <th>Lp.</th>
-                            <th class="text-start">Nazwa kampanii</th>
-                            <th>Data zakończenia</th>
-                            <th>Zebrana kwota</th>
-                            <th>Udziały (w %)</th>
-                            <th>Liczba inwestorów</th>
-                            <th>Liczba inwestycji</th>
-                            <th>Status</th>
-                        </tr>
-                        <tr>
-                            <td>1.</td>
-                            <td class="text-start">Lorem Ipsum Lorem Ipsum</td>
-                            <td>15.11.2023</td>
-                            <td>6134849 PLN</td>
-                            <td>30</td>
-                            <td>76</td>
-                            <td>189</td>
-                            <td>Aktywny</td>
-                        </tr>
-                        <tr>
-                            <td>2.</td>
-                            <td class="text-start">Lorem Ipsum Lorem Ipsum</td>
-                            <td>15.11.2023</td>
-                            <td>6134849 PLN</td>
-                            <td>30</td>
-                            <td>76</td>
-                            <td>189</td>
-                            <td>Aktywny</td>
-                        </tr>
-                        <tr>
-                            <td>3.</td>
-                            <td class="text-start">Lorem Ipsum Lorem Ipsum</td>
-                            <td>15.11.2023</td>
-                            <td>6134849 PLN</td>
-                            <td>30</td>
-                            <td>76</td>
-                            <td>189</td>
-                            <td>Aktywny</td>
-                        </tr>
-                        <tr>
-                            <td>4.</td>
-                            <td class="text-start">Lorem Ipsum Lorem Ipsum</td>
-                            <td>15.11.2023</td>
-                            <td>6134849 PLN</td>
-                            <td>30</td>
-                            <td>76</td>
-                            <td>189</td>
-                            <td>Aktywny</td>
-                        </tr>
-                        <tr>
-                            <td>5.</td>
-                            <td class="text-start">Lorem Ipsum Lorem Ipsum</td>
-                            <td>15.11.2023</td>
-                            <td>6134849 PLN</td>
-                            <td>30</td>
-                            <td>76</td>
-                            <td>189</td>
-                            <td>Aktywny</td>
-                        </tr>
-                        <tr>
-                            <td>6.</td>
-                            <td class="text-start">Lorem Ipsum Lorem Ipsum</td>
-                            <td>15.11.2023</td>
-                            <td>6134849 PLN</td>
-                            <td>30</td>
-                            <td>76</td>
-                            <td>189</td>
-                            <td>Aktywny</td>
-                        </tr>
+                <?php
+                $gridColumn = [
+                    ['class' => 'yii\grid\SerialColumn','header' => 'Lp.'],
+                    'name',
 
-                    </table>
-                </div>
+                    'date_crowdsale_end',
+                    'money',
+                    'investorsCount',
+                    'paymentsCount',
+                    'statusStr'
+                ];
+                ?>
+                <?= GridView::widget([
+                    'dataProvider' => $dataProvider,
+                    'columns' => $gridColumn,
+                    'filterRowOptions'=>['class' => ''],
+                    'pjax' => true,
+                    'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container-project']],
+                    // your toolbar can include the additional full export menu
+                ]); ?>
+
+
 
             </div>
         </div>
 
-        <div class="row">
-            <div class="col-lg-10 ms-lg-auto">
-                <div class="account-main-block">
-
-                    <div class="bg-green-right">
-                        <div class="bg-green-right-content">
-                            <div class="row">
-                                <div class="col-lg-8 mx-auto">
-                                    <h3 class="fs-4 fw-light font-museo mb-5 text-uppercase">
-                                        Złóż wniosek o status inwestora doświadczonego
-                                    </h3>
-
-                                    <p class="mb-4">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna aliqua.
-                                    </p>
-
-                                    <a href="survey.html">
-                                        <svg class="icon icon-long-arrow">
-                                            <use xlink:href="#long-right-arrow"/>
-                                        </svg>
-                                    </a>
-
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </div>
+        <?= $this->render('_greenBar')?>
 
     </div>
 
@@ -212,7 +137,7 @@ $this->title = Yii::t('db', 'Campaigns');
             <div class="col-lg-10 ms-lg-auto">
 
                 <h3 class="fw-semibold mb-5 text-center">
-                    Jakie są korzyści posiadania konta inwestora doświadczonego?
+                    <?= Yii::t('db', 'What are benefits of being experienced investor?') ?>
                 </h3>
 
 
@@ -221,40 +146,41 @@ $this->title = Yii::t('db', 'Campaigns');
 
                     <div class="advantages-item">
                         <div class="advantages-icon">
-                            <img src="assets/images/icons/wartosc.svg" alt="">
+                            <img src="/images/icons/wartosc.svg" alt="">
                         </div>
                         <div class="advantages-title">
-                            Lorem ipsum
+                            <?= MgHelpers::getSettingTypeText('my account experienced investor benefits 1',false,'my account experienced investor benefits 1')?>
+
                         </div>
                     </div>
 
 
                     <div class="advantages-item">
                         <div class="advantages-icon">
-                            <img src="assets/images/icons/walidacja.svg" alt="">
+                            <img src="/images/icons/walidacja.svg" alt="">
                         </div>
                         <div class="advantages-title">
-                            Lorem ipsum
+                            <?= MgHelpers::getSettingTypeText('my account experienced investor benefits 2',false,'my account experienced investor benefits 2')?>
                         </div>
                     </div>
 
 
                     <div class="advantages-item">
                         <div class="advantages-icon">
-                            <img src="assets/images/icons/ukryte_koszty.svg" alt="">
+                            <img src="/images/icons/ukryte_koszty.svg" alt="">
                         </div>
                         <div class="advantages-title">
-                            Lorem ipsum
+                            <?= MgHelpers::getSettingTypeText('my account experienced investor benefits 3',false,'my account experienced investor benefits 3')?>
                         </div>
                     </div>
 
 
                     <div class="advantages-item">
                         <div class="advantages-icon">
-                            <img src="assets/images/icons/zysk.svg" alt="">
+                            <img src="/images/icons/zysk.svg" alt="">
                         </div>
                         <div class="advantages-title">
-                            Lorem ipsum
+                            <?= MgHelpers::getSettingTypeText('my account experienced investor benefits 4',false,'my account experienced investor benefits 4')?>
                         </div>
                     </div>
 

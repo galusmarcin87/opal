@@ -6,6 +6,8 @@ use Yii;
 use app\components\mgcms\MgHelpers;
 use app\models\mgcms\db\User;
 use yii\helpers\Html;
+use function _\map;
+use function _\uniq;
 
 /**
  * This is the base model class for table "project".
@@ -48,6 +50,9 @@ use yii\helpers\Html;
  * @property integer $value
  * @property string $management
  * @property string $risks
+ * @property integer $investorsCount
+ * @property integer $paymentsCount
+ * @property string $statusStr
  *
  * @property \app\models\mgcms\db\Bonus[] $bonuses
  * @property \app\models\mgcms\db\Bonus[] $faqs
@@ -139,6 +144,9 @@ class Project extends \app\models\mgcms\db\AbstractRecord
             'value' => 'Wartość inwestycji',
             'management' => Yii::t('app', 'Management'),
             'risks' => Yii::t('app', 'Risks'),
+            'investorsCount' => Yii::t('db','Investors Number'),
+            'paymentsCount' => Yii::t('db','Investitions Number'),
+            'statusStr' => Yii::t('db','Status'),
         ];
     }
 
@@ -220,5 +228,21 @@ class Project extends \app\models\mgcms\db\AbstractRecord
     public function getLtv()
     {
         return $this->value ? (number_format($this->money_full / $this->value, 2) * 100) . '%' : '';
+    }
+
+    public function getInvestorsCount()
+    {
+        return count(uniq(map($this->payments, function (Payment $payment) {
+            return $payment->user->id;
+        })));
+    }
+
+    public function getPaymentsCount()
+    {
+        return count($this->payments);
+    }
+
+    public function getStatusStr(){
+        return Yii::t('db',Project::STATUSES[$this->status]);
     }
 }

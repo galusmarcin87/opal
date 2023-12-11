@@ -34,3 +34,9 @@
 .page-item.disabled {
   display: none;
 }
+.kv-grid-table .filters {
+  display: table-row;
+}
+.grid-view .summary {
+  display: none;
+}
