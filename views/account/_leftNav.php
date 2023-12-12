@@ -20,23 +20,23 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link <?= $tab == 'campaigns' ? 'investitions' : '' ?>" aria-current="page"
+                        <a class="nav-link <?= $tab == 'investitions' ? 'active' : '' ?>" aria-current="page"
                            href="<?= \yii\helpers\Url::to(['index', 'tab' => 'investitions']) ?>"><?= Yii::t('db', 'Investitions') ?></a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link " aria-current="page"
+                        <a class="nav-link <?= $tab == 'mydata' ? 'active' : '' ?>" aria-current="page"
                            href="<?= \yii\helpers\Url::to(['index', 'tab' => 'mydata']) ?>"><?= Yii::t('db', 'My data') ?></a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link " aria-current="page"
+                        <a class="nav-link <?= $tab == 'password' ? 'active' : '' ?>" aria-current="page"
                            href="<?= \yii\helpers\Url::to(['index', 'tab' => 'password']) ?>"><?= Yii::t('db', 'Change password') ?></a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link " aria-current="page"
-                           href="<?= \yii\helpers\Url::to(['index', 'tab' => 'logout33']) ?>"><?= Yii::t('db', 'Log out') ?></a>
+                        <a class="nav-link <?= $tab == 'logout' ? 'active' : '' ?>" aria-current="page"
+                           href="<?= \yii\helpers\Url::to(['index', 'tab' => 'logout']) ?>"><?= Yii::t('db', 'Log out') ?></a>
                     </li>
 
                 </ul>

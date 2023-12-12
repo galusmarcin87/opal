@@ -17,6 +17,7 @@ use yii\helpers\Html;
  * @property integer $project_id
  * @property string $type
  * @property integer $rate
+ * @property string $amountOfShares
  *
  *
  * @property \app\models\mgcms\db\User $user
@@ -112,6 +113,7 @@ class Payment extends \app\models\mgcms\db\AbstractRecord
             'actions_amount' => Yii::t('db', 'Shares Amount'),
             'showUserName' => Yii::t('db', 'Show login of person who invested'),
             'showUserPhoto' => Yii::t('db', 'Show profile photo of person who invested'),
+            'amountOfShares' => Yii::t('db','Amount of shares'),
         ];
     }
 
@@ -165,6 +167,13 @@ class Payment extends \app\models\mgcms\db\AbstractRecord
 
             return Html::a(Yii::t('db', $model->name), \yii\helpers\Url::to(['/backend/mgcms/' . strtolower($this->type) . '/view', 'id' => $model->id]));
         }
+    }
+
+    public function getAmountOfShares(){
+        if(!$this->project->token_value){
+            return null;
+        }
+        return $this->amount / $this->project->token_value;
     }
 
 

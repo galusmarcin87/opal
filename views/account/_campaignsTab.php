@@ -13,6 +13,7 @@ use app\components\mgcms\MgHelpers;
 $this->title = Yii::t('db', 'Campaigns');
 
 $searchModel = new ProjectSearch();
+$searchModel->investor_id = MgHelpers::getUserModel()->id;
 $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
 

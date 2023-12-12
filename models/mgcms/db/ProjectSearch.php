@@ -11,10 +11,12 @@ use app\components\mgcms\MgHelpers;
 /**
  * app\models\mgcms\db\ProjectSearch represents the model behind the search form about `app\models\mgcms\db\Project`.
  */
- class ProjectSearch extends Project
+class ProjectSearch extends Project
 {
 
     public $limit = false;
+    public $investor_id = false;
+
     /**
      * @inheritdoc
      */
@@ -47,7 +49,7 @@ use app\components\mgcms\MgHelpers;
     {
         $query = Project::find();
 
-        if($statuses){
+        if ($statuses) {
             $query->andFilterWhere(['in', 'status', $statuses]);
         }
         $dataProvider = new ActiveDataProvider([
@@ -93,8 +95,13 @@ use app\components\mgcms\MgHelpers;
             ->andFilterWhere(['like', 'investition_time', $this->investition_time])
             ->andFilterWhere(['like', 'token_blockchain', $this->token_blockchain]);
 
-        if($this->limit){
+        if ($this->limit) {
             $query->limit($this->limit);
+        }
+
+        if ($this->investor_id) {
+            $query->joinWith('payments');
+            $query->andFilterWhere(['payment.user_id' => $this->investor_id]);
         }
         return $dataProvider;
     }
