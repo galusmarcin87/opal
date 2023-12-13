@@ -253,9 +253,12 @@ $this->title = Yii::t('db', 'My data');
                         <div class="row">
                             <div class="col-lg-4">
                                 <div class="row align-items-center">
-                                    <div class="col-4">
-                                        <img src="/images/avatars/avatar2.png" alt="" class="avatar-img">
-                                    </div>
+                                    <? if ($model->file && $model->file->isImage()): ?>
+                                        <div class="col-4">
+                                            <img src="<?= $model->file->getImageSrc(95, 95) ?>" alt="OC" class="avatar-img">
+                                        </div>
+                                    <? endif; ?>
+
                                     <div class="col-8">
                                         <?= $form->field($model, 'fileUpload')->fileInput(['multiple' => true, 'accept' => '.jpg,.jpeg,.png', 'class' => 'inputfile']); ?>
 
