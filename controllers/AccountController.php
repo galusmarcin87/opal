@@ -65,10 +65,31 @@ class AccountController extends \app\components\mgcms\MgCmsController
      */
     public function actionIndex($tab = 'main')
     {
+        $model = $this->getUserModel();
+        $model->scenario = 'account';
 
+        if (Yii::$app->request->post('User')) {
+            if (Yii::$app->request->post('passwordChanging')) {
+                $model->scenario = 'passwordChanging';
+            }
 
+            if ($model->load(Yii::$app->request->post()) && $model->save()) {
+                $upladedFile = UploadedFile::getInstance($model, 'fileUpload');
+                if($upladedFile){
+                    $fileModel = new File;
+                    $file = $fileModel->push(new \rmrevin\yii\module\File\resources\UploadedResource($upladedFile));
+                    if ($file) {
+                        $model->file_id = $file->id;
+                        $model->save();
+                    }
+                }
+
+                MgHelpers::setFlashSuccess(Yii::t('db', 'Saved succesfully'));
+            }
+        }
         return $this->render('index', [
-            'tab' => $tab
+            'tab' => $tab,
+            'model' => $model,
         ]);
     }
 

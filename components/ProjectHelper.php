@@ -36,7 +36,7 @@ class ProjectHelper extends \yii\base\Component
                 'template' => "{beginWrapper}{label}{input}\n\n{error}{endWrapper}",
                 'inputOptions' => ['class' => 'form-control'],
                 'labelOptions' => [
-                    'class' => "form-control",
+                    'class' => "form-label",
                 ],
                 'wrapperOptions' => [
 //                    'class' => "form-control",

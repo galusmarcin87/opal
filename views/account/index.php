@@ -12,5 +12,5 @@ $this->params['breadcrumbs'][] = ['/account', Yii::t('db', 'My Account')];
 
 
 
-<?= $this->render('_' . $tab . 'Tab', ['tab' => $tab]) ?>
+<?= $this->render('_' . $tab . 'Tab', ['tab' => $tab, 'model' => $model]) ?>
 
