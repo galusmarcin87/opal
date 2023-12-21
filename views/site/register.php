@@ -111,6 +111,15 @@ $this->title = Yii::t('db', 'Register');
             </div>
 
 
+            <div class="mb-4 companyFields hidden">
+                <?= $form->field($model, 'nip')->textInput(['placeholder' => $model->getAttributeLabel('nip')]) ?>
+            </div>
+
+            <div class="mb-4 companyFields hidden">
+                <?= $form->field($model, 'regon')->textInput(['placeholder' => $model->getAttributeLabel('regon')]) ?>
+            </div>
+
+
             <div class="mb-4">
                 <?= $form->field($model, 'pesel')->textInput(['placeholder' => $model->getAttributeLabel('pesel')]) ?>
             </div>
@@ -167,6 +176,14 @@ $this->title = Yii::t('db', 'Register');
 
 
     <?php ActiveForm::end(); ?>
-
+    <script>
+        $('input[type=radio][name="RegisterForm[isCompany]"').change(function() {
+            if(this.value == 1){
+                $('.companyFields').removeClass('hidden');
+            }else{
+                $('.companyFields').addClass('hidden');
+            }
+        });
+    </script>
 
 </div>
