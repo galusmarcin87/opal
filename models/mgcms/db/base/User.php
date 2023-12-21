@@ -122,6 +122,7 @@ class User extends \app\models\mgcms\db\AbstractRecord
         'imAgentCheckbox' => Yii::t('db', 'I am agent'),
         'agent_code' => Yii::t('db', 'Agent code'),
         'testResult' => Yii::t('db', 'Test result'),
+        'newPassword' => Yii::t('db', 'New password'),
     ];
   }
 

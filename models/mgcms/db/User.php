@@ -127,6 +127,7 @@ class User extends BaseUser implements IdentityInterface
     public $auths = false;
     public $passwordRepeat;
     public $oldPassword;
+    public $newPassword;
 
     public $acceptTerms;
     public $imAgentCheckbox = false;
@@ -155,11 +156,11 @@ class User extends BaseUser implements IdentityInterface
             [['created_by'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['created_by' => 'id']],
             [['email'], 'email'],
             ['passwordRepeat', 'validateOldPassword', 'on' => 'passwordChanging'],
-            [['password', 'oldPassword', 'passwordRepeat'], 'required', 'on' => 'passwordChanging'],
-            ['passwordRepeat', 'compare', 'compareAttribute' => 'password', 'message' => Yii::t('db', "Passwords don't match")],
+            [['newPassword', 'oldPassword', 'passwordRepeat'], 'required', 'on' => 'passwordChanging'],
+            ['passwordRepeat', 'compare', 'compareAttribute' => 'newPassword', 'message' => Yii::t('db', "Passwords don't match")],
 //        [['password'], StrengthValidator::className(), 'min' => 8, 'digit' => 1, 'special' => 1, 'upper' => 1, 'lower' => 1, 'userAttribute' => 'username'],
             [['city', 'first_name', 'last_name', 'citizenship', 'pesel', 'birthdate', 'birth_country', 'document_type', 'street', 'house_no', 'flat_no', 'postcode', 'email', 'phone'], 'required', 'on' => 'kyc'],
-           // ['acceptTerms', 'required', 'requiredValue' => 1, 'message' => Yii::t('db', 'This field is required'), 'on' => 'account'],
+            // ['acceptTerms', 'required', 'requiredValue' => 1, 'message' => Yii::t('db', 'This field is required'), 'on' => 'account'],
             [['facebook', 'twitter', 'linkedin', 'instagram', 'phone', 'position', 'step', 'type', 'is_corespondence', 'house_no', 'companyForSale', 'agent_code', 'description'], 'safe'],
             [['first_name', 'last_name', 'linkedin', 'instagram', 'phone', 'position'], 'required', 'on' => 'person'],
             [['company_name', 'company_nip', 'company_regon', 'company_country', 'company_voivodeship', 'company_street', 'company_flat_no', 'company_house_no', 'company_city', 'company_postcode', 'bank_no'], 'safe'],
@@ -403,25 +404,6 @@ class User extends BaseUser implements IdentityInterface
 //                ->send();
 //        }
 
-        if ($this->getOldAttribute('agent_code') && $this->getOldAttribute('agent_code') != $this->agent_code) {
-            $companies = Company::find()->where(['agent_code' => $this->getOldAttribute('agent_code')])->all();
-
-            foreach ($companies as $company) {
-                $company->agent_code = $this->agent_code;
-                $company->save();
-            }
-        }
-
-        if ($this->agent_code) {
-            $reflinkUser = User::find()->where(['agent_code' => $this->agent_code])->one();
-            if ($reflinkUser) {
-                $this->created_by = $reflinkUser->id;
-            }
-        }
-
-        if (!$this->agent_code) {
-            $this->agent_code = bin2hex(random_bytes(10));
-        }
 
         return parent::save($runValidaton, $attributes);
     }
@@ -446,6 +428,10 @@ class User extends BaseUser implements IdentityInterface
                 $this->addError('oldPassword', Yii::t('db', 'Wrong password'));
             }
 
+            if ($this->newPassword) {
+                $this->password = $this->newPassword;
+
+            }
             return true;
 
         }

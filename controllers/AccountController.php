@@ -69,7 +69,7 @@ class AccountController extends \app\components\mgcms\MgCmsController
         $model->scenario = 'account';
 
         if (Yii::$app->request->post('User')) {
-            if (Yii::$app->request->post('passwordChanging')) {
+            if (null !== Yii::$app->request->post('passwordChanging')) {
                 $model->scenario = 'passwordChanging';
             }
 
