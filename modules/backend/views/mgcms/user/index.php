@@ -42,6 +42,7 @@ $this->registerJs($search);
         [
             'attribute' => 'role',
             'filter' => MgHelpers::arrayKeyValueFromArray(\app\models\mgcms\db\User::ROLES, true),
+            'value' => function($model){return Yii::t('app',$model->role);},
         ],
         [
             'attribute' => 'status',
