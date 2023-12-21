@@ -40,3 +40,6 @@
 .grid-view .summary {
   display: none;
 }
+.nav {
+  --bs-nav-link-padding-x: 1rem;
+}
