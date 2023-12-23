@@ -53,12 +53,15 @@ use function _\uniq;
  * @property integer $investorsCount
  * @property integer $paymentsCount
  * @property string $statusStr
+ * @property boolean $isFavourite
  *
  * @property \app\models\mgcms\db\Bonus[] $bonuses
  * @property \app\models\mgcms\db\Bonus[] $faqs
  * @property \app\models\mgcms\db\Payment[] $payments
  * @property \app\models\mgcms\db\File $file
  * @property \app\models\mgcms\db\File $flag
+ * @property \app\models\mgcms\db\ProjectUser[] $projectUsers
+ * @property \app\models\mgcms\db\User[] $usersWhoAddToFavourite
  */
 class Project extends \app\models\mgcms\db\AbstractRecord
 {
@@ -144,9 +147,9 @@ class Project extends \app\models\mgcms\db\AbstractRecord
             'value' => 'Wartość inwestycji',
             'management' => Yii::t('app', 'Management'),
             'risks' => Yii::t('app', 'Risks'),
-            'investorsCount' => Yii::t('db','Investors Number'),
-            'paymentsCount' => Yii::t('db','Investitions Number'),
-            'statusStr' => Yii::t('db','Status'),
+            'investorsCount' => Yii::t('db', 'Investors Number'),
+            'paymentsCount' => Yii::t('db', 'Investitions Number'),
+            'statusStr' => Yii::t('db', 'Status'),
         ];
     }
 
@@ -242,7 +245,28 @@ class Project extends \app\models\mgcms\db\AbstractRecord
         return count($this->payments);
     }
 
-    public function getStatusStr(){
-        return Yii::t('db',Project::STATUSES[$this->status]);
+    public function getStatusStr()
+    {
+        return Yii::t('db', Project::STATUSES[$this->status]);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getProjectUsers()
+    {
+        return $this->hasMany(\app\models\mgcms\db\ProjectUser::className(), ['project_id' => 'id']);
+    }
+
+
+    public function getUsersWhoAddToFavourite()
+    {
+        return $this->hasMany(User::className(), ['id' => 'user_id'])
+            ->viaTable('project_user', ['project_id' => 'id']);
+    }
+
+    public function getIsFavourite()
+    {
+        return ProjectUser::find()->where(['project_id' => $this->id, 'user_id' => MgHelpers::getUserModel()->id])->count();
     }
 }

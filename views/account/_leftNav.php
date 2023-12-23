@@ -28,6 +28,10 @@
                         <a class="nav-link <?= $tab == 'mydata' ? 'active' : '' ?>" aria-current="page"
                            href="<?= \yii\helpers\Url::to(['index', 'tab' => 'mydata']) ?>"><?= Yii::t('db', 'My data') ?></a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link <?= $tab == 'favorite' ? 'active' : '' ?>" aria-current="page"
+                           href="<?= \yii\helpers\Url::to(['index', 'tab' => 'favorite']) ?>"><?= Yii::t('db', 'Favorite') ?></a>
+                    </li>
 
                     <li class="nav-item">
                         <a class="nav-link <?= $tab == 'password' ? 'active' : '' ?>" aria-current="page"

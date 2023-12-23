@@ -22,9 +22,9 @@ $model->language = Yii::$app->language;
         <div class="card-main-image-flags">
             <strong><?= count($model->payments) ?></strong> <?= Yii::t('db', 'investitions') ?>
         </div>
-        <div class="card-main-image-like hidden">
+        <div class="card-main-image-like">
             <svg class="icon">
-                <use xlink:href="#like-outline"/>
+                <use xlink:href="#like<?= $model->isFavourite ? '' : '-outline' ?>"/>
             </svg>
         </div>
     </div>

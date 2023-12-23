@@ -4,6 +4,7 @@ namespace app\controllers;
 
 //use \app\components\ZondaPayAPI;
 use app\components\mgcms\tpay\TPayNotification;
+use app\models\mgcms\db\ProjectUser;
 use app\models\mgcms\db\User;
 use app\models\SubscribeForm;
 use tpayLibs\src\_class_tpay\Notifications\BasicNotificationHandler;
@@ -180,9 +181,6 @@ class ProjectController extends \app\components\mgcms\MgCmsController
         }
 
 
-
-
-
         $config = MgHelpers::getConfigParam('tpay');
         $notificationHandler = new TPayNotification($config);
         $res = $notificationHandler->getTpayNotification();
@@ -196,11 +194,10 @@ class ProjectController extends \app\components\mgcms\MgCmsController
         }
 
 
-
         $saved = $payment->save();
 
         $project = $payment->project;
-        $project->money +=  $payment->amount;
+        $project->money += $payment->amount;
         $project->save();
         \Yii::info($saved, 'own');
         \Yii::info($payment->errors, 'own');
@@ -412,4 +409,34 @@ class ProjectController extends \app\components\mgcms\MgCmsController
     }
 
 
+    public function actionAddToFavorite($id)
+    {
+        $currentUser = $this->getUserModel();
+        if (!$currentUser) {
+            return $this->redirect('/site/login');
+        }
+
+        $projectUser = new ProjectUser();
+        $projectUser->project_id = $id;
+        $projectUser->user_id = $currentUser->id;
+        $projectUser->save();
+
+        return $this->back();
+    }
+
+    public function actionRemoveFromFavorite($id)
+    {
+        $currentUser = $this->getUserModel();
+        if (!$currentUser) {
+            return $this->redirect('/site/login');
+        }
+
+
+        $projectUser = ProjectUser::find()->where(['user_id' => $currentUser->id, 'project_id' => $id])->one();
+        if($projectUser){
+            $projectUser->delete();
+        }
+
+        return $this->back();
+    }
 }

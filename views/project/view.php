@@ -41,9 +41,10 @@ $this->params['breadcrumbs'][] = [\yii\helpers\Url::to('/project/index'), Yii::t
                         <span class="btn btn-success btn-invest-count">
                             <span><?= count($model->payments) ?></span> <?= Yii::t('db', 'investitions') ?>
                         </span>
-                        <a href="#" class="btn btn-blue btn-like hidden">
+                        <a href="<?= Url::to([$model->isFavourite ? '/project/remove-from-favorite' : '/project/add-to-favorite', 'id' => $model->id]) ?>"
+                           class="btn btn-blue btn-like">
                             <svg class="icon">
-                                <use xlink:href="#like-outline"/>
+                                <use xlink:href="#like<?= $model->isFavourite ? '' : '-outline' ?>"/>
                             </svg>
                         </a>
                     </div>
