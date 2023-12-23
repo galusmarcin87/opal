@@ -267,6 +267,10 @@ class Project extends \app\models\mgcms\db\AbstractRecord
 
     public function getIsFavourite()
     {
-        return ProjectUser::find()->where(['project_id' => $this->id, 'user_id' => MgHelpers::getUserModel()->id])->count();
+        $currentUser = MgHelpers::getUserModel();
+        if(!$currentUser){
+            return false;
+        }
+        return ProjectUser::find()->where(['project_id' => $this->id, 'user_id' => $currentUser->id])->count();
     }
 }
