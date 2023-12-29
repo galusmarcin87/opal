@@ -158,13 +158,14 @@ class Project extends \app\models\mgcms\db\AbstractRecord
      */
     public function getBonuses()
     {
-        return $this->hasMany(\app\models\mgcms\db\Bonus::className(), ['project_id' => 'id'])->andWhere(['to' => 1]);
+
+        return $this->hasMany(\app\models\mgcms\db\Bonus::className(), ['project_id' => 'id'])->andWhere(['to' => 1])->andWhere($this->language ? ['language' => $this->language] : []);
     }
 
 
     public function getFaqs()
     {
-        return $this->hasMany(\app\models\mgcms\db\Bonus::className(), ['project_id' => 'id'])->andWhere(['to' => 2]);
+        return $this->hasMany(\app\models\mgcms\db\Bonus::className(), ['project_id' => 'id'])->andWhere(['to' => 2])->andWhere($this->language ? ['language' => $this->language] : []);
     }
 
     /**
