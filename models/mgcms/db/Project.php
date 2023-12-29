@@ -68,7 +68,7 @@ class Project extends \app\models\mgcms\db\AbstractRecord
     use LanguageBehaviorTrait;
 
     public $modelAttributes = ['management', 'risks'];
-    public $languageAttributes = ['name', 'lead', 'text', 'text2', 'buy_token_info'];
+    public $languageAttributes = ['name', 'lead', 'text', 'text2', 'buy_token_info', 'management', 'risks'];
     public $downloadFiles;
 
     const STATUS_ACTIVE = 1;
@@ -87,7 +87,7 @@ class Project extends \app\models\mgcms\db\AbstractRecord
             [['gps_lat', 'gps_long', 'money', 'money_full', 'percentage', 'percentage_presale_bonus'], 'number'],
             [['lead', 'text', 'text2', 'buy_token_info', 'fiber_collect_id', 'iban', 'pay_description', 'pay_name'], 'string'],
             [['file_id', 'token_value', 'token_to_sale', 'token_minimal_buy', 'token_left', 'flag_id', 'created_by', 'value'], 'integer'],
-            [['date_presale_start', 'date_presale_end', 'date_crowdsale_start', 'date_crowdsale_end', 'date_realization_profit'], 'safe'],
+            [['date_presale_start', 'date_presale_end', 'date_crowdsale_start', 'date_crowdsale_end', 'date_realization_profit','management'], 'safe'],
             [['name', 'localization', 'whitepaper', 'www', 'token_blockchain'], 'string', 'max' => 245],
             [['status', 'investition_time', 'token_currency'], 'string', 'max' => 45],
             [['management', 'risks'], 'string'],

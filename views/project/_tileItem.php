@@ -13,7 +13,7 @@ $model->language = Yii::$app->language;
 <a class="card card-campaign mb-3" href="<?= $model->getLinkUrl()?>">
     <div class="card-main-image img-rounded-right-top">
         <? if ($model->file && $model->file->isImage()): ?>
-            <img src="<?= $model->file->getImageSrc(1200, 800); ?>" class="card-img-top" alt="<?= $model ?>"/>
+            <img src="<?= $model->file->getImageSrc(1200, 800); ?>" class="card-img-top" alt="<?= $model->name ?>"/>
         <? endif; ?>
 
         <div class="card-main-image-overlay">
@@ -30,7 +30,7 @@ $model->language = Yii::$app->language;
     </div>
     <div class="card-body">
         <h5 class="card-title card-title--campaign">
-            <?= $model ?>
+            <?= $model->name ?>
         </h5>
 
         <?= $model->lead ?>
