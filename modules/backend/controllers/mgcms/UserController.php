@@ -120,14 +120,6 @@ class UserController extends MgBackendController
     {
         $currentUser = $this->getUserModel();
         if (($model = User::findOne($id)) !== null) {
-            if (!$currentUser->isAdmin() && $model->created_by != $currentUser->id) {
-                if($currentUser->role === User::ROLE_SALES_DIRECTOR || $currentUser->role === User::ROLE_MANAGER || $currentUser->role === User::ROLE_INTERNATIONAL_DIRECTOR || $currentUser->role === User::ROLE_AGENT) {
-                    if($model->created_by == $currentUser->id || $model->createdBy->created_by == $currentUser->id || $model->createdBy->createdBy->created_by == $currentUser->id){
-                        return $model;
-                    }
-                }
-                throw new NotFoundHttpException(Yii::t('app', 'The requested page does not exist.'));
-            }
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
