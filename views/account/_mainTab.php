@@ -24,11 +24,20 @@ $this->title = Yii::t('db', 'Main panel');
 
 <?= $this->render('/common/breadcrumps') ?>
 
+<div class="container">
+<div class="row">
+	<div class="col-12">
+		<a href="<?= \yii\helpers\Url::to('/site/knowledge-test') ?>" class="btn btn-primary">
+			<?= Yii::t('db', 'Apply for experienced investor status') ?>
+		</a>
+	</div>
+</div>
+</div><br>
+
 <?= $this->render('_investor') ?>
 <div class="account-page">
     <div class="container">
-
-
+		
         <div class="row gx-4">
 
             <?= $this->render('_leftNav',['tab' => $tab]) ?>
