@@ -23,15 +23,6 @@ $fieldConfig = \app\components\ProjectHelper::getFormFieldConfig(true);
 
 <div class="container">
 
-
-    <div class="text-center my-5">
-        <img src="/images/logo.png" alt="Opal Crowd" class="img-fluid mx-auto">
-    </div>
-
-    <h3 class="my-5 text-center">
-        <?= Yii::t('db', 'Fill the data') ?>
-    </h3>
-
     <?php
     $form = ActiveForm::begin([
         'id' => 'login-form',
@@ -41,26 +32,57 @@ $fieldConfig = \app\components\ProjectHelper::getFormFieldConfig(true);
 
     echo $form->errorSummary($payment);
     ?>
+	<div class="container">
+    	<div class="row gy-5">
+			<div class="col-lg-6">
+        		<div class="pe-lg-5">
+            		<h4 class="fw-bold mb-4">
+                		<?= $form->field($payment, 'amount')->textInput(['placeholder' => $payment->getAttributeLabel('')]) ?>
+            		</h4>
+				</div>
+			</div>
+		
+			<div class="col-lg-6">
+				<div class="pe-lg-5">
+            		<div class="h4 text-success fw-bold">
+                		<?= $form->field($payment, 'actions_amount')->textInput(['placeholder' => $payment->getAttributeLabel(''), 'disabled' => true]) ?>
+            		</div>
+        		</div>
+			</div>
+   		</div>
+	</div>
+	
+	
+	
+	<div class="container py-5">
+		<div class="invest-summary">
+    		<div class="invest-summary-content">
+    			<h4 class="mb-5">
+        			<strong><?= Yii::t('db', 'Summary') ?></strong>
+    			</h4>
+
+    			<div class="row">
+        			<div class="col-lg-5">
+            			<p class="fs-5"><strong><?= Yii::t('db', 'Invest in project') ?></strong> Lorem ipsum</p>
+        			</div>
+				
+        			<div class="col-lg-7">
+            			<p><strong><?= Yii::t('db', 'Invest amount') ?></strong> <span class="invested-amount">...</span> </p>
+            			<p><strong><?= Yii::t('db', 'Actions') ?></strong> </p>
+        			</div>
+    			</div>
+    		</div>
+    	</div>
+	</div>
+	
+	
+
     <div class="row">
-        <div class="col-lg-6 mx-auto">
+		<h4 class="mb-5">
+            <strong><?= Yii::t('db', 'Payment method') ?></strong>
+        </h4>
 
-
-            <div class="mb-4">
-                <?= $form->field($payment, 'amount')->textInput(['placeholder' => $payment->getAttributeLabel('amount')]) ?>
-            </div>
-
-            <div class="mb-4">
-                <?= $form->field($payment, 'actions_amount')->textInput(['placeholder' => $payment->getAttributeLabel('actions_amount'), 'disabled' => true]) ?>
-            </div>
-
-
-        </div>
-
-    </div>
-
-    <div class="row">
         <div class="col-lg-9 mx-auto">
-
 
             <div class="form-check form-check-acceptance mb-3">
                 <div class="Form__group form-group text-left checkbox">
