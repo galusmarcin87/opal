@@ -114,6 +114,7 @@ class ProjectController extends MgBackendController
         }
 
         $model->language = $lang;
+        $model->scenario = 'admin';
 
         $post = Yii::$app->request->post();
         $this->_assignPostFaqs($post);
