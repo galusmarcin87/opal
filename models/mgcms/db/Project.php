@@ -91,6 +91,7 @@ class Project extends \app\models\mgcms\db\AbstractRecord
             [['name', 'localization', 'whitepaper', 'www', 'token_blockchain'], 'string', 'max' => 245],
             [['status', 'investition_time', 'token_currency'], 'string', 'max' => 45],
             [['management', 'risks'], 'string'],
+            [['name'], 'safe', 'on' => 'admin'],
         ];
     }
 
