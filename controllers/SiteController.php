@@ -223,6 +223,10 @@ class SiteController extends \app\components\mgcms\MgCmsController
 
         if ($model->load(Yii::$app->request->post()) && $model->login2step()) {
             $loginCodeForm->userId = $model->getUser()->id;
+            if (in_array($model->getUser()->role, [User::ROLE_ADMIN, User::ROLE_WORKER, User::ROLE_WORKER_LIMITED, User::ROLE_ROLE_1, User::ROLE_ROLE_2])) {
+                MgHelpers::setFlashError(MgHelpers::getSettingTypeText('login_error_role' . Yii::$app->language, false, 'Incorect role'));
+                return $this->redirect('/site/login');
+            }
             if ($this->_sendLoginConfirmationCodeEmail($model, $loginCodeForm)) {
                 $loginCodeForm->userId = $model->getUser()->id;
                 $loginCodeForm->rememberMe = $model->rememberMe;
@@ -493,8 +497,8 @@ class SiteController extends \app\components\mgcms\MgCmsController
             $user->testResult = $strToSave;
             $user->role = User::ROLE_INVESTOR_EXPERIENCED_NOT_CONFIRMED;
             $saved = $user->save();
-            if($saved){
-                MgHelpers::setFlashSuccess(Yii::t('db','Knowledge test saved'));
+            if ($saved) {
+                MgHelpers::setFlashSuccess(Yii::t('db', 'Knowledge test saved'));
                 return $this->redirect('/');
             }
 
@@ -506,20 +510,23 @@ class SiteController extends \app\components\mgcms\MgCmsController
     }
 
 
-    public function actionGetCapital(){
+    public function actionGetCapital()
+    {
         return $this->render('getCapital', [
 
         ]);
     }
 
 
-    public function actionCompleteAttorney(){
+    public function actionCompleteAttorney()
+    {
         return $this->render('completeAttorney', [
 
         ]);
     }
 
-    public function actionInvest(){
+    public function actionInvest()
+    {
         return $this->render('invest', [
 
         ]);
