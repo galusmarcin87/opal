@@ -18,6 +18,8 @@ use yii\helpers\Html;
  * @property string $type
  * @property integer $rate
  * @property string $amountOfShares
+ * @property boolean $showUserName
+ * @property boolean $showUserPhoto
  *
  *
  * @property \app\models\mgcms\db\User $user

@@ -6,21 +6,22 @@ use yii\web\View;
 /* @var $this yii\web\View */
 /* @var $model \app\models\mgcms\db\Payment */
 
-
 ?>
 <div class="investment">
     <div class="investment-avatar">
-        <img src="/images/avatars/avatar-empty.png" alt="OC" class="rounded-circle">
+        <img src=" <?= $model->getModelAttribute('showUserPhoto') && $model->user->file && $model->user->file->isImage() ? $model->user->file->getImageSrc(71, 71) : Yii::t('db', '/images/avatars/avatar-empty.png') ?>"
+             alt="OC" class="rounded-circle">
     </div>
     <div class="investment-text">
         <div class="investment-name">
-            Dane ukryte
+            <?= (bool)$model->getModelAttribute('showUserName') ? $model->user : Yii::t('db', 'Hidden data') ?>
         </div>
         <div class="investment-date">
-            16.06.2023
+
+            <?= (bool)$model->created_on ?>
         </div>
     </div>
     <div class="investment-price">
-        4 000 PLN
+        <?= $model->amount ?> PLN
     </div>
 </div>
