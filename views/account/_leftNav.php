@@ -40,7 +40,7 @@
 
                     <li class="nav-item">
                         <a class="nav-link <?= $tab == 'logout' ? 'active' : '' ?>" aria-current="page"
-                           href="<?= \yii\helpers\Url::to(['index', 'tab' => 'logout']) ?>"><?= Yii::t('db', 'Log out') ?></a>
+                           href="javascript:submitLogoutForm()"><?= Yii::t('db', 'Log out') ?></a>
                     </li>
 
                 </ul>
