@@ -475,31 +475,42 @@ class SiteController extends \app\components\mgcms\MgCmsController
 
     public function actionKnowledgeTest()
     {
+        $user = $this->getUserModel();
+        if(in_array($user->role,[User::ROLE_INVESTOR_EXPERIENCED, User::ROLE_INVESTOR_NOT_EXPERIENCED, User::ROLE_INVESTOR_EXPERIENCED_NOT_CONFIRMED])){
+            return $this->redirect('/account/index');
+        }
         $config = MgHelpers::getConfigParam('knowledgeTest');
 
         if (Yii::$app->request->post('Answer')) {
             $answers = Yii::$app->request->post('Answer');
-            $strToSave = '';
-            foreach ($config['sections'] as $sectionIndex => $section) {
-                $strToSave .= '<h2>' . $section['name'] . '</h2>';
-                foreach ($section['questions'] as $questionIndex => $question) {
-                    $strToSave .= $this->_renderQuestion([
-                        'sectionIndex' => $sectionIndex,
-                        'questionIndex' => $questionIndex,
-                        'question' => $question,
-                        'subQuestionIndex' => false,
-                        'isSubquestion' => false,
-                    ], $answers);
 
+            $validateErrors = $this->validateKnowledgeTest();
+            if ($validateErrors) {
+                MgHelpers::setFlashError($validateErrors);
+
+            } else {
+                $strToSave = '';
+                foreach ($config['sections'] as $sectionIndex => $section) {
+                    $strToSave .= '<h2>' . $section['name'] . '</h2>';
+                    foreach ($section['questions'] as $questionIndex => $question) {
+                        $strToSave .= $this->_renderQuestion([
+                            'sectionIndex' => $sectionIndex,
+                            'questionIndex' => $questionIndex,
+                            'question' => $question,
+                            'subQuestionIndex' => false,
+                            'isSubquestion' => false,
+                        ], $answers);
+
+                    }
                 }
-            }
-            $user = $this->getUserModel();
-            $user->testResult = $strToSave;
-            $user->role = User::ROLE_INVESTOR_EXPERIENCED_NOT_CONFIRMED;
-            $saved = $user->save();
-            if ($saved) {
-                MgHelpers::setFlashSuccess(Yii::t('db', 'Knowledge test saved'));
-                return $this->redirect('/');
+
+                $user->testResult = $strToSave;
+                $user->role = User::ROLE_INVESTOR_EXPERIENCED_NOT_CONFIRMED;
+                $saved = $user->save();
+                if ($saved) {
+                    MgHelpers::setFlashSuccess(Yii::t('db', 'Knowledge test saved'));
+                    return $this->redirect('/');
+                }
             }
 
 
@@ -509,6 +520,16 @@ class SiteController extends \app\components\mgcms\MgCmsController
         ]);
     }
 
+    private function validateKnowledgeTest()
+    {
+        $answers = Yii::$app->request->post('Answer');
+        $answerSubquestions = Yii::$app->request->post('AnswerSubquestion');
+        $errors = false;
+        if (isset($answers[0][5]) && $answers[0][5] != 3 && (!isset($answerSubquestions[0][5][1]) || !isset($answerSubquestions[0][5][2]))) {
+            $errors[] = Yii::t('db', 'You must select at least one answer for question 6.1 and 6.2');
+        }
+        return $errors;
+    }
 
     public function actionGetCapital()
     {

@@ -1,6 +1,8 @@
 <?php
 /* @var $this yii\web\View */
 
+/* @var $model User */
+
 use app\models\mgcms\db\Project;
 use app\models\mgcms\db\ProjectSearch;
 use app\models\mgcms\db\User;
@@ -15,7 +17,6 @@ $this->title = Yii::t('db', 'Investitions');
 $searchModel = new \app\models\mgcms\db\PaymentSearch();
 $searchModel->user_id = MgHelpers::getUserModel()->id;
 $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
-
 
 ?>
 
@@ -34,9 +35,16 @@ $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
                 <div class="row">
                     <div class="col-12">
-                        <a href="<?= \yii\helpers\Url::to('/site/knowledge-test') ?>" class="btn btn-primary">
-                            <?= Yii::t('db', 'Apply for experienced investor status') ?>
-                        </a>
+                        <? if (!in_array($model->role,[User::ROLE_INVESTOR_EXPERIENCED, User::ROLE_INVESTOR_NOT_EXPERIENCED, User::ROLE_INVESTOR_EXPERIENCED_NOT_CONFIRMED])): ?>
+                            <a href="<?= \yii\helpers\Url::to('/site/knowledge-test') ?>" class="btn btn-primary">
+                                <?= Yii::t('db', 'Apply for experienced investor status') ?>
+                            </a>
+                        <? endif; ?>
+                        <? if ($model->role == User::ROLE_INVESTOR_EXPERIENCED_NOT_CONFIRMED): ?>
+                            <div class="alert alert-warning mt-3">
+                                <?= Yii::t('db', 'Test in review') ?>
+                            </div>
+                        <? endif; ?>
                     </div>
                 </div>
 

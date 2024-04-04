@@ -46,7 +46,7 @@ $this->title = Yii::t('db', 'Knowledge test');
                             <?= $this->render('knowledgeTest/_question', [
                                 'sectionIndex' => $sectionIndex,
                                 'questionIndex' => $questionIndex,
-                                'subQuestionIndex' => $subQuestionIndex,
+                                'subQuestionIndex' => $subQuestionIndex + 1,
                                 'question' => $subQuestion,
                                 'isSubquestion' => true
                             ]) ?>
