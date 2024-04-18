@@ -74,7 +74,7 @@ class Payment extends \app\models\mgcms\db\AbstractRecord
             [['user_id', 'status', 'rate'], 'integer'],
             [['amount'], 'number'],
             [['showUserName', 'showUserPhoto'], 'safe'],
-            [['acceptTerms', 'acceptTerms2', 'acceptTerms3'], 'required', 'requiredValue' => 1, 'message' => Yii::t('db', 'This field is required'), 'on' => 'invest'],
+            [['acceptTerms', 'acceptTerms2'], 'required', 'requiredValue' => 1, 'message' => Yii::t('db', 'This field is required'), 'on' => 'invest'],
         ];
     }
 

@@ -2,6 +2,7 @@
 return [
     'adminEmail' => 'test@opal.vertes-projekty.pl',
     'roles' => ['admin', 'investor_experienced', 'investor_experienced_not_confirmed', 'investor_not_experienced', 'worker', 'worker_limited', 'role_1', 'role_2'],
+    'rolesAllowedToBuy' => ['admin', 'investor_experienced', 'investor_experienced_not_confirmed', 'investor_not_experienced'],
     'languages' => ['pl', 'en'],
     'languagesDisplay' => ['pl', 'en'],
     'icon-framework' => 'bsg',

@@ -90,6 +90,11 @@ class ProjectController extends \app\components\mgcms\MgCmsController
 
         $user = User::findOne(MgHelpers::getUserModel()->id);
 
+        if (!in_array($user->role, MgHelpers::getConfigParam('rolesAllowedToBuy'))) {
+            MgHelpers::setFlashError(Yii::t('db', 'You are not allowed to buy'));
+            return $this->redirect(['site/login']);
+        }
+
         $project = Project::find()
             ->where(['status' => Project::STATUS_ACTIVE, 'id' => $id])
             ->one();
@@ -435,7 +440,7 @@ class ProjectController extends \app\components\mgcms\MgCmsController
 
 
         $projectUser = ProjectUser::find()->where(['user_id' => $currentUser->id, 'project_id' => $id])->one();
-        if($projectUser){
+        if ($projectUser) {
             $projectUser->delete();
         }
 
