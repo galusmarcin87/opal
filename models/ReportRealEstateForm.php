@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\components\mgcms\PeselValidator;
 use app\models\mgcms\db\File;
 use app\models\mgcms\db\FileRelation;
 use Yii;
@@ -55,6 +56,7 @@ class ReportRealEstateForm extends Model
             // verifyCode needs to be entered correctly
             [['reCaptcha'], \himiklab\yii2\recaptcha\ReCaptchaValidator::className(), 'secret' => MgHelpers::getConfigParam('recaptcha')['secretKey']],
             //[['acceptTerms'], 'required', 'requiredValue' => 1, 'message' => Yii::t('db', 'This field is required')],
+            [['pesel'], PeselValidator::class]
         ];
     }
 

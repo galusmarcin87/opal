@@ -2,6 +2,7 @@
 
 namespace app\models\mgcms\db;
 
+use app\components\mgcms\PeselValidator;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\web\IdentityInterface;
@@ -69,6 +70,7 @@ use app\components\mgcms\MgHelpers;
  * @property integer $acceptTerms6
  * @property string $agent_code
  * @property string $testResult
+ * @property string $company_krs
  *
  *
  * @property User $createdBy
@@ -171,6 +173,7 @@ class User extends BaseUser implements IdentityInterface
             ['fileUpload', 'requiredForRepresentative', 'skipOnEmpty' => false,],
 
             [['first_name'], 'required', 'on' => 'account'],
+            [['pesel'], PeselValidator::class]
 
         ];
     }
