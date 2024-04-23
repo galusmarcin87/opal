@@ -2,6 +2,7 @@
 
 namespace app\components\mgcms;
 use yii\validators\Validator;
+use Yii;
 class PeselValidator extends Validator
 {
     public function validateAttribute($model, $attribute)
