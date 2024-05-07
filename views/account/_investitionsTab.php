@@ -16,6 +16,7 @@ $this->title = Yii::t('db', 'Investitions');
 
 $searchModel = new \app\models\mgcms\db\PaymentSearch();
 $searchModel->user_id = MgHelpers::getUserModel()->id;
+$searchModel->status = \app\models\mgcms\db\Payment::STATUS_PAYMENT_CONFIRMED;
 $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
 ?>
