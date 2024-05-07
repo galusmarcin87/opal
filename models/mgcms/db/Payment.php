@@ -116,6 +116,9 @@ class Payment extends \app\models\mgcms\db\AbstractRecord
             'showUserName' => Yii::t('db', 'Show login of person who invested'),
             'showUserPhoto' => Yii::t('db', 'Show profile photo of person who invested'),
             'amountOfShares' => Yii::t('db','Amount of shares'),
+            'acceptTerms' => Yii::t('db', 'Accept terms'),
+            'acceptTerms2' => Yii::t('db', 'Accept terms 2'),
+            'acceptTerms3' => Yii::t('db', 'Accept terms 3'),
         ];
     }
 
