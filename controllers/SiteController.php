@@ -476,7 +476,7 @@ class SiteController extends \app\components\mgcms\MgCmsController
     public function actionKnowledgeTest()
     {
         $user = $this->getUserModel();
-        if(in_array($user->role,[User::ROLE_INVESTOR_EXPERIENCED, User::ROLE_INVESTOR_NOT_EXPERIENCED, User::ROLE_INVESTOR_EXPERIENCED_NOT_CONFIRMED])){
+        if($user->testResult && in_array($user->role,[User::ROLE_INVESTOR_EXPERIENCED, User::ROLE_INVESTOR_NOT_EXPERIENCED, User::ROLE_INVESTOR_EXPERIENCED_NOT_CONFIRMED])){
             return $this->redirect('/account/index');
         }
         $config = MgHelpers::getConfigParam('knowledgeTest');
