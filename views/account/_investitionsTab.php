@@ -36,7 +36,7 @@ $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
                 <div class="row">
                     <div class="col-12">
-                        <? if (!in_array($model->role,[User::ROLE_INVESTOR_EXPERIENCED, User::ROLE_INVESTOR_NOT_EXPERIENCED, User::ROLE_INVESTOR_EXPERIENCED_NOT_CONFIRMED])): ?>
+                        <? if (!($model->testResult && in_array($model->role,[User::ROLE_INVESTOR_EXPERIENCED, User::ROLE_INVESTOR_NOT_EXPERIENCED, User::ROLE_INVESTOR_EXPERIENCED_NOT_CONFIRMED]))): ?>
                             <a href="<?= \yii\helpers\Url::to('/site/knowledge-test') ?>" class="btn btn-primary">
                                 <?= Yii::t('db', 'Apply for experienced investor status') ?>
                             </a>
